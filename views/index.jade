@@ -1,5 +1,10 @@
 extends layout
 
 block content
-  h1.accessible-hide Desert Island Suicide
-  .logo
+
+  header(role="banner")
+    h1.accessible-hide Desert Island Suicide
+    img(src="../images/dis-logo.svg", class="logo")
+
+  div.wrapper(role="main")
+    include invitation-form
