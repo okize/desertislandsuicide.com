@@ -1,19 +1,39 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
 body {
   margin: 0;
   padding: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  color: #333;
+  color: #454136;
+  background: #ffffff; /* Old browsers */
+  background: -moz-linear-gradient(top, #ffffff 26%, #56d1cd 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(26%,#ffffff), color-stop(100%,#56d1cd)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #ffffff 26%,#56d1cd 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #ffffff 26%,#56d1cd 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #ffffff 26%,#56d1cd 100%); /* IE10+ */
+  background: linear-gradient(to bottom, #ffffff 26%,#56d1cd 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#56d1cd',GradientType=0 ); /* IE6-9 */
 }
 
 a {
   color: #00B7FF;
 }
 
+header {
+  display: block;
+  margin: 5em auto 0;
+  width: 85%;
+}
+
 .logo {
-  margin: 100px auto 0;
-  background: transparent url(../images/dis-logo.png) no-repeat 0 0;
-  width: 750px;
-  height: 95px;
+  width: 100%;
+  height: 100%;
 }
 
 .accessible-hide {
@@ -23,3 +43,58 @@ a {
   white-space: nowrap;
   overflow: hidden;
 }
+
+.wrapper {
+  margin: 2em auto 4em;
+  width: 85%;
+}
+
+.invitation-form {
+  background-color: #ebead5;
+  border-radius: 5px;
+  border-bottom: 3px solid #d2d1be;
+  padding: 1em;
+  overflow: hidden;
+}
+
+.invitation-form-input, .invitation-form-button {
+  font-size: 1.25em;
+  border-radius: 4px;
+}
+
+.invitation-form-input {
+  width: calc(100% - 28%);
+  float: left;
+  line-height: 1.2;
+  padding: .6em 1em;
+  border: 1px solid #d2d1be;
+  color: #454136;
+}
+
+.invitation-form-button {
+  background: #d2d1be;
+  border: 0;
+  color: #454136;
+  width: 27%;
+  text-align: center;
+  padding: .6em .25em;
+  line-height: 1.25;
+  float: right;
+}
+
+.invitation-form-button:hover {
+  background: #f5ce33;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 750px) {
+  .invitation-form-input {
+    margin-bottom: .5em;
+  }
+  .invitation-form-input, .invitation-form-button {
+    display: block;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 800px) {
