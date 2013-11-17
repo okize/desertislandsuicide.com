@@ -1,7 +1,22 @@
 {
   "name": "desertislandsuicide",
+  "description": "Desert Island Suicide",
   "version": "0.0.1",
   "private": true,
+  "author": {
+    "name": "Morgan Wigmanich",
+    "email": "okize123@gmail.com"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/github/hubot/raw/master/LICENSE"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/okize/desertislandsuicide"
+  },
   "scripts": {
     "start": "node app.js"
   },
