@@ -1,1 +1,1 @@
-#desertislandsuicide.com
+#Desert Island Suicide
