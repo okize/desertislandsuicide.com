@@ -14,7 +14,7 @@ h1 {
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
-  background: transparent url(../images/dis-logo.png);
+  background: transparent url(../images/dis-logo.png) no-repeat 0 0;
   width: 990px;
   height: 126px;
 }
