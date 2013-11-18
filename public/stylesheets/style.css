@@ -87,8 +87,15 @@ header {
   cursor: pointer;
 }
 
+@media screen and (max-width: 400px) {
+  .invitation-form-input, .invitation-form-button {
+    font-size: 1em;
+  }
+}
+
 @media screen and (max-width: 750px) {
   .invitation-form-input {
+    text-align: center;
     margin-bottom: .5em;
   }
   .invitation-form-input, .invitation-form-button {
