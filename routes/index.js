@@ -8,5 +8,5 @@ exports.index = function(req, res){
 };
 
 exports.subscribed = function(req, res){
-  res.render('subscribed', { title: 'Subscription confirmed!' });
+  res.render('index', { title: 'Subscription confirmed!', subscribed: true });
 };

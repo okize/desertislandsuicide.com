@@ -2,9 +2,14 @@ extends layout
 
 block content
 
-  header(role="banner")
+  div.sunshine(role="presentation")
+
+  header.banner(role="banner")
     h1.accessible-hide Desert Island Suicide
-    img(src="../images/dis-logo.svg", class="logo")
+    img.logo(src="../images/dis-logo.svg")
 
   div.wrapper(role="main")
-    include invitation-form
+    if subscribed
+      include subscribed
+    else
+      include invitation-form
