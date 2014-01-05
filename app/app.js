@@ -8,7 +8,7 @@
 
   express = require("express");
 
-  routes = require("../routes");
+  routes = require("./routes");
 
   http = require("http");
 

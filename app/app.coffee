@@ -1,8 +1,8 @@
-require "newrelic"  if process.env.NODE_ENV is "production"
+require "newrelic" if process.env.NODE_ENV is "production"
 
 # modules
 express = require("express")
-routes = require("../routes")
+routes = require("./routes")
 http = require("http")
 path = require("path")
 
