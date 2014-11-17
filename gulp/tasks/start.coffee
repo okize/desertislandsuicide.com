@@ -15,7 +15,7 @@ gulp.task 'start', ->
     script: config.main
     ext: 'coffee'
     env: process.env
-    nodeArgs: ['--nodejs', "--debug=#{process.env.DEBUG_PORT or 5858}"]
+    nodeArgs: ["--debug=#{process.env.DEBUG_PORT or 5858}"]
     ignore: config.appIgnoreDirs
   ).on('restart', (files) ->
     log.info 'Application restarted'
