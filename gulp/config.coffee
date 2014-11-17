@@ -27,7 +27,7 @@ module.exports =
 
   # asset compilation targets
   dist:
-    favicons: "#{root}/assets/favicons/"
-    imagesDir: "#{assets}/images"
+    faviconsDir: "#{assets}/favicons/"
+    imagesDir: "#{assets}/images/"
     cssName: 'styles.css'
-    cssDir: "#{assets}/stylesheets"
+    cssDir: "#{assets}/stylesheets/"

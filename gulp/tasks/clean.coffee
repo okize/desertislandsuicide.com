@@ -7,4 +7,8 @@ log = require '../helpers/log'
 
 gulp.task 'clean', ->
   log.info 'Deleting public assets'
-  clean [config.dist.cssDir]
+  clean [
+    config.dist.cssDir
+    config.dist.imagesDir
+    config.dist.faviconsDir
+  ]
