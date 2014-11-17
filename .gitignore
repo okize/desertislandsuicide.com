@@ -2,3 +2,9 @@
 npm-debug.log
 newrelic_agent.log
 temp/
+
+# npm build files
+node_modules/node-inspector/node_modules/ws/build/
+node_modules/browser-sync/node_modules/socket.io/node_modules/engine.io/node_modules/ws/build/
+node_modules/browser-sync/node_modules/socket.io/node_modules/engine.io/node_modules/ws/builderror.log
+node_modules/browser-sync/node_modules/socket.io/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/ws/build/
