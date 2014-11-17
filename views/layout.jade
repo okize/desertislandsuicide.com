@@ -6,7 +6,7 @@ html
     meta(name='description', content='')
     meta(name='viewport', content='width=device-width, initial-scale=1')
     title= title
-    link(rel='stylesheet', href='/stylesheets/styles.css')
+    link(rel='stylesheet', href=asset('/stylesheets/styles.css', '/stylesheets/styles.min.css'))
   body
     block content
     include partials/google-analytics

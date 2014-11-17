@@ -1,10 +1,12 @@
 var path = require('path');
 var express = require('express');
+var assets = require('express-asset-versions');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var routes = require('./routes');
 var app = express();
 
+var assetPath = path.join(__dirname, 'public');
 app.set('port', process.env.PORT || 4444);
 
 // view engine
@@ -15,8 +17,9 @@ app.set('view engine', 'jade');
 app.use(logger('dev'));
 
 // static assets
-app.use(favicon(__dirname + '/public/favicons/favicon.ico'));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(assetPath, {maxAge: 86400000}));
+app.use(favicon(path.join(assetPath, 'favicons', 'favicon.ico')));
+app.use(assets('', assetPath));
 
 // routes
 app.use('/', routes);
