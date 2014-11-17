@@ -15,7 +15,7 @@ app.set('view engine', 'jade');
 app.use(logger('dev'));
 
 // static assets
-app.use(favicon(__dirname + '/public/favicon/favicon.ico'));
+app.use(favicon(__dirname + '/public/favicons/favicon.ico'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // routes
