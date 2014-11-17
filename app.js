@@ -23,7 +23,6 @@ app.use(assets('', assetPath));
 
 // routes
 app.use('/', routes);
-app.use('/subscribed', routes);
 
 // catch 404s
 app.use(function(req, res, next) {
