@@ -1,9 +1,10 @@
-if (process.env.NODE_ENV === 'production') require('newrelic');
+if (process.env.NODE_ENV === 'production') {
+  require('newrelic');
+}
 
 // modules
 var express = require('express');
 var routes = require('./routes');
-var http = require('http');
 var path = require('path');
 
 var app = express();

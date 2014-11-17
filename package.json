@@ -3,6 +3,26 @@
   "private": true,
   "description": "Desert Island Suicide",
   "version": "1.0.0",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "~4.10.0",
+    "body-parser": "~1.8.1",
+    "cookie-parser": "~1.3.3",
+    "morgan": "~1.3.0",
+    "serve-favicon": "~2.1.3",
+    "debug": "~2.0.0",
+    "jade": "~1.6.0",
+    "newrelic": "~1.13.0"
+  },
+  "engines": {
+    "node": "0.10.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/okize/desertislandsuicide"
+  },
   "author": {
     "name": "Morgan Wigmanich",
     "email": "okize123@gmail.com"
@@ -12,20 +32,5 @@
       "type": "MIT",
       "url": "https://raw.githubusercontent.com/okize/desertislandsuicide.com/master/LICENSE.md"
     }
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/okize/desertislandsuicide"
-  },
-  "scripts": {
-    "start": "node app.js"
-  },
-  "dependencies": {
-    "express": "3.4.x",
-    "jade": "1.7.0",
-    "newrelic": "1.1.x"
-  },
-  "engines": {
-    "node": "0.10.x"
-  }
+  ]
 }
