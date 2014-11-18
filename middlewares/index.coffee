@@ -1,11 +1,15 @@
 path = require 'path'
 express = require 'express'
+session = require 'express-session'
+lusca = require 'lusca'
 assets = require 'express-asset-versions'
 compression = require 'compression'
 favicon = require 'serve-favicon'
+_ = require 'lodash'
 logger = require '../lib/logger'
 log = logger.logger
 
+# public assets directory
 assetPath = path.join(__dirname, '..', 'public')
 
 # if app is running in dev mode, pass through entire stack trace
@@ -28,6 +32,23 @@ exports.before = (app) ->
   app.use express.static(assetPath, maxAge: 86400000)
   app.use favicon path.join(assetPath, 'favicons', 'favicon.ico')
   app.use assets('', assetPath)
+
+  # session init
+  app.use session(
+    secret: process.env.SESSION_SECRET
+    resave: true
+    saveUninitialized: true
+  )
+
+  # webapp security defaults
+  app.use lusca(
+    csrf: true
+    csp: false
+    xframe: 'SAMEORIGIN'
+    p3p: false
+    hsts: false
+    xssProtection: true
+  )
 
 exports.after = (app) ->
 

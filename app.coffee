@@ -28,3 +28,5 @@ middlewares.after app
 # await connections
 app.listen app.get('port'), ->
   log.info "#{app.get('app name')} started on port #{app.get('port')} in [#{app.get('env')}]"
+
+module.exports = app
