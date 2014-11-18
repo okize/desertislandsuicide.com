@@ -2,14 +2,14 @@ mongoose = require 'mongoose'
 log = (require './logger').logger
 
 # mongo connection string
-db = process.env.MONGODB_URI or process.env.MONGODB
+mongoUri = process.env.MONGODB_URI or process.env.MONGODB
 
 # init database connection
-mongoose.connect db
+mongoose.connect mongoUri
 
 # successful connection
 mongoose.connection.on 'connected', ->
-  log.info "Sucessful MongoDB connection to #{db}"
+  log.info "Sucessful MongoDB connection to #{mongoUri}"
 
 # connection error
 mongoose.connection.on 'error', (err) ->

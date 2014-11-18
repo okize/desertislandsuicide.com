@@ -1,11 +1,15 @@
 path = require 'path'
+_ = require 'lodash'
 express = require 'express'
 session = require 'express-session'
+MongoStore = require('connect-mongo')(session)
 lusca = require 'lusca'
+bodyParser = require 'body-parser'
+methodOverride = require 'method-override'
+cookieParser = require 'cookie-parser'
 assets = require 'express-asset-versions'
 compression = require 'compression'
 favicon = require 'serve-favicon'
-_ = require 'lodash'
 logger = require '../lib/logger'
 log = logger.logger
 
@@ -28,16 +32,21 @@ exports.before = (app) ->
   # http logger
   app.use logger.http
 
-  # static assets
-  app.use express.static(assetPath, maxAge: 86400000)
-  app.use favicon path.join(assetPath, 'favicons', 'favicon.ico')
-  app.use assets('', assetPath)
+  # parsers
+  app.use bodyParser.json()
+  app.use bodyParser.urlencoded(extended: true)
+  app.use methodOverride()
+  app.use cookieParser()
 
   # session init
   app.use session(
     secret: process.env.SESSION_SECRET
     resave: true
     saveUninitialized: true
+    store: new MongoStore(
+      url: process.env.MONGODB_URI or process.env.MONGODB
+      auto_reconnect: true
+    )
   )
 
   # webapp security defaults
@@ -49,6 +58,11 @@ exports.before = (app) ->
     hsts: false
     xssProtection: true
   )
+
+  # static assets
+  app.use express.static(assetPath, maxAge: 86400000)
+  app.use favicon path.join(assetPath, 'favicons', 'favicon.ico')
+  app.use assets('', assetPath)
 
 exports.after = (app) ->
 
