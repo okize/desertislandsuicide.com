@@ -1,10 +1,10 @@
 // New Relic agent configuration.
- // 'trace' is most useful to New Relic when diagnosing
- // 'info' and higher will impose the least overhead
+// https://docs.newrelic.com/docs/agents/nodejs-agent/installation-configuration/nodejs-agent-configuration
 exports.config = {
-  app_name : ['Desert Island Suicide'],
+  app_name : [process.env.NEW_RELIC_APP_NAME],
   license_key : process.env.NEW_RELIC_LICENSE_KEY,
   logging : {
-    level : 'info'
+    level: process.env.NEW_RELIC_LOG_LEVEL,
+    filepath: process.env.NEW_RELIC_LOG
   }
 };
