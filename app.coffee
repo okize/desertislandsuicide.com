@@ -2,6 +2,7 @@ path = require 'path'
 express = require 'express'
 middlewares = require './middlewares'
 routes = require './routes'
+log = (require './lib/logger').logger
 
 # init app
 app = express()
@@ -13,12 +14,15 @@ app.set 'env', process.env.NODE_ENV or 'development'
 app.set 'views', path.join(__dirname, 'views')
 app.set 'view engine', 'jade'
 
-# middlewares
+# middlewares before
 middlewares.before app
 
 # routes
 app.use '/', routes
 
+# middlewares after
+middlewares.after app
+
 # await connections
 app.listen app.get('port'), ->
-  console.log "#{app.get('app name')} started on port #{app.get('port')} in [#{app.get('env')}]"
+  log.info "#{app.get('app name')} started on port #{app.get('port')} in [#{app.get('env')}]"
