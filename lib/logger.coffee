@@ -1,13 +1,27 @@
 winston = require 'winston'
 expressWinston = require 'express-winston'
+require('winston-papertrail').Papertrail
 
-logger = new winston.Logger(transports: [
-  new winston.transports.Console(
-    json: false
-    colorize: true
-    handleExceptions: true
-  )
-])
+# console logging transport
+logToConsole =  new winston.transports.Console(
+                  json: false
+                  colorize: true
+                  handleExceptions: true
+                )
+
+# papertrail app logging transport
+logToPapertrail = new winston.transports.Papertrail(
+                    host: process.env.PAPERTRAIL_URL
+                    port: process.env.PAPERTRAIL_PORT
+                  )
+
+transports = [logToConsole]
+
+# only log to papertrail in production
+if process.env.NODE_ENV == 'production'
+  transports.push logToPapertrail
+
+logger = new winston.Logger(transports: transports)
 
 module.exports.http = expressWinston.logger(
   winstonInstance: logger
