@@ -19,7 +19,7 @@ app.set 'view engine', 'jade'
 # middlewares before
 middlewares.before app
 
-# routes
+# init routes
 app.use '/', routes
 
 # middlewares after

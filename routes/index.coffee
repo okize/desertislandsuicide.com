@@ -1,9 +1,6 @@
-express = require('express')
-router = express.Router()
+router = require('express').Router()
+homeController = require '../controllers/home'
 
-# home page
-router.get '/', (req, res) ->
-  res.render 'index',
-    title: 'Desert Island Suicide'
+router.get '/', homeController.index
 
 module.exports = router
