@@ -1,30 +1,20 @@
-path = require('path')
-express = require('express')
-assets = require('express-asset-versions')
-favicon = require('serve-favicon')
-logger = require('morgan')
-routes = require('./routes')
+path = require 'path'
+express = require 'express'
+middlewares = require './middlewares'
+routes = require './routes'
 
 # init app
 app = express()
 
-# port config
+# config
+app.set 'app name', 'DesertIslandSuicide'
 app.set 'port', process.env.PORT or 4444
-
-# view engine
+app.set 'env', process.env.NODE_ENV or 'development'
 app.set 'views', path.join(__dirname, 'views')
 app.set 'view engine', 'jade'
 
-# logger
-app.use logger('dev')
-
-# static assets
-assetPath = path.join(__dirname, 'public')
-app.use express.static(assetPath,
-  maxAge: 86400000
-)
-app.use favicon(path.join(assetPath, 'favicons', 'favicon.ico'))
-app.use assets('', assetPath)
+# middlewares
+middlewares.before app
 
 # routes
 app.use '/', routes
@@ -51,5 +41,6 @@ if app.get('env') is 'production'
       message: err.message
       error: {}
 
+# await connections
 app.listen app.get('port'), ->
-  console.log "Express server listening on port #{app.get('port')}"
+  console.log "#{app.get('app name')} started on port #{app.get('port')} in [#{app.get('env')}]"
