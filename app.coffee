@@ -9,6 +9,9 @@ log = (require './lib/logger').logger
 # init app
 app = express()
 
+# connect to db
+require './lib/mongodb'
+
 # config
 app.set 'app name', 'DesertIslandSuicide'
 app.set 'port', process.env.PORT or 4444
