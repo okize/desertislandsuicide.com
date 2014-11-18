@@ -22,7 +22,7 @@ module.exports =
   src:
     favicons: "#{root}/assets/favicons/"
     images: "#{root}/assets/images/"
-    sassEntry: 'main.scss'
+    sassEntry: 'main.sass'
     sassDir: "#{root}/assets/sass/"
 
   # asset compilation targets
