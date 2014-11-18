@@ -19,28 +19,6 @@ middlewares.before app
 # routes
 app.use '/', routes
 
-# catch 404s
-app.use (req, res, next) ->
-  err = new Error('Not Found')
-  err.status = 404
-  next err
-
-# error handlers in dev
-if app.get('env') is 'development'
-  app.use (err, req, res, next) ->
-    res.status err.status or 500
-    res.render 'error',
-      message: err.message
-      error: err
-
-# error handlers in production
-if app.get('env') is 'production'
-  app.use (err, req, res, next) ->
-    res.status err.status or 500
-    res.render 'error',
-      message: err.message
-      error: {}
-
 # await connections
 app.listen app.get('port'), ->
   console.log "#{app.get('app name')} started on port #{app.get('port')} in [#{app.get('env')}]"
