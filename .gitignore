@@ -2,6 +2,7 @@
 *.log
 dump/
 temp/
+tests/
 
 # npm build files
 node_modules/node-inspector/node_modules/ws/build/

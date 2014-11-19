@@ -1,17 +1,10 @@
-router = require('express').Router()
+express = require 'express'
+router = express.Router()
+api = express.Router()
 passport = require 'passport'
 auth = require '../lib/authentication'
 homeController = require '../controllers/home'
 userController = require '../controllers/user'
-
-# ensure user has been authenticated
-isAuthenticated = (req, res, next) ->
-  if req.isAuthenticated()
-    next()
-  else
-    req.flash 'errors',
-      msg: 'You are not authorized to view this page'
-    res.render('index')
 
 # homepage
 router.get '/', homeController.index
@@ -19,12 +12,6 @@ router.get '/', homeController.index
 # sign in & out
 router.get '/login', userController.login
 router.get '/logout', userController.logout
-
-# "account" page
-router
-  .route '/account'
-  .all isAuthenticated
-  .get userController.account
 
 # facebook OAuth
 router.get '/auth/facebook', passport.authenticate('facebook',
@@ -51,6 +38,9 @@ router.get '/auth/twitter/callback', passport.authenticate('twitter',
 ), (req, res) ->
   res.redirect req.session.returnTo or '/'
 
+# "account" page
+api.get '/account', userController.account
 
-
-module.exports = router
+module.exports =
+  unprotected: router
+  protected: api

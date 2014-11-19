@@ -12,6 +12,8 @@ assets = require 'express-asset-versions'
 compression = require 'compression'
 flash = require 'express-flash'
 favicon = require 'serve-favicon'
+help = require '../lib/helpers'
+routes = require '../routes'
 logger = require '../lib/logger'
 log = logger.logger
 
@@ -26,7 +28,7 @@ getErrorStack = (err, env) ->
   else
     {}
 
-exports.before = (app) ->
+module.exports = (app) ->
 
   # gzip assets
   app.use compression(threshold: 1024)
@@ -68,20 +70,27 @@ exports.before = (app) ->
   # flash messages
   app.use flash()
 
-  # static assets
-  app.use express.static(assetPath, maxAge: 86400000)
-  app.use favicon path.join(assetPath, 'favicons', 'favicon.ico')
-  app.use assets('', assetPath)
+  # # save original destination before login
+  # app.use (req, res, next) ->
+  #   path = req.path.split("/")[1]
+  #   if /auth|login|logout|signup|fonts|favicon/i.test(path)
+  #     return next()
+  #   req.session.returnTo = req.path
+  #   next()
 
   # make user object available in templates
   app.use (req, res, next) ->
     res.locals.user = req.user
     next()
 
-exports.after = (app) ->
+  # static assets
+  app.use express.static(assetPath, maxAge: 86400000)
+  app.use favicon path.join(assetPath, 'favicons', 'favicon.ico')
+  app.use assets('', assetPath)
 
-  # error logger
-  app.use logger.error
+  # init routes
+  app.use '/', routes.unprotected
+  app.use '/api', help.isAuthenticated, routes.protected
 
   # catch 404s
   app.use (req, res, next) ->
@@ -96,3 +105,6 @@ exports.after = (app) ->
     res.render 'error',
       message: err.message
       error: getErrorStack err, app.get('env')
+
+  # error logger
+  app.use logger.error
