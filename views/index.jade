@@ -2,8 +2,8 @@ extends layout
 
 block content
 
-  ul
-    - if (user)
-      li: a(href="/logout") Logout
-    - else
-      li: a(href="/login") Login
+  div.wrapper(role="main")
+    if subscribed
+      include partials/subscribed
+    else
+      include partials/invitation-form
