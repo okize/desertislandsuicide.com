@@ -1,4 +1,4 @@
-User = require '../models/User'
+User = require '../models/user'
 
 # GET /login
 exports.login = (req, res) ->

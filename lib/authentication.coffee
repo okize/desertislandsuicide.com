@@ -3,7 +3,7 @@ passport = require 'passport'
 FacebookStrategy = require('passport-facebook').Strategy
 TwitterStrategy = require('passport-twitter').Strategy
 GoogleStrategy = require('passport-google-oauth').OAuth2Strategy
-User = require '../models/User'
+User = require '../models/user'
 log = require('../lib/logger').logger
 
 config =

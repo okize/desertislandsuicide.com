@@ -1,4 +1,4 @@
-require 'newrelic' # this needs to be first line of app
+require 'newrelic' if process.env.NODE_ENV == 'production' # this needs to be first line of app
 
 path = require 'path'
 express = require 'express'
