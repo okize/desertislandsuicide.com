@@ -6,7 +6,7 @@ assets = path.resolve(root, 'public')
 
 module.exports =
   root: root
-  taskDir: "#{root}/gulp/tasks"
+  taskDir: "#{root}/gulp/tasks/"
   main: "#{root}/app.coffee"
   publicAssetsDir: assets
 
