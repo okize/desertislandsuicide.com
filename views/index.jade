@@ -2,6 +2,10 @@ extends layout
 
 block content
 
+  pre= user
+
   ul
-    li: a(href="/login") Login
-    li: a(href="/logout") Logout
+    - if (user)
+      li: a(href="/logout") Logout
+    - else
+      li: a(href="/login") Login
