@@ -3,10 +3,17 @@ html
   head
     meta(charset='utf-8')
     meta(http-equiv='X-UA-Compatible', content='IE=edge')
-    meta(name='description', content='')
     meta(name='viewport', content='width=device-width, initial-scale=1')
-    title= title
+    meta(name='csrf-token', content=_csrf)
+    title #{title}
     link(rel='stylesheet', href=asset('/stylesheets/styles.css', '/stylesheets/styles.min.css'))
   body
-    block content
-    include partials/google-analytics
+
+    include partials/header
+
+    include partials/flash
+
+    div.wrapper(role="main")
+      block content
+
+    include partials/footer

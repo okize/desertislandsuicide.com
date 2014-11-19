@@ -6,8 +6,8 @@ assets = path.resolve(root, 'public')
 
 module.exports =
   root: root
-  taskDir: "#{root}/gulp/tasks"
-  main: "#{root}/app.js"
+  taskDir: "#{root}/gulp/tasks/"
+  main: "#{root}/app.coffee"
   publicAssetsDir: assets
 
   # DO NOT restart node app when files change in these directories
@@ -22,7 +22,7 @@ module.exports =
   src:
     favicons: "#{root}/assets/favicons/"
     images: "#{root}/assets/images/"
-    sassEntry: 'main.scss'
+    sassEntry: 'main.sass'
     sassDir: "#{root}/assets/sass/"
 
   # asset compilation targets
