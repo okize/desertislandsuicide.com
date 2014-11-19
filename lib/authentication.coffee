@@ -167,3 +167,5 @@ passport.use new GoogleStrategy(config.google, (req, accessToken, refreshToken, 
       )
     )
 )
+
+module.exports = passport

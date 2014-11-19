@@ -4,6 +4,15 @@ auth = require '../lib/authentication'
 homeController = require '../controllers/home'
 userController = require '../controllers/user'
 
+# ensure user has been authenticated
+isAuthenticated = (req, res, next) ->
+  if req.isAuthenticated()
+    next()
+  else
+    req.flash 'errors',
+      msg: 'You are not authorized to view this page'
+    res.render('index')
+
 # homepage
 router.get '/', homeController.index
 
@@ -12,14 +21,14 @@ router.get '/login', userController.login
 router.get '/logout', userController.logout
 
 # "account" page
-router.get '/account', userController.account
+router
+  .route '/account'
+  .all isAuthenticated
+  .get userController.account
 
 # facebook OAuth
 router.get '/auth/facebook', passport.authenticate('facebook',
-  scope: [
-    'email'
-    'user_location'
-  ]
+  scope: ['email', 'user_location']
 )
 router.get '/auth/facebook/callback', passport.authenticate('facebook',
   failureRedirect: '/login'
@@ -41,5 +50,7 @@ router.get '/auth/twitter/callback', passport.authenticate('twitter',
   failureRedirect: '/login'
 ), (req, res) ->
   res.redirect req.session.returnTo or '/'
+
+
 
 module.exports = router
