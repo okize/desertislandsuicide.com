@@ -48,7 +48,7 @@ passport.use new FacebookStrategy(config.facebook, (req, accessToken, refreshTok
             accessToken: accessToken
           user.profile.name = user.profile.name or profile.displayName
           user.profile.gender = user.profile.gender or profile._json.gender
-          user.profile.picture = user.profile.picture or 'https://graph.facebook.com/' + profile.id + '/picture?type=large'
+          user.profile.picture = user.profile.picture or "https://graph.facebook.com/#{profile.id}/picture?type=large"
           user.save (err) ->
             req.flash 'info',
               msg: 'Facebook account has been linked.'
@@ -72,7 +72,7 @@ passport.use new FacebookStrategy(config.facebook, (req, accessToken, refreshTok
             accessToken: accessToken
           user.profile.name = profile.displayName
           user.profile.gender = profile._json.gender
-          user.profile.picture = 'https://graph.facebook.com/' + profile.id + '/picture?type=large'
+          user.profile.picture = "https://graph.facebook.com/#{profile.id}/picture?type=large"
           user.profile.location = (if (profile._json.location) then profile._json.location.name else '')
           user.save (err) ->
             done err, user
@@ -107,7 +107,7 @@ passport.use new TwitterStrategy(config.twitter, (req, accessToken, tokenSecret,
       if existingUser
         return done(null, existingUser)
       user = new User()
-      user.email = profile.username + '@gmail.com' # fake email
+      user.email = "#{profile.username}@gmail.com" # fake email
       user.twitter = profile.id
       user.tokens.push
         kind: 'twitter'
