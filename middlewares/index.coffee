@@ -4,6 +4,7 @@ express = require 'express'
 session = require 'express-session'
 MongoStore = require('connect-mongo')(session)
 lusca = require 'lusca'
+passport = require 'passport'
 bodyParser = require 'body-parser'
 methodOverride = require 'method-override'
 cookieParser = require 'cookie-parser'
@@ -59,10 +60,19 @@ exports.before = (app) ->
     xssProtection: true
   )
 
+  # init passport authentication
+  app.use passport.initialize()
+  app.use passport.session()
+
   # static assets
   app.use express.static(assetPath, maxAge: 86400000)
   app.use favicon path.join(assetPath, 'favicons', 'favicon.ico')
   app.use assets('', assetPath)
+
+  # make user object available in templates
+  app.use (req, res, next) ->
+    res.locals.user = req.user
+    next()
 
 exports.after = (app) ->
 
