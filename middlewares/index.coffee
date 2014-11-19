@@ -10,6 +10,7 @@ methodOverride = require 'method-override'
 cookieParser = require 'cookie-parser'
 assets = require 'express-asset-versions'
 compression = require 'compression'
+flash = require 'express-flash'
 favicon = require 'serve-favicon'
 logger = require '../lib/logger'
 log = logger.logger
@@ -63,6 +64,9 @@ exports.before = (app) ->
   # init passport authentication
   app.use passport.initialize()
   app.use passport.session()
+
+  # flash messages
+  app.use flash()
 
   # static assets
   app.use express.static(assetPath, maxAge: 86400000)
