@@ -1,6 +1,6 @@
 router = require('express').Router()
 passport = require 'passport'
-passportConf = require '../lib/passport'
+auth = require '../lib/authentication'
 homeController = require '../controllers/home'
 userController = require '../controllers/user'
 
@@ -10,6 +10,9 @@ router.get '/', homeController.index
 # sign in & out
 router.get '/login', userController.login
 router.get '/logout', userController.logout
+
+# "account" page
+router.get '/account', userController.account
 
 # facebook OAuth
 router.get '/auth/facebook', passport.authenticate('facebook',
