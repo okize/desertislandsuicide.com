@@ -12,6 +12,7 @@ assets = require 'express-asset-versions'
 compression = require 'compression'
 flash = require 'express-flash'
 favicon = require 'serve-favicon'
+getIp = require('ipware')().get_ip
 help = require '../lib/helpers'
 routes = require '../routes'
 logger = require '../lib/logger'
@@ -81,6 +82,11 @@ module.exports = (app) ->
   # make user object available in templates
   app.use (req, res, next) ->
     res.locals.user = req.user
+    next()
+
+  # add user ip address to request session object
+  app.use (req, res, next) ->
+    req.session.ipAddress = getIp req
     next()
 
   # static assets
