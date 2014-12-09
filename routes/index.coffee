@@ -8,7 +8,6 @@ userController = require '../controllers/user'
 
 # homepage
 router.get '/', homeController.index
-router.get '/subscribed', homeController.subscribed
 
 # sign in & out
 router.get '/login', userController.login
