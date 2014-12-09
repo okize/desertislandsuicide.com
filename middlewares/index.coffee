@@ -11,6 +11,7 @@ cookieParser = require 'cookie-parser'
 assets = require 'express-asset-versions'
 compression = require 'compression'
 flash = require 'express-flash'
+sm = require 'sitemap'
 favicon = require 'serve-favicon'
 help = require '../lib/helpers'
 routes = require '../routes'
@@ -43,6 +44,18 @@ module.exports = (app) ->
       res.send 'User-agent: *\nSitemap: /sitemap.xml\nDisallow: /dash/'
     else
       next()
+
+  # sitemap.xml
+  sitemap = sm.createSitemap(
+    hostname: process.env.APP_URL
+    cacheTime: 600000000
+    urls: [
+      {url: '/', changefreq: 'daily'}
+    ]
+  )
+  app.get '/sitemap.xml', (req, res) ->
+    res.header 'Content-Type', 'application/xml'
+    res.send sitemap.toString()
 
   # parsers
   app.use bodyParser.json()
