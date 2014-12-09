@@ -13,6 +13,9 @@ logToConsole =  new winston.transports.Console(
 logToPapertrail = new winston.transports.Papertrail(
                     host: process.env.PAPERTRAIL_URL
                     port: process.env.PAPERTRAIL_PORT
+                    hostname: process.env.PAPERTRAIL_HOSTNAME
+                    program: process.env.APP_NAME
+                    colorize: true
                   )
 
 transports = [logToConsole]
