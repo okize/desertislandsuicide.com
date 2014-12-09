@@ -36,6 +36,14 @@ module.exports = (app) ->
   # http logger
   app.use logger.http
 
+  # robots.txt
+  app.use (req, res, next) ->
+    if '/robots.txt' is req.url
+      res.type 'text/plain'
+      res.send 'User-agent: *\nSitemap: /sitemap.xml\nDisallow: /dash/'
+    else
+      next()
+
   # parsers
   app.use bodyParser.json()
   app.use bodyParser.urlencoded(extended: true)
