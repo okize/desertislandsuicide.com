@@ -16,12 +16,8 @@ gulp.task 'watch', ['sync'], ->
 
   watch coffee, (files, cb) ->
     gulp.start 'browserify', cb
-  .on 'error', (err) ->
-    log.error err
 
   watch sass, (files, cb) ->
     gulp.start 'sass', cb
-  .on 'error', (err) ->
-    log.error err
 
   return
