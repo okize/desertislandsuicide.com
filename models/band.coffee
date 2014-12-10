@@ -1,4 +1,5 @@
 mongoose = require 'mongoose'
+uniqueValidator = require 'mongoose-unique-validator'
 
 bandSchema = new mongoose.Schema(
   name:
@@ -14,5 +15,7 @@ bandSchema = new mongoose.Schema(
   ,
     strict: true
 )
+
+bandSchema.plugin uniqueValidator
 
 module.exports = mongoose.model('Band', bandSchema)

@@ -23,7 +23,6 @@ exports.create = (req, res) ->
 
 # PUT /api/bands/:id
 exports.update = (req, res) ->
-  console.log req.body
   Band.update {_id: req.params.id}, req.body, (err, count) ->
     res.status(500).json error: err if err?
     res.status(200).json "#{count} records updated"
