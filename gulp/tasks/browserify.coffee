@@ -26,4 +26,5 @@ gulp.task 'browserify', ->
   .pipe sourcemaps.init(loadMaps: true)
   .pipe sourcemaps.write()
   .pipe gulp.dest config.dist.jsDir
-  .on 'error', (e) -> log.error e
+  .on 'error', (err) ->
+    log.error err
