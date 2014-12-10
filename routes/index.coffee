@@ -4,7 +4,11 @@ api = express.Router()
 passport = require 'passport'
 auth = require '../lib/authentication'
 homeController = require '../controllers/home'
-userController = require '../controllers/user'
+userController = require '../controllers/users'
+bandsController = require '../controllers/bands'
+
+# "account" page (temp)
+api.get '/account', userController.account
 
 # homepage
 router.get '/', homeController.index
@@ -38,8 +42,14 @@ router.get '/auth/twitter/callback', passport.authenticate('twitter',
 ), (req, res) ->
   res.redirect req.session.returnTo or '/'
 
-# "account" page
-api.get '/account', userController.account
+# this exists out of protected group because we want unsigned in users
+# to be able to see votes
+router.get '/api/bands', bandsController.index
+
+router.get '/bands/:id', bandsController.show
+router.post '/bands', bandsController.create
+router.put '/bands/:id', bandsController.update
+router.delete '/bands/:id', bandsController.delete
 
 module.exports =
   unprotected: router
