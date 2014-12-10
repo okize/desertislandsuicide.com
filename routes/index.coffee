@@ -46,10 +46,10 @@ router.get '/auth/twitter/callback', passport.authenticate('twitter',
 # to be able to see votes
 router.get '/api/bands', bandsController.index
 
-router.get '/bands/:id', bandsController.show
-router.post '/bands', bandsController.create
-router.put '/bands/:id', bandsController.update
-router.delete '/bands/:id', bandsController.delete
+api.get '/bands/:id', bandsController.show
+api.post '/bands', bandsController.create
+api.put '/bands/:id', bandsController.update
+api.delete '/bands/:id', bandsController.delete
 
 module.exports =
   unprotected: router

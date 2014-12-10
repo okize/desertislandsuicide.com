@@ -25,10 +25,10 @@ exports.create = (req, res) ->
 exports.update = (req, res) ->
   Band.update {_id: req.params.id}, req.body, (err, count) ->
     res.status(500).json error: err if err?
-    res.status(200).json "#{count} records updated"
+    res.status(200).json message: "#{count} records updated"
 
 # DELETE /api/bands/:id
 exports.delete = (req, res) ->
   Band.remove {_id: req.params.id}, (err, count) ->
     res.status(500).json error: err if err?
-    res.status(200).json "#{count} records deleted"
+    res.status(200).json message: "#{count} records deleted"
