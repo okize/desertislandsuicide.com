@@ -24,6 +24,8 @@ module.exports =
     images: "#{root}/assets/images/"
     sassEntry: 'main.sass'
     sassDir: "#{root}/assets/sass/"
+    coffeeEntry: 'app.coffee'
+    coffeeDir: "#{root}/assets/coffee/"
 
   # asset compilation targets
   dist:
@@ -31,3 +33,5 @@ module.exports =
     imagesDir: "#{assets}/images/"
     cssName: 'styles.css'
     cssDir: "#{assets}/stylesheets/"
+    jsName: 'scripts.js'
+    jsDir: "#{assets}/javascripts/"
