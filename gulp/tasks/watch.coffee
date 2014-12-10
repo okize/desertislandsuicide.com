@@ -12,14 +12,14 @@ sass = path.join(config.src.sassDir, '**/*.{sass,scss}')
 coffee = path.join(config.src.coffeeDir, '**/*.{coffee,js}')
 
 gulp.task 'watch', ['sync'], ->
-  log.error coffee
-
   log.info 'Watching assets for changes...'
 
-  watch coffee, (files, cb) ->
+  watch(coffee, (files, cb) ->
     gulp.start 'browserify', cb
+  ).on 'error', (e) -> log.error e
 
-  watch sass, (files, cb) ->
+  watch(sass, (files, cb) ->
     gulp.start 'sass', cb
+  ).on 'error', (e) -> log.error e
 
   return
