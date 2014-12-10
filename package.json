@@ -27,6 +27,7 @@
     "express-winston": "^0.2.8",
     "ipware": "0.0.2",
     "jade": "^1.6.0",
+    "jquery": "^2.1.1",
     "lodash": "^2.4.1",
     "lusca": "^1.0.2",
     "method-override": "^2.3.0",
