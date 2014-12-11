@@ -14,22 +14,22 @@ module.exports =
   js:
     entry: 'app.coffee'
     src: "#{rootPath}/assets/coffee/"
-    dist: "#{assetsPath}/javascripts/"
+    dest: "#{assetsPath}/javascripts/"
     name: 'scripts.js'
 
   css:
     entry: 'main.sass'
     src: "#{rootPath}/assets/sass/"
-    dist: "#{assetsPath}/stylesheets/"
+    dest: "#{assetsPath}/stylesheets/"
     name: 'styles.css'
 
   images:
     src: "#{rootPath}/assets/images/"
-    dist: "#{assetsPath}/images/"
+    dest: "#{assetsPath}/images/"
 
   favicons:
     src: "#{rootPath}/assets/favicons/"
-    dist: "#{assetsPath}/favicons/"
+    dest: "#{assetsPath}/favicons/"
 
   # DO NOT restart node app when files change in these directories
   nodemon:

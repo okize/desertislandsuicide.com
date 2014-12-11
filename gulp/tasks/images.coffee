@@ -11,12 +11,11 @@ gulp.task 'images', ->
 
   gulp
     .src "#{config.images.src}/**/*"
-    .pipe gulp.dest config.images.dist
-
+    .pipe gulp.dest config.images.dest
 
 gulp.task 'favicons', ->
   log.info 'Copying favicons public folder'
 
   gulp
     .src "#{config.favicons.src}/**/*"
-    .pipe gulp.dest config.favicons.dist
+    .pipe gulp.dest config.favicons.dest

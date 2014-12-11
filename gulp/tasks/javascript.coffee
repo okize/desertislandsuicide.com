@@ -25,6 +25,6 @@ gulp.task 'javascript', ->
   .pipe buffer()
   .pipe sourcemaps.init(loadMaps: true)
   .pipe sourcemaps.write()
-  .pipe gulp.dest config.js.dist
+  .pipe gulp.dest config.js.dest
   .on 'error', (err) ->
     log.error err

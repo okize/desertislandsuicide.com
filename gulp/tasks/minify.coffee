@@ -19,23 +19,23 @@ gulp.task 'minify', [
 gulp.task 'minify-js', ->
   log.info 'Minifying js'
   gulp
-    .src path.join(config.js.dist, config.js.name)
+    .src path.join(config.js.dest, config.js.name)
     .pipe size(title: 'js before')
     .pipe(uglify())
     .pipe size(title: 'js after')
     .pipe size(title: 'js after gzip', gzip: true)
     .pipe rename(suffix: '.min')
-    .pipe gulp.dest config.js.dist
+    .pipe gulp.dest config.js.dest
     .on 'error', (e) -> log.error e
 
 gulp.task 'minify-css', ->
   log.info 'Minifying css'
   gulp
-    .src path.join(config.css.dist, config.css.name)
+    .src path.join(config.css.dest, config.css.name)
     .pipe size(title: 'css before')
     .pipe minifycss()
     .pipe size(title: 'css after')
     .pipe size(title: 'css after gzip', gzip: true)
     .pipe rename(suffix: '.min')
-    .pipe gulp.dest config.css.dist
+    .pipe gulp.dest config.css.dest
     .on 'error', (e) -> log.error e

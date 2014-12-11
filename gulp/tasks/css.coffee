@@ -23,5 +23,5 @@ gulp.task 'css', ->
       cascade: false
     .pipe sourcemaps.write()
     .pipe rename config.css.name
-    .pipe gulp.dest config.css.dist
+    .pipe gulp.dest config.css.dest
     .on 'error', (e) -> log.error e
