@@ -4,6 +4,7 @@ path = require 'path'
 gulp = require 'gulp'
 sass = require 'gulp-sass'
 sourcemaps = require 'gulp-sourcemaps'
+autoprefixer = require 'gulp-autoprefixer'
 rename = require 'gulp-rename'
 
 config = require '../config'
@@ -17,6 +18,9 @@ gulp.task 'sass', ->
     .pipe sass(
       onError: (e) -> log.error e
     )
+    .pipe autoprefixer
+      browsers: ['last 2 versions', 'Firefox >= 26', 'Explorer > 8']
+      cascade: false
     .pipe sourcemaps.write()
     .pipe rename config.dist.cssName
     .pipe gulp.dest config.dist.cssDir
