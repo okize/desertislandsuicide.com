@@ -9,12 +9,12 @@ config = require '../config'
 
 gulp.task 'start', ->
   nodemon(
-    script: config.main
+    script: config.app.main
     ext: 'coffee js'
     env: process.env
     stdout: false
     nodeArgs: ['--nodejs', "--debug=#{process.env.DEBUG_PORT or 5858}"]
-    ignore: config.appIgnoreDirs
+    ignore: config.nodemon.ignore
   ).on('readable', ->
     @stdout.pipe process.stdout
     @stderr.pipe process.stderr

@@ -5,4 +5,4 @@ config = require '../config'
 isScript = require '../helpers/isScript'
 
 module.exports = () ->
-  fs.readdirSync(config.taskDir).filter(isScript)
+  fs.readdirSync(config.gulp.src).filter(isScript)

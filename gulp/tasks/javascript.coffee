@@ -12,19 +12,19 @@ sourcemaps = require 'gulp-sourcemaps'
 config = require '../config'
 log = require '../helpers/log'
 
-gulp.task 'browserify', ->
+gulp.task 'javascript', ->
   log.info 'Bundling modules into javascript'
   browserify(
-    entries: [path.join(config.src.coffeeDir, config.src.coffeeEntry)]
+    entries: [path.join config.js.src, config.js.entry]
     extensions: ['.coffee']
     debug: true
   )
   .transform coffeeify
   .bundle()
-  .pipe source config.dist.jsName
+  .pipe source config.js.name
   .pipe buffer()
   .pipe sourcemaps.init(loadMaps: true)
   .pipe sourcemaps.write()
-  .pipe gulp.dest config.dist.jsDir
+  .pipe gulp.dest config.js.dist
   .on 'error', (err) ->
     log.error err

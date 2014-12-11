@@ -10,10 +10,10 @@ rename = require 'gulp-rename'
 config = require '../config'
 log = require '../helpers/log'
 
-gulp.task 'sass', ->
+gulp.task 'css', ->
   log.info 'Compiling sass into css'
   gulp
-    .src path.join(config.src.sassDir, config.src.sassEntry)
+    .src path.join(config.css.src, config.css.entry)
     .pipe sourcemaps.init()
     .pipe sass(
       onError: (e) -> log.error e
@@ -22,6 +22,6 @@ gulp.task 'sass', ->
       browsers: ['last 2 versions', 'Firefox >= 26', 'Explorer > 8']
       cascade: false
     .pipe sourcemaps.write()
-    .pipe rename config.dist.cssName
-    .pipe gulp.dest config.dist.cssDir
+    .pipe rename config.css.name
+    .pipe gulp.dest config.css.dist
     .on 'error', (e) -> log.error e
