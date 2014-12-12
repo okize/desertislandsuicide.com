@@ -3,6 +3,8 @@ request = require 'superagent'
 BandList = require './BandList'
 NewBandForm = require './NewBandForm'
 
+csrfToken = document.getElementsByTagName('meta')['csrf-token'].getAttribute('content')
+
 Voting = React.createClass
   displayName: 'Voting'
 
@@ -16,14 +18,24 @@ Voting = React.createClass
   getInitialState: ->
     data: []
 
+  handleNewBandSubmit: (formData) ->
+    request
+      .post('/api/bands')
+      .send(formData)
+      .set('X-CSRF-Token', csrfToken)
+      .set('Accept', 'application/json')
+      .end (error, res) ->
+        return console.error if error?
+        return console.log JSON.parse(res.text)
+
   componentDidMount: ->
     @getBandsFromServer()
     setInterval @getBandsFromServer, @props.refreshRate
 
   render: ->
-    <div>
+    <div className="votingWrapper">
       <BandList data={@state.data} />
-      <NewBandForm data={@props.csrfToken} />
+      <NewBandForm onNewBandSubmit={@handleNewBandSubmit} />
     </div>
 
 module.exports = Voting
