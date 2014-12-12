@@ -9,6 +9,7 @@ rename = require 'gulp-rename'
 
 config = require '../config'
 log = require '../helpers/log'
+handleErrors = require '../helpers/handleErrors'
 
 gulp.task 'css', ->
   log.info 'Compiling sass into css'
@@ -24,4 +25,4 @@ gulp.task 'css', ->
     .pipe sourcemaps.write()
     .pipe rename config.css.name
     .pipe gulp.dest config.css.dest
-    .on 'error', (e) -> log.error e
+    .on 'error', handleErrors

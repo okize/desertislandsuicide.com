@@ -9,7 +9,6 @@ module.exports =
   app:
     root: root: rootPath
     main: "#{rootPath}/app.coffee"
-    publicAssets: assetsPath
 
   js:
     entry: 'app.coffee'
@@ -42,3 +41,4 @@ module.exports =
 
   gulp:
     src: "#{rootPath}/gulp/tasks/"
+    publicAssets: assetsPath

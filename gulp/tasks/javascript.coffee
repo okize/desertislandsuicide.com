@@ -11,6 +11,7 @@ sourcemaps = require 'gulp-sourcemaps'
 
 config = require '../config'
 log = require '../helpers/log'
+handleErrors = require '../helpers/handleErrors'
 
 gulp.task 'javascript', ->
   log.info 'Bundling modules into javascript'
@@ -21,10 +22,9 @@ gulp.task 'javascript', ->
   )
   .transform coffeeify
   .bundle()
+  .on 'error', handleErrors
   .pipe source config.js.name
   .pipe buffer()
   .pipe sourcemaps.init(loadMaps: true)
   .pipe sourcemaps.write()
   .pipe gulp.dest config.js.dest
-  .on 'error', (err) ->
-    log.error err

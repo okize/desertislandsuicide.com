@@ -13,4 +13,4 @@ gulp.task 'sync', ->
     proxy: "localhost:#{process.env.PORT}"
     port: process.env.BROWSER_SYNC_PORT
     open: false
-    files: ["#{config.app.publicAssets}/**/*.{js,css}", './views/**/*.jade']
+    files: ["#{config.gulp.publicAssets}/**/*.{js,css}", './views/**/*.jade']
