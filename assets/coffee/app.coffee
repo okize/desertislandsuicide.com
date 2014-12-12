@@ -16,7 +16,7 @@ $ ->
     request.post('/api/bands').send(
       name: $('#band-name').val()
     )
-    .set('X-CSRF-Token', $('meta[property="csrf-token"]').val())
+    .set('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
     .set('Accept', 'application/json')
     .end (error, res) ->
       return console.error if error?
