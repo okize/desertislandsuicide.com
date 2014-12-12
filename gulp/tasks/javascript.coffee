@@ -4,7 +4,7 @@ path = require 'path'
 gulp = require 'gulp'
 gutil = require 'gulp-util'
 browserify = require 'browserify'
-coffeeify = require 'coffeeify'
+reactify = require 'coffee-reactify'
 source = require 'vinyl-source-stream'
 buffer = require 'vinyl-buffer'
 sourcemaps = require 'gulp-sourcemaps'
@@ -20,7 +20,7 @@ gulp.task 'javascript', ->
     extensions: ['.coffee']
     debug: true
   )
-  .transform coffeeify
+  .transform reactify
   .bundle()
   .on 'error', handleErrors
   .pipe source config.js.name
