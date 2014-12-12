@@ -1,15 +1,17 @@
 $ = require 'jquery'
 request = require 'superagent'
 
+React   = require 'react'
+BandBox = require './components/BandBox.cjsx'
+
+refreshRate = 5000
+
+React.render(
+  React.createElement(BandBox, pollInterval: refreshRate),
+  document.getElementById 'bandList'
+)
+
 $ ->
-
-  # get list of bands
-  request.get '/api/bands', (res) ->
-    html = ''
-    for band in res.body
-      html += "<li>#{band.name}</li>"
-    $('#bandList').append(html)
-
   # add a new band
   $('#submit-band').on 'submit', (e) ->
     e.preventDefault()
