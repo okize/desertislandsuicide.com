@@ -17,7 +17,7 @@ gulp.task 'javascript', ->
   log.info 'Bundling modules into javascript'
   browserify(
     entries: [path.join config.js.src, config.js.entry]
-    extensions: ['.coffee']
+    extensions: ['.coffee', '.cjsx']
     debug: true
   )
   .transform reactify

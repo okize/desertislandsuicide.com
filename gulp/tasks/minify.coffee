@@ -21,7 +21,7 @@ gulp.task 'minify-js', ->
   gulp
     .src path.join(config.js.dest, config.js.name)
     .pipe size(title: 'js before')
-    .pipe(uglify())
+    .pipe uglify()
     .pipe size(title: 'js after')
     .pipe size(title: 'js after gzip', gzip: true)
     .pipe rename(suffix: '.min')
