@@ -1,14 +1,13 @@
 React = require 'react'
 request = require 'superagent'
 LogIn = require './LogIn'
-LogOut = require './LogOut'
 BandList = require './BandList'
 NewBandForm = require './NewBandForm'
 
 csrfToken = document.getElementsByTagName('meta')['csrf-token'].getAttribute('content')
 apiUrl = '/api/bands'
 
-loginForm = if window.loggedIn then <LogOut /> else <LogIn />
+loginForm = unless window.loggedIn then <LogIn />
 newBandForm = if window.loggedIn then <NewBandForm onNewBandSubmit={@handleNewBandSubmit} />
 
 Voting = React.createClass

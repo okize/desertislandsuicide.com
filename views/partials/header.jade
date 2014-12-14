@@ -1,5 +1,9 @@
 - if (user && user.profile.name)
-  .logged-in Signed in as: #{user.profile.name}
+  .logged-in
+    | Signed in as&nbsp;
+    strong #{user.profile.name}
+    span.separator |
+    a(href="/logout") Sign out
 
 div.sunshine(role="presentation")
 
