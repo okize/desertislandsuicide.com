@@ -2,6 +2,7 @@ React = require 'react'
 
 NewBandForm = React.createClass(
   displayName: 'NewBandForm'
+
   handleSubmit: (e) ->
     e.preventDefault()
     name = @refs.name.getDOMNode().value.trim()

@@ -9,6 +9,7 @@ csrfToken = document.getElementsByTagName('meta')['csrf-token'].getAttribute('co
 apiUrl = '/api/bands'
 
 loginForm = if window.loggedIn then <LogOut /> else <LogIn />
+newBandForm = if window.loggedIn then <NewBandForm onNewBandSubmit={@handleNewBandSubmit} />
 
 Voting = React.createClass
   displayName: 'Voting'
@@ -47,7 +48,7 @@ Voting = React.createClass
   render: ->
     <div className="voting-wrapper">
       {loginForm}
-      <NewBandForm onNewBandSubmit={@handleNewBandSubmit} />
+      {newBandForm}
       <BandList data={@state.data} />
     </div>
 
