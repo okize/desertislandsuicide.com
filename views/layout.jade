@@ -8,15 +8,14 @@ html
     title #{title}
     link(rel='stylesheet', href=asset('/stylesheets/styles.css', '/stylesheets/styles.min.css'))
     include partials/newRelic
+    include partials/login
+
   body
-
     include partials/header
-
     include partials/flash
 
     div.wrapper(role="main")
       block content
 
     include partials/footer
-
     script(async, src=asset('/javascripts/scripts.js', '/javascripts/scripts.min.js'))

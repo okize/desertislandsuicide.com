@@ -1,11 +1,6 @@
 - if (user && user.profile.name)
-  nav.login-nav
-    ul
-      li: a(href='/logout') Logout
-
+  script.
+    window.loggedIn = true
 - else
-  nav.login-nav
-    ul
-      li: a(href='/auth/facebook') Sign in with Facebook
-      li: a(href='/auth/twitter') Sign in with Twitter
-      li: a(href='/auth/google') Sign in with Google
+  script.
+    window.loggedIn = false
