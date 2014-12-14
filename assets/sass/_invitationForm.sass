@@ -1,0 +1,61 @@
+.invitation
+  background-color: #ebead5
+  border-radius: 5px
+  border-bottom: 3px solid #d2d1be
+  padding: 1em
+
+.subscription-confirmation
+  background-color: #ebead5
+  border-radius: 5px
+  border-bottom: 3px solid #d2d1be
+  padding: 1em
+  text-align: center
+  font-size: 1.25em
+  font-weight: bold
+
+.invitation-form
+  overflow: hidden
+
+.invitation-form-input, .invitation-form-button
+  font-size: 1.25em
+  border-radius: 4px
+
+.invitation-form-input
+  width: calc(100% - 29%)
+  float: left
+  line-height: 1.2
+  padding: .6em 1em
+  border: 1px solid #d2d1be
+  color: #454136
+
+.invitation-form-button
+  background: #d2d1be
+  border: 0
+  color: #454136
+  width: 27%
+  text-align: center
+  padding: .6em .25em
+  line-height: 1.25
+  float: right
+  &:hover
+    background-color: #9F9E90
+
+@media screen and (max-width: 400px)
+  .banner
+    margin-top: 2em
+  .wrapper
+    margin-top: 1em
+  .invitation-form-input, .invitation-form-button
+    font-size: 1em
+
+@media screen and (max-width: 750px)
+  .invitation-form-input
+    text-align: center
+    margin-bottom: .5em
+    display: block
+    width: 100%
+  .invitation-form-button
+    display: block
+    width: 100%
+  .sunshine
+    display: none

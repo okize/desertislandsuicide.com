@@ -41,7 +41,7 @@ Voting = React.createClass
     setInterval @getBandsFromServer, @props.refreshRate
 
   render: ->
-    <div className="votingWrapper">
+    <div className="voting-wrapper">
       <NewBandForm onNewBandSubmit={@handleNewBandSubmit} />
       <BandList data={@state.data} />
     </div>
