@@ -1,13 +1,18 @@
 React = require 'react'
 
+BandName = React.createClass(
+  displayName: 'BandName'
+  render: ->
+    <li>{@props.data.name}</li>
+)
+
 BandList = React.createClass(
   displayName: 'BandList'
   render: ->
-    bandNodes = @props.data.map((band) ->
-      <li>{band.name}</li>
-    )
     <ul className="band-list">
-      {bandNodes}
+      {@props.data.map((band) ->
+        <BandName key={band._id} data={band}/>
+      )}
     </ul>
 )
 
