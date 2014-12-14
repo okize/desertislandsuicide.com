@@ -4,12 +4,13 @@ BandList = require './BandList'
 NewBandForm = require './NewBandForm'
 
 csrfToken = document.getElementsByTagName('meta')['csrf-token'].getAttribute('content')
+apiUrl = '/api/bands'
 
 Voting = React.createClass
   displayName: 'Voting'
 
   getBandsFromServer: ->
-    request.get '/api/bands', ((result) ->
+    request.get apiUrl, ((result) ->
       if @isMounted()
         @setState
           data: result.body
@@ -19,8 +20,15 @@ Voting = React.createClass
     data: []
 
   handleNewBandSubmit: (formData) ->
+
+    # optimistially update band list
+    bands = @state.data
+    newBand = @state.data.concat([formData])
+    @setState data: newBand
+
+    # post new band to the server
     request
-      .post('/api/bands')
+      .post(apiUrl)
       .send(formData)
       .set('X-CSRF-Token', csrfToken)
       .set('Accept', 'application/json')
@@ -34,8 +42,8 @@ Voting = React.createClass
 
   render: ->
     <div className="votingWrapper">
-      <BandList data={@state.data} />
       <NewBandForm onNewBandSubmit={@handleNewBandSubmit} />
+      <BandList data={@state.data} />
     </div>
 
 module.exports = Voting
