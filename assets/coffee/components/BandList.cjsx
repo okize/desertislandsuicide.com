@@ -6,7 +6,7 @@ BandList = React.createClass(
     bandNodes = @props.data.map((band) ->
       <li>{band.name}</li>
     )
-    <ul className="bandList">
+    <ul className="band-list">
       {bandNodes}
     </ul>
 )

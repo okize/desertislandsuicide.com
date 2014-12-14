@@ -11,7 +11,7 @@ NewBandForm = React.createClass(
     return
 
   render: ->
-    <form className="submitBand" onSubmit={@handleSubmit}>
+    <form className="add-new-band" onSubmit={@handleSubmit}>
       <input type="text" placeholder="Enter band name" ref="name" />
       <input type="submit" value="Submit" />
     </form>
