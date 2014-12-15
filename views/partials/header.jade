@@ -4,6 +4,9 @@
     strong #{user.profile.name}
     span.separator |
     a(href="/logout") Sign out
+- else
+  .logged-out
+    a(href="#") Sign in to vote!
 
 div.sunshine(role="presentation")
 
