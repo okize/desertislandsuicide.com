@@ -1,12 +1,11 @@
 React = require 'react'
 
-BandName = React.createClass(
+BandName = React.createClass
   displayName: 'BandName'
   render: ->
     <li>{@props.data.name}</li>
-)
 
-BandList = React.createClass(
+BandList = React.createClass
   displayName: 'BandList'
   render: ->
     <ul className="band-list">
@@ -14,6 +13,5 @@ BandList = React.createClass(
         <BandName key={band._id} data={band}/>
       )}
     </ul>
-)
 
 module.exports = BandList

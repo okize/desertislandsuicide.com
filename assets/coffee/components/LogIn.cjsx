@@ -1,6 +1,6 @@
 React = require 'react'
 
-LogIn = React.createClass(
+LogIn = React.createClass
   displayName: 'LogIn'
   render: ->
     <nav className="login-nav">
@@ -16,6 +16,5 @@ LogIn = React.createClass(
         </li>
       </ul>
     </nav>
-)
 
 module.exports = LogIn

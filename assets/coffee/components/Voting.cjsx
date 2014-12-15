@@ -7,9 +7,6 @@ NewBandForm = require './NewBandForm'
 csrfToken = document.getElementsByTagName('meta')['csrf-token'].getAttribute('content')
 apiUrl = '/api/bands'
 
-loginForm = unless window.loggedIn then <LogIn />
-newBandForm = if window.loggedIn then <NewBandForm onNewBandSubmit={@handleNewBandSubmit} />
-
 Voting = React.createClass
   displayName: 'Voting'
 
@@ -46,8 +43,7 @@ Voting = React.createClass
 
   render: ->
     <div className="voting-wrapper">
-      {loginForm}
-      {newBandForm}
+      {if @props.loggedIn then <NewBandForm onNewBandSubmit={@handleNewBandSubmit} else null />}
       <BandList data={@state.data} />
     </div>
 

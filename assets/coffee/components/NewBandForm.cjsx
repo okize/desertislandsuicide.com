@@ -1,6 +1,6 @@
 React = require 'react'
 
-NewBandForm = React.createClass(
+NewBandForm = React.createClass
   displayName: 'NewBandForm'
 
   handleSubmit: (e) ->
@@ -16,6 +16,5 @@ NewBandForm = React.createClass(
       <input type="text" placeholder="Enter band name" ref="name" />
       <input type="submit" value="Submit" />
     </form>
-)
 
 module.exports = NewBandForm

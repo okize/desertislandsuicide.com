@@ -1,15 +1,9 @@
-- if (user && user.profile.name)
-  .logged-in
-    | Signed in as&nbsp;
-    strong #{user.profile.name}
-    span.separator |
-    a(href="/logout") Sign out
-- else
-  .logged-out
-    a(href="#") Sign in to vote!
+#status
 
 div.sunshine(role="presentation")
 
 header.banner(role="banner")
   h1.accessible-hide Desert Island Suicide
   img.logo(src="../images/dis-logo.svg")
+
+  include missionStatement
