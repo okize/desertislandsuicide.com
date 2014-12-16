@@ -6,7 +6,7 @@ gutil = require 'gulp-util'
 browserify = require 'browserify'
 reactify = require 'coffee-reactify'
 source = require 'vinyl-source-stream'
-buffer = require 'vinyl-buffer'
+buff = require 'vinyl-buffer'
 sourcemaps = require 'gulp-sourcemaps'
 
 config = require '../config'
@@ -20,11 +20,11 @@ gulp.task 'javascript', ->
     extensions: ['.coffee', '.cjsx']
     debug: true
   )
+  .on 'error', handleErrors
   .transform reactify
   .bundle()
-  .on 'error', handleErrors
   .pipe source config.js.name
-  .pipe buffer()
-  .pipe sourcemaps.init(loadMaps: true)
-  .pipe sourcemaps.write()
+  .pipe buff()
+  .pipe sourcemaps.init {loadMaps: true, debug: true}
+  .pipe sourcemaps.write config.js.maps
   .pipe gulp.dest config.js.dest
