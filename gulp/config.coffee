@@ -21,6 +21,7 @@ module.exports =
     entry: 'main.sass'
     src: "#{rootPath}/assets/sass/"
     dest: "#{assetsPath}/stylesheets/"
+    maps: './'
     name: 'styles.css'
 
   images:

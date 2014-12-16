@@ -12,19 +12,24 @@ config = require '../config'
 log = require '../helpers/log'
 handleErrors = require '../helpers/handleErrors'
 
+sassOptions =
+  outputStyle: 'nested' #compressed
+  onError: (e) -> log.error e
+  onSuccess: () -> log.info 'Sass compiled without errors'
+
+autoprefixerOptions =
+  browsers: ['last 2 versions', 'Firefox >= 26', 'Explorer > 8']
+  cascade: false
+
 gulp.task 'css', ->
   log.info 'Compiling sass into css'
   gulp
     .src path.join(config.css.src, config.css.entry)
     .pipe sourcemaps.init()
-    .pipe sass(
-      onError: (e) -> log.error e
-    )
+    .pipe sass sassOptions
     .pipe cssBase64()
-    .pipe autoprefixer
-      browsers: ['last 2 versions', 'Firefox >= 26', 'Explorer > 8']
-      cascade: false
-    .pipe sourcemaps.write()
+    .pipe autoprefixer autoprefixerOptions
     .pipe rename config.css.name
+    .pipe sourcemaps.write config.css.maps
     .pipe gulp.dest config.css.dest
     .on 'error', handleErrors
