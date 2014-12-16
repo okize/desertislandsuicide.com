@@ -14,6 +14,8 @@ handleErrors = require '../helpers/handleErrors'
 
 sassOptions =
   outputStyle: 'nested' #compressed
+  sourceComments: 'map'
+  errLogToConsole: false
   onError: (e) -> log.error e
   onSuccess: () -> log.info 'Sass compiled without errors'
 
@@ -21,11 +23,14 @@ autoprefixerOptions =
   browsers: ['last 2 versions', 'Firefox >= 26', 'Explorer > 8']
   cascade: false
 
+sourcemapOptions =
+  debug: true
+
 gulp.task 'css', ->
   log.info 'Compiling sass into css'
   gulp
     .src path.join(config.css.src, config.css.entry)
-    .pipe sourcemaps.init()
+    .pipe sourcemaps.init sourcemapOptions
     .pipe sass sassOptions
     .pipe cssBase64()
     .pipe autoprefixer autoprefixerOptions
