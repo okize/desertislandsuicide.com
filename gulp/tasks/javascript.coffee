@@ -13,18 +13,23 @@ config = require '../config'
 log = require '../helpers/log'
 handleErrors = require '../helpers/handleErrors'
 
+browserifyOptions =
+  entries: [path.join config.js.src, config.js.entry]
+  extensions: ['.coffee', '.cjsx']
+  debug: true
+
+sourcemapOptions =
+  loadMaps: true
+  debug: true
+
 gulp.task 'javascript', ->
   log.info 'Bundling modules into javascript'
-  browserify(
-    entries: [path.join config.js.src, config.js.entry]
-    extensions: ['.coffee', '.cjsx']
-    debug: true
-  )
+  browserify browserifyOptions
   .on 'error', handleErrors
   .transform reactify
   .bundle()
   .pipe source config.js.name
   .pipe buff()
-  .pipe sourcemaps.init {loadMaps: true, debug: true}
+  .pipe sourcemaps.init sourcemapOptions
   .pipe sourcemaps.write config.js.maps
   .pipe gulp.dest config.js.dest
