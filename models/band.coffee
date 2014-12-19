@@ -1,5 +1,7 @@
 mongoose = require 'mongoose'
+relationship = require 'mongoose-relationship'
 uniqueValidator = require 'mongoose-unique-validator'
+Schema = mongoose.Schema
 
 bandSchema = new mongoose.Schema(
   name:
@@ -12,6 +14,10 @@ bandSchema = new mongoose.Schema(
   updated_at:
     type: Date
     default: Date.now
+  children: [
+    type: Schema.ObjectId
+    ref: 'Vote'
+  ]
   ,
     strict: true
 )
