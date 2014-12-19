@@ -22,7 +22,7 @@
  * 2. Prevent iOS text size adjust after orientation change, without disabling
  *    user zoom.
  */
-/* line 9, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize */
+/* line 9, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize.scss */
 html {
   font-family: sans-serif;
   /* 1 */
@@ -34,7 +34,7 @@ html {
 /**
  * Remove default margin.
  */
-/* line 19, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize */
+/* line 19, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize.scss */
 body {
   margin: 0; }
 
@@ -46,7 +46,7 @@ body {
  * and Firefox.
  * Correct `block` display not defined for `main` in IE 11.
  */
-/* line 45, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize */
+/* line 45, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize.scss */
 article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
   display: block; }
 
@@ -54,7 +54,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
  * 1. Correct `inline-block` display not defined in IE 8/9.
  * 2. Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.
  */
-/* line 57, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize */
+/* line 57, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize.scss */
 audio, canvas, progress, video {
   display: inline-block;
   /* 1 */
@@ -65,7 +65,7 @@ audio, canvas, progress, video {
  * Prevent modern browsers from displaying `audio` without controls.
  * Remove excess height in iOS 5 devices.
  */
-/* line 67, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize */
+/* line 67, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize.scss */
 audio:not([controls]) {
   display: none;
   height: 0; }
@@ -74,7 +74,7 @@ audio:not([controls]) {
  * Address `[hidden]` styling not present in IE 8/9/10.
  * Hide the `template` element in IE 8/9/11, Safari, and Firefox < 22.
  */
-/* line 78, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize */
+/* line 78, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize.scss */
 [hidden], template {
   display: none; }
 
@@ -83,14 +83,14 @@ audio:not([controls]) {
 /**
  * Remove the gray background color from active links in IE 10.
  */
-/* line 89, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize */
+/* line 89, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize.scss */
 a {
   background-color: transparent; }
 
 /**
  * Improve readability when focused and also mouse hovered in all browsers.
  */
-/* line 98, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize */
+/* line 98, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize.scss */
 a:active, a:hover {
   outline: 0; }
 
@@ -99,21 +99,21 @@ a:active, a:hover {
 /**
  * Address styling not present in IE 8/9/10/11, Safari, and Chrome.
  */
-/* line 109, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize */
+/* line 109, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize.scss */
 abbr[title] {
   border-bottom: 1px dotted; }
 
 /**
  * Address style set to `bolder` in Firefox 4+, Safari, and Chrome.
  */
-/* line 118, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize */
+/* line 118, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize.scss */
 b, strong {
   font-weight: bold; }
 
 /**
  * Address styling not present in Safari and Chrome.
  */
-/* line 126, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize */
+/* line 126, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize.scss */
 dfn {
   font-style: italic; }
 
@@ -121,7 +121,7 @@ dfn {
  * Address variable `h1` font-size and margin within `section` and `article`
  * contexts in Firefox 4+, Safari, and Chrome.
  */
-/* line 135, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize */
+/* line 135, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize.scss */
 h1 {
   font-size: 2em;
   margin: 0.67em 0; }
@@ -129,7 +129,7 @@ h1 {
 /**
  * Address styling not present in IE 8/9.
  */
-/* line 144, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize */
+/* line 144, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize.scss */
 mark {
   background: #ff0;
   color: #000; }
@@ -137,25 +137,25 @@ mark {
 /**
  * Address inconsistent and variable font size in all browsers.
  */
-/* line 153, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize */
+/* line 153, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize.scss */
 small {
   font-size: 80%; }
 
 /**
  * Prevent `sub` and `sup` affecting `line-height` in all browsers.
  */
-/* line 162, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize */
+/* line 162, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize.scss */
 sub, sup {
   font-size: 75%;
   line-height: 0;
   position: relative;
   vertical-align: baseline; }
 
-/* line 169, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize */
+/* line 169, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize.scss */
 sup {
   top: -0.5em; }
 
-/* line 173, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize */
+/* line 173, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize.scss */
 sub {
   bottom: -0.25em; }
 
@@ -164,14 +164,14 @@ sub {
 /**
  * Remove border when inside `a` element in IE 8/9/10.
  */
-/* line 184, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize */
+/* line 184, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize.scss */
 img {
   border: 0; }
 
 /**
  * Correct overflow not hidden in IE 9/10/11.
  */
-/* line 192, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize */
+/* line 192, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize.scss */
 svg:not(:root) {
   overflow: hidden; }
 
@@ -180,14 +180,14 @@ svg:not(:root) {
 /**
  * Address margin not present in IE 8/9 and Safari.
  */
-/* line 203, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize */
+/* line 203, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize.scss */
 figure {
   margin: 1em 40px; }
 
 /**
  * Address differences between Firefox and other browsers.
  */
-/* line 211, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize */
+/* line 211, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize.scss */
 hr {
   -moz-box-sizing: content-box;
   box-sizing: content-box;
@@ -196,14 +196,14 @@ hr {
 /**
  * Contain overflow in all browsers.
  */
-/* line 221, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize */
+/* line 221, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize.scss */
 pre {
   overflow: auto; }
 
 /**
  * Address odd `em`-unit font size rendering in all browsers.
  */
-/* line 232, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize */
+/* line 232, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize.scss */
 code, kbd, pre, samp {
   font-family: monospace, monospace;
   font-size: 1em; }
@@ -220,7 +220,7 @@ code, kbd, pre, samp {
  * 2. Correct font properties not being inherited.
  * 3. Address margins set differently in Firefox 4+, Safari, and Chrome.
  */
-/* line 256, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize */
+/* line 256, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize.scss */
 button, input, optgroup, select, textarea {
   color: inherit;
   /* 1 */
@@ -232,7 +232,7 @@ button, input, optgroup, select, textarea {
 /**
  * Address `overflow` set to `hidden` in IE 8/9/10/11.
  */
-/* line 266, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize */
+/* line 266, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize.scss */
 button {
   overflow: visible; }
 
@@ -242,7 +242,7 @@ button {
  * Correct `button` style inheritance in Firefox, IE 8/9/10/11, and Opera.
  * Correct `select` style inheritance in Firefox.
  */
-/* line 278, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize */
+/* line 278, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize.scss */
 button, select {
   text-transform: none; }
 
@@ -253,7 +253,7 @@ button, select {
  * 3. Improve usability and consistency of cursor style between image-type
  *    `input` and others.
  */
-/* line 293, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize */
+/* line 293, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize.scss */
 button, html input[type="button"], input[type="reset"], input[type="submit"] {
   -webkit-appearance: button;
   /* 2 */
@@ -263,14 +263,14 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
 /**
  * Re-set default cursor for disabled elements.
  */
-/* line 303, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize */
+/* line 303, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize.scss */
 button[disabled], html input[disabled] {
   cursor: default; }
 
 /**
  * Remove inner padding and border in Firefox 4+.
  */
-/* line 312, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize */
+/* line 312, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize.scss */
 button::-moz-focus-inner, input::-moz-focus-inner {
   border: 0;
   padding: 0; }
@@ -279,7 +279,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
  * Address Firefox 4+ setting `line-height` on `input` using `!important` in
  * the UA stylesheet.
  */
-/* line 322, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize */
+/* line 322, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize.scss */
 input {
   line-height: normal; }
 
@@ -290,7 +290,7 @@ input {
  * 1. Address box sizing set to `content-box` in IE 8/9/10.
  * 2. Remove excess padding in IE 8/9/10.
  */
-/* line 335, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize */
+/* line 335, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize.scss */
 input[type="checkbox"], input[type="radio"] {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -303,7 +303,7 @@ input[type="checkbox"], input[type="radio"] {
  * `font-size` values of the `input`, it causes the cursor style of the
  * decrement button to change from `default` to `text`.
  */
-/* line 347, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize */
+/* line 347, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize.scss */
 input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button {
   height: auto; }
 
@@ -312,7 +312,7 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
  * 2. Address `box-sizing` set to `border-box` in Safari and Chrome
  *    (include `-moz` to future-proof).
  */
-/* line 357, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize */
+/* line 357, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize.scss */
 input[type="search"] {
   -webkit-appearance: textfield;
   /* 1 */
@@ -325,14 +325,14 @@ input[type="search"] {
  * Safari (but not Chrome) clips the cancel button when the search input has
  * padding (and `textfield` appearance).
  */
-/* line 371, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize */
+/* line 371, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize.scss */
 input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webkit-search-decoration {
   -webkit-appearance: none; }
 
 /**
  * Define consistent border, margin, and padding.
  */
-/* line 379, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize */
+/* line 379, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize.scss */
 fieldset {
   border: 1px solid #c0c0c0;
   margin: 0 2px;
@@ -342,7 +342,7 @@ fieldset {
  * 1. Correct `color` not being inherited in IE 8/9/10/11.
  * 2. Remove padding so people aren't caught out if they zero out fieldsets.
  */
-/* line 390, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize */
+/* line 390, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize.scss */
 legend {
   border: 0;
   /* 1 */
@@ -352,7 +352,7 @@ legend {
 /**
  * Remove default vertical scrollbar in IE 8/9/10/11.
  */
-/* line 399, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize */
+/* line 399, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize.scss */
 textarea {
   overflow: auto; }
 
@@ -360,7 +360,7 @@ textarea {
  * Don't inherit the `font-weight` (applied by a rule above).
  * NOTE: the default cannot safely be changed in Chrome and Safari on OS X.
  */
-/* line 408, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize */
+/* line 408, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize.scss */
 optgroup {
   font-weight: bold; }
 
@@ -369,58 +369,59 @@ optgroup {
 /**
  * Remove most spacing between table cells.
  */
-/* line 419, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize */
+/* line 419, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize.scss */
 table {
   border-collapse: collapse;
   border-spacing: 0; }
 
-/* line 425, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize */
+/* line 425, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/normalize.scss */
 td, th {
   padding: 0; }
 
-/* line 1, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/global */
+/* line 1, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/global.sass */
 * {
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
-  /* line 3, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/global */
+  /* line 3, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/global.sass */
   *:before, *:after {
     -moz-box-sizing: border-box;
     box-sizing: border-box; }
 
-/* line 6, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/global */
+/* line 6, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/global.sass */
 html, body {
   height: 100%; }
 
-/* line 9, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/global */
+/* line 9, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/global.sass */
 body {
   position: relative;
   margin: 0;
   padding: 0;
-  font: 14px "Open Sans", "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-family: "Open Sans", "Lucida Grande", Helvetica, Arial, sans-serif;
   color: #454136;
   background: #56d1cd;
-  background-image: linear-gradient(to bottom, white 26%, #56d1cd 100%);
+  background-image: linear-gradient(to bottom, #fff 26%, #56d1cd 100%);
   background-repeat: no-repeat; }
 
-/* line 19, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/global */
+/* line 20, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/global.sass */
 .wrapper {
   margin: 2em auto 4em;
   width: 85%; }
 
-/* line 23, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/global */
+/* line 24, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/global.sass */
 .error-page {
   width: 80%;
   margin: 1rem auto 0; }
-  /* line 26, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/global */
+  /* line 27, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/global.sass */
   .error-page h1 {
     color: red; }
-  /* line 28, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/global */
+  /* line 29, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/global.sass */
   .error-page pre {
-    border: 2px solid black;
-    background-color: white;
+    border: 2px solid #000;
+    background-color: #fff;
     padding: 1rem; }
 
-/* line 1, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/utilities */
+/* line 1, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/utilities.sass */
 .accessible-hide {
   position: absolute;
   text-indent: 100%;
@@ -428,19 +429,19 @@ body {
   white-space: nowrap;
   overflow: hidden; }
 
-/* line 8, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/utilities */
+/* line 8, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/utilities.sass */
 .separator {
   display: inline-block;
   margin: 0 0.25em; }
 
-/* line 1, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/notifications */
+/* line 1, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/notifications.sass */
 .flash-messages {
   width: 80%;
   margin: 1rem auto 0;
-  border: 1px solid black;
+  border: 1px solid #000;
   padding: 1rem; }
 
-/* line 1, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/header */
+/* line 1, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/header.sass */
 .sunshine {
   background: #f5ce33;
   width: 100%;
@@ -449,7 +450,7 @@ body {
   top: -46em;
   border-radius: 100%; }
 
-/* line 9, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/header */
+/* line 9, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/header.sass */
 .banner {
   z-index: 1;
   position: relative;
@@ -457,53 +458,57 @@ body {
   margin: 5em auto 0;
   width: 85%; }
 
-/* line 16, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/header */
+/* line 16, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/header.sass */
 .logo {
   width: 100%;
   height: 100%; }
 
-/* line 20, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/header */
+/* line 20, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/header.sass */
 .mission-statement {
   margin: 1em;
   font-weight: bold;
   font-size: 1.25em; }
 
-/* line 25, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/header */
+/* line 26, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/header.sass */
 .logged-in, .logged-out {
-  background-color: black;
+  background-color: #000;
   color: #fff;
   padding: 0.5rem;
   text-align: center;
   z-index: 1;
   opacity: 0.75;
   position: relative; }
-  /* line 28, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/header */
+  /* line 29, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/header.sass */
   .logged-in a, .logged-out a {
-    color: #fff; }
+    color: #fff;
+    font-weight: bold; }
 
-/* line 36, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/header */
+/* line 38, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/header.sass */
 .login-nav {
-  border: 1px solid #ccc;
-  background: #fff;
+  text-align: center;
   padding: 20px; }
-  /* line 40, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/header */
+  /* line 41, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/header.sass */
   .login-nav ul {
     list-style: none;
     margin: 0;
     padding: 0; }
-    /* line 44, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/header */
+    /* line 45, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/header.sass */
     .login-nav ul li {
       display: inline-block;
       margin-right: 1em;
-      background-color: #ccc;
+      background-color: #000;
       padding: 0.5em; }
+  /* line 50, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/header.sass */
+  .login-nav a {
+    color: #fff;
+    font-weight: bold; }
 
-/* line 3, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/voting */
+/* line 3, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/voting.sass */
 .band-list {
   margin: 1rem 0;
   list-style: none;
   padding: 0; }
-  /* line 7, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/voting */
+  /* line 7, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/voting.sass */
   .band-list li {
     background-color: #ebead5;
     border-radius: 5px;
@@ -511,18 +516,18 @@ body {
     padding: 1em;
     margin-bottom: 1em; }
 
-/* line 14, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/voting */
+/* line 14, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/voting.sass */
 .add-new-band {
   margin: 1em 0; }
 
-/* line 1, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/invitationForm */
+/* line 1, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/invitationForm.sass */
 .invitation {
   background-color: #ebead5;
   border-radius: 5px;
   border-bottom: 3px solid #d2d1be;
   padding: 1em; }
 
-/* line 7, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/invitationForm */
+/* line 7, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/invitationForm.sass */
 .subscription-confirmation {
   background-color: #ebead5;
   border-radius: 5px;
@@ -532,16 +537,16 @@ body {
   font-size: 1.25em;
   font-weight: bold; }
 
-/* line 16, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/invitationForm */
+/* line 16, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/invitationForm.sass */
 .invitation-form {
   overflow: hidden; }
 
-/* line 19, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/invitationForm */
+/* line 19, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/invitationForm.sass */
 .invitation-form-input, .invitation-form-button {
   font-size: 1.25em;
   border-radius: 4px; }
 
-/* line 23, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/invitationForm */
+/* line 23, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/invitationForm.sass */
 .invitation-form-input {
   width: calc(100% - 29%);
   float: left;
@@ -550,7 +555,7 @@ body {
   border: 1px solid #d2d1be;
   color: #454136; }
 
-/* line 31, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/invitationForm */
+/* line 31, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/invitationForm.sass */
 .invitation-form-button {
   background: #d2d1be;
   border: 0;
@@ -560,38 +565,38 @@ body {
   padding: 0.6em 0.25em;
   line-height: 1.25;
   float: right; }
-  /* line 40, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/invitationForm */
+  /* line 40, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/invitationForm.sass */
   .invitation-form-button:hover {
     background-color: #9F9E90; }
 
 @media screen and (max-width: 400px) {
-  /* line 44, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/invitationForm */
+  /* line 44, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/invitationForm.sass */
   .banner {
     margin-top: 2em; }
 
-  /* line 46, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/invitationForm */
+  /* line 46, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/invitationForm.sass */
   .wrapper {
     margin-top: 1em; }
 
-  /* line 48, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/invitationForm */
+  /* line 48, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/invitationForm.sass */
   .invitation-form-input, .invitation-form-button {
     font-size: 1em; }
  }
 
 @media screen and (max-width: 750px) {
-  /* line 52, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/invitationForm */
+  /* line 52, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/invitationForm.sass */
   .invitation-form-input {
     text-align: center;
     margin-bottom: 0.5em;
     display: block;
     width: 100%; }
 
-  /* line 57, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/invitationForm */
+  /* line 57, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/invitationForm.sass */
   .invitation-form-button {
     display: block;
     width: 100%; }
 
-  /* line 60, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/invitationForm */
+  /* line 60, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/invitationForm.sass */
   .sunshine {
     display: none; }
  }
