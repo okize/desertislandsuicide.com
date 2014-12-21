@@ -8,6 +8,9 @@ bandSchema = new mongoose.Schema(
     type: String
     required: true
     unique: true
+  submitted_by:
+    type: String
+    required: true
   created_at:
     type: Date
     default: Date.now
