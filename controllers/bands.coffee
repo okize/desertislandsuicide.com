@@ -1,10 +1,11 @@
 _ = require 'lodash'
 Band = require '../models/band'
+Vote = require '../models/vote'
 
 # GET /api/bands
 exports.index = (req, res) ->
   Band.find().sort(created_at: 'descending').exec(
-    (err, results) ->
+    (err, result) ->
       return res.status(500).json error: err if err?
       return res.status(200).json results
   )
@@ -17,11 +18,13 @@ exports.show = (req, res) ->
 
 # POST /api/bands
 exports.create = (req, res) ->
-  data = _.merge {}, req.body, {submitted_by: req.user._id}
-  new Band(data)
-    .save (err, results) ->
+  data1 = _.merge {}, req.body, {submitted_by: req.body.submitted_by} # {submitted_by: req.user._id}
+  new Band(data1).save (err, result1) ->
+    return res.status(500).json error: err if err?
+    data2 = {parent: result1._id}
+    new Vote(data2).save (err, result2) ->
       return res.status(500).json error: err if err?
-      return res.status(200).json results
+      return res.status(200).json {band: result1, vote: result2}
 
 # PUT /api/bands/:id
 exports.update = (req, res) ->
