@@ -17,7 +17,7 @@ bandSchema = new mongoose.Schema(
   updated_at:
     type: Date
     default: Date.now
-  children: [
+  votes: [
     type: Schema.ObjectId
     ref: 'Vote'
   ]
