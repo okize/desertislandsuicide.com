@@ -1,5 +1,6 @@
 React = require 'react'
 request = require 'superagent'
+_ = require 'lodash'
 LogIn = require './LogIn'
 BandList = require './BandList'
 NewBandForm = require './NewBandForm'
@@ -34,8 +35,8 @@ Voting = React.createClass
 
         # update band list
         results = JSON.parse(res.text)
-        bands = @state.data
-        @setState data: @state.data.concat [results]
+        bands = @state.data.concat [results]
+        @setState data: _.sortBy(bands, 'created_at').reverse()
 
   componentDidMount: ->
     @getBandsFromServer()
