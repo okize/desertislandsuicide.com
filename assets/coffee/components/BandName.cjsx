@@ -1,4 +1,6 @@
 React = require 'react'
+VoteCount = require './VoteCount'
+VoteButton = require './VoteButton'
 
 BandName = React.createClass
   displayName: 'BandName'
