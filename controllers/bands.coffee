@@ -1,4 +1,3 @@
-_ = require 'lodash'
 Band = require '../models/band'
 Vote = require '../models/vote'
 
@@ -25,7 +24,9 @@ exports.create = (req, res) ->
     data = {parent: result1._id, user_id: userId}
     new Vote(data).save (err, result2) ->
       return res.status(500).json error: err if err?
-      return res.status(200).json {band: result1, vote: result2}
+      # this is really hacky; should be better way
+      result1.children = [result2._id]
+      return res.status(200).json result1
 
 # POST /api/bands/:id/vote
 exports.vote = (req, res) ->
