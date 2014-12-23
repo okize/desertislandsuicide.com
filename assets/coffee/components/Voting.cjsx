@@ -34,7 +34,8 @@ Voting = React.createClass
       .set('X-CSRF-Token', csrfToken)
       .set('Accept', 'application/json')
       .end (error, res) ->
-        return console.error if error?
+        # TODO handle these better
+        return console.error error if error?
         return console.log JSON.parse(res.text)
 
   componentDidMount: ->

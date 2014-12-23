@@ -35,7 +35,7 @@ BandName = React.createClass({
       "className": "band-item"
     }, this.props.data.name, React.createElement("div", {
       "className": "band-vote-count float-right"
-    }, this.props.votes), React.createElement("button", {
+    }, this.props.votes.length), React.createElement("button", {
       "className": "band-vote-for float-right",
       "onClick": this.voteForBand
     }, "Vote!"));
@@ -51,7 +51,7 @@ BandList = React.createClass({
       return React.createElement(BandName, {
         "key": band._id,
         "data": band,
-        "votes": 0
+        "votes": band.children || ['hack']
       });
     }));
   }
@@ -209,7 +209,7 @@ Voting = React.createClass({
     });
     return request.post(apiUrl).send(formData).set('X-CSRF-Token', csrfToken).set('Accept', 'application/json').end(function(error, res) {
       if (error != null) {
-        return console.error;
+        return console.error(error);
       }
       return console.log(JSON.parse(res.text));
     });

@@ -11,7 +11,7 @@ BandName = React.createClass
     <li className="band-item">
       {@props.data.name}
       <div className="band-vote-count float-right">
-        {@props.votes}
+        {@props.votes.length}
       </div>
       <button className="band-vote-for float-right" onClick={@voteForBand}>Vote!</button>
     </li>
@@ -21,7 +21,7 @@ BandList = React.createClass
   render: ->
     <ul className="band-list">
       {@props.data.map((band) ->
-        <BandName key={band._id} data={band} votes=0 />
+        <BandName key={band._id} data={band} votes={band.children || ['hack']} />
       )}
     </ul>
 
