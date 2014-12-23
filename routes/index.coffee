@@ -42,12 +42,13 @@ router.get '/auth/twitter/callback', passport.authenticate('twitter',
 ), (req, res) ->
   res.redirect req.session.returnTo or '/'
 
-# this exists out of protected group because we want unsigned in users
-# to be able to see votes
+# this exists out of protected group because we want unsigned
+# in users to be able to see votes
 router.get '/api/bands', bandsController.index
 
 api.get '/bands/:id', bandsController.show
 api.post '/bands', bandsController.create
+api.post '/bands/:id/vote', bandsController.vote
 api.put '/bands/:id', bandsController.update
 api.delete '/bands/:id', bandsController.delete
 
