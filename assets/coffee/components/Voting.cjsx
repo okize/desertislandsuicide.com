@@ -5,14 +5,11 @@ LogIn = require './LogIn'
 BandList = require './BandList'
 NewBandForm = require './NewBandForm'
 
-csrfToken = document.getElementsByTagName('meta')['csrf-token'].getAttribute('content')
-apiUrl = '/api/bands'
-
 Voting = React.createClass
   displayName: 'Voting'
 
   getBandsFromServer: ->
-    request.get apiUrl, ((result) ->
+    request.get @props.apiUrl, ((result) ->
       if @isMounted()
         @setState
           data: result.body
@@ -25,9 +22,9 @@ Voting = React.createClass
 
     # post new band to the server
     request
-      .post(apiUrl)
+      .post(@props.apiUrl)
       .send(formData)
-      .set('X-CSRF-Token', csrfToken)
+      .set('X-CSRF-Token', @props.csrfToken)
       .set('Accept', 'application/json')
       .end (error, res) =>
         # TODO handle errors better
