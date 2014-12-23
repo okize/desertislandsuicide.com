@@ -3,24 +3,28 @@ relationship = require 'mongoose-relationship'
 Schema = mongoose.Schema
 
 voteSchema = new mongoose.Schema(
-  created_at:
-    type: Date
-    default: Date.now
   user_id:
     type: String
     required: true
+  parent: [
+    type: Schema.ObjectId
+    ref: 'Band'
+    childPath: 'children'
+  ]
+  created_at:
+    type: Date
+    default: Date.now
   updated_at:
     type: Date
     default: Date.now
-  band: [
-    type: Schema.ObjectId
-    ref: 'Band'
-    childPath: 'votes'
-  ]
   ,
     strict: true
 )
 
-voteSchema.plugin relationship, {relationshipPathName: 'band'}
+relationshipOpts =
+  relationshipPathName: 'parent'
+  # triggerMiddleware: true
+
+voteSchema.plugin relationship, relationshipOpts
 
 module.exports = mongoose.model('Vote', voteSchema)
