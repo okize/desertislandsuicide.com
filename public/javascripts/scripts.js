@@ -10,7 +10,9 @@ StatusBar = require('./components/StatusBar.cjsx');
 props = {
   loggedIn: window.loggedIn,
   userName: window.userName || null,
-  refreshRate: 500000
+  refreshRate: 500000,
+  csrfToken: document.getElementsByTagName('meta')['csrf-token'].getAttribute('content'),
+  apiUrl: '/api/bands'
 };
 
 React.render(React.createElement(Voting, props), document.getElementById('voting'));
@@ -20,22 +22,37 @@ React.render(React.createElement(StatusBar, props), document.getElementById('sta
 
 
 },{"./components/StatusBar.cjsx":5,"./components/Voting.cjsx":6,"react":153}],2:[function(require,module,exports){
-var BandList, BandName, React;
+var BandList, BandName, React, apiUrl, bandId, csrfToken, request;
 
 React = require('react');
+
+request = require('superagent');
+
+csrfToken = document.getElementsByTagName('meta')['csrf-token'].getAttribute('content');
+
+apiUrl = '/api/bands';
+
+bandId = '549988eac09193d9ae40dfb1';
 
 BandName = React.createClass({
   displayName: 'BandName',
   voteForBand: function(e) {
     e.preventDefault();
-    return console.log('vote for band');
+    return request.post("" + apiUrl + "/" + bandId + "/vote").set('X-CSRF-Token', csrfToken).set('Accept', 'application/json').end((function(_this) {
+      return function(error, res) {
+        if (error != null) {
+          return console.error(error);
+        }
+        return console.log(JSON.parse(res.text));
+      };
+    })(this));
   },
   render: function() {
     return React.createElement("li", {
       "className": "band-item"
-    }, this.props.data.name, React.createElement("div", {
-      "className": "band-vote-count float-right"
-    }, this.props.votes.length), React.createElement("button", {
+    }, React.createElement("div", {
+      "className": "band-vote-count"
+    }, this.props.votes.length), this.props.data.name, React.createElement("button", {
       "className": "band-vote-for float-right",
       "onClick": this.voteForBand
     }, "Vote!"));
@@ -61,7 +78,7 @@ module.exports = BandList;
 
 
 
-},{"react":153}],3:[function(require,module,exports){
+},{"react":153,"superagent":154}],3:[function(require,module,exports){
 var LogIn, React;
 
 React = require('react');
@@ -168,7 +185,7 @@ module.exports = StatusBar;
 
 
 },{"./LogIn":3,"react":153}],6:[function(require,module,exports){
-var BandList, LogIn, NewBandForm, React, Voting, apiUrl, csrfToken, request, _;
+var BandList, LogIn, NewBandForm, React, Voting, request, _;
 
 React = require('react');
 
@@ -182,14 +199,10 @@ BandList = require('./BandList');
 
 NewBandForm = require('./NewBandForm');
 
-csrfToken = document.getElementsByTagName('meta')['csrf-token'].getAttribute('content');
-
-apiUrl = '/api/bands';
-
 Voting = React.createClass({
   displayName: 'Voting',
   getBandsFromServer: function() {
-    return request.get(apiUrl, (function(result) {
+    return request.get(this.props.apiUrl, (function(result) {
       if (this.isMounted()) {
         return this.setState({
           data: result.body
@@ -203,7 +216,7 @@ Voting = React.createClass({
     };
   },
   handleNewBandSubmit: function(formData) {
-    return request.post(apiUrl).send(formData).set('X-CSRF-Token', csrfToken).set('Accept', 'application/json').end((function(_this) {
+    return request.post(this.props.apiUrl).send(formData).set('X-CSRF-Token', this.props.csrfToken).set('Accept', 'application/json').end((function(_this) {
       return function(error, res) {
         var bands, results;
         if (error != null) {
