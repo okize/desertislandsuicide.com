@@ -51,7 +51,7 @@ BandList = React.createClass({
       return React.createElement(BandName, {
         "key": band._id,
         "data": band,
-        "votes": band.children || ['hack']
+        "votes": band.children
       });
     }));
   }
@@ -201,18 +201,19 @@ Voting = React.createClass({
     };
   },
   handleNewBandSubmit: function(formData) {
-    var bands, newBand;
-    bands = this.state.data;
-    newBand = this.state.data.concat([formData]);
-    this.setState({
-      data: newBand
-    });
-    return request.post(apiUrl).send(formData).set('X-CSRF-Token', csrfToken).set('Accept', 'application/json').end(function(error, res) {
-      if (error != null) {
-        return console.error(error);
-      }
-      return console.log(JSON.parse(res.text));
-    });
+    return request.post(apiUrl).send(formData).set('X-CSRF-Token', csrfToken).set('Accept', 'application/json').end((function(_this) {
+      return function(error, res) {
+        var bands, results;
+        if (error != null) {
+          return console.error(error);
+        }
+        results = JSON.parse(res.text);
+        bands = _this.state.data;
+        return _this.setState({
+          data: _this.state.data.concat([results])
+        });
+      };
+    })(this));
   },
   componentDidMount: function() {
     this.getBandsFromServer();

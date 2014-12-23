@@ -22,21 +22,20 @@ Voting = React.createClass
 
   handleNewBandSubmit: (formData) ->
 
-    # optimistially update band list
-    bands = @state.data
-    newBand = @state.data.concat([formData])
-    @setState data: newBand
-
     # post new band to the server
     request
       .post(apiUrl)
       .send(formData)
       .set('X-CSRF-Token', csrfToken)
       .set('Accept', 'application/json')
-      .end (error, res) ->
-        # TODO handle these better
+      .end (error, res) =>
+        # TODO handle errors better
         return console.error error if error?
-        return console.log JSON.parse(res.text)
+
+        # update band list
+        results = JSON.parse(res.text)
+        bands = @state.data
+        @setState data: @state.data.concat [results]
 
   componentDidMount: ->
     @getBandsFromServer()
