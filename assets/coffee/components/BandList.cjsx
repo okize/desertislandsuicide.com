@@ -6,7 +6,7 @@ BandList = React.createClass
   render: ->
     <ul className="band-list">
       {@props.data.map((band) ->
-        <BandName key={band._id} data={band} votes={band.children} />
+        <BandName key={band._id} data={band} votes={band.vote_count} />
       )}
     </ul>
 

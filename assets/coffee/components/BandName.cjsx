@@ -7,7 +7,7 @@ BandName = React.createClass
 
   render: ->
     <li className="band-item">
-      <VoteCount votes={@props.votes.length} />
+      <VoteCount votes={@props.votes} />
       {@props.data.name}
       <VoteButton bandId={@props.data._id} />
     </li>

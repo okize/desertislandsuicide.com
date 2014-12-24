@@ -37,7 +37,7 @@ BandList = React.createClass({
       return React.createElement(BandName, {
         "key": band._id,
         "data": band,
-        "votes": band.children
+        "votes": band.vote_count
       });
     }));
   }
@@ -62,7 +62,7 @@ BandName = React.createClass({
     return React.createElement("li", {
       "className": "band-item"
     }, React.createElement(VoteCount, {
-      "votes": this.props.votes.length
+      "votes": this.props.votes
     }), this.props.data.name, React.createElement(VoteButton, {
       "bandId": this.props.data._id
     }));
