@@ -6,8 +6,6 @@ props =
   loggedIn: window.loggedIn
   userName: window.userName || null
   refreshRate: 500000
-  csrfToken: document.getElementsByTagName('meta')['csrf-token'].getAttribute('content')
-  apiUrl: '/api/bands'
 
 React.render(
   React.createElement(Voting, props),

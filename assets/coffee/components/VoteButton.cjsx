@@ -1,19 +1,18 @@
 React = require 'react'
 request = require 'superagent'
-
-csrfToken = document.getElementsByTagName('meta')['csrf-token'].getAttribute('content')
-apiUrl = '/api/bands'
+help = require '../helpers'
 
 VoteButton = React.createClass
   displayName: 'VoteButton'
 
   voteForBand: (e) ->
+
     e.preventDefault()
 
     # post new vote to the server
     request
-      .post("#{apiUrl}/#{@props.bandId}/vote")
-      .set('X-CSRF-Token', csrfToken)
+      .post("/api/bands/#{@props.bandId}/vote")
+      .set('X-CSRF-Token', help.getCsrfToken())
       .set('Accept', 'application/json')
       .end (error, res) =>
         # TODO handle errors better

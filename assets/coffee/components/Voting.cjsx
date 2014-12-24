@@ -1,6 +1,7 @@
 React = require 'react'
 request = require 'superagent'
 _ = require 'lodash'
+help = require '../helpers'
 LogIn = require './LogIn'
 BandList = require './BandList'
 NewBandForm = require './NewBandForm'
@@ -9,7 +10,7 @@ Voting = React.createClass
   displayName: 'Voting'
 
   getBandsFromServer: ->
-    request.get @props.apiUrl, ((result) ->
+    request.get '/api/bands/', ((result) ->
       if @isMounted()
         @setState
           data: result.body
@@ -22,10 +23,10 @@ Voting = React.createClass
 
     # post new band to the server
     request
-      .post(@props.apiUrl)
-      .send(formData)
-      .set('X-CSRF-Token', @props.csrfToken)
-      .set('Accept', 'application/json')
+      .post '/api/bands/'
+      .send formData
+      .set 'X-CSRF-Token', help.getCsrfToken()
+      .set 'Accept', 'application/json'
       .end (error, res) =>
         # TODO handle errors better
         return console.error error if error?
