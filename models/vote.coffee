@@ -23,7 +23,7 @@ voteSchema = new mongoose.Schema(
 
 relationshipOpts =
   relationshipPathName: 'parent'
-  # triggerMiddleware: true
+  triggerMiddleware: true
 
 voteSchema.plugin relationship, relationshipOpts
 

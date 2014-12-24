@@ -6,6 +6,8 @@ bandSchema = new mongoose.Schema(
   name:
     type: String
     required: true
+    index:
+      unique: true
     unique: true
   submitted_by:
     type: String
@@ -14,6 +16,9 @@ bandSchema = new mongoose.Schema(
     type: Schema.ObjectId
     ref: 'Vote'
   ]
+  vote_count:
+    type: Number
+    default: 0
   created_at:
     type: Date
     default: Date.now
@@ -23,6 +28,11 @@ bandSchema = new mongoose.Schema(
   ,
     strict: true
 )
+
+# hook to keep vote_count up to date
+bandSchema.pre 'save', (next) ->
+  @vote_count = @children.length
+  next()
 
 bandSchema.plugin uniqueValidator
 
