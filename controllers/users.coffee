@@ -12,7 +12,7 @@ exports.logout = (req, res) ->
   req.logout()
   res.redirect '/'
 
-# GET /account
+# GET /api/account
 exports.account = (req, res) ->
   res.render 'account',
     title: 'Account'

@@ -3,7 +3,7 @@ Vote = require '../models/vote'
 
 # GET /api/bands
 exports.index = (req, res) ->
-  Band.find().sort(created_at: 'descending').exec(
+  Band.find().sort(vote_count: 'descending', name: 'ascending').exec(
     (err, result) ->
       return res.status(500).json error: err if err?
       return res.status(200).json result
