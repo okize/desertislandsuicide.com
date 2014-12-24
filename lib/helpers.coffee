@@ -1,4 +1,4 @@
-# various "helper" functions
+log = require('./logger').logger
 
 module.exports =
 
@@ -7,6 +7,8 @@ module.exports =
     if req.isAuthenticated()
       next()
     else
-      req.flash 'errors',
-        msg: 'You are not authorized to view this page'
-      res.render('index')
+      err = new Error
+      err.status = 401
+      err.message = 'Authentication credentials are missing or incorrect'
+      log.error err
+      res.status(401).json err
