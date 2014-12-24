@@ -536,6 +536,10 @@ body {
   margin-left: 2em; }
 
 /* line 17, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/voting.sass */
+.band-name {
+  display: inline-block; }
+
+/* line 20, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/voting.sass */
 .band-vote-count {
   text-align: right;
   display: inline-block;
@@ -544,7 +548,7 @@ body {
   left: -2em;
   font-weight: bold; }
 
-/* line 25, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/voting.sass */
+/* line 28, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/voting.sass */
 .add-new-band {
   margin: 1em 0; }
 

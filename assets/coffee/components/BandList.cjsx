@@ -1,12 +1,12 @@
 React = require 'react'
-BandName = require './BandName'
+BandItem = require './BandItem'
 
 BandList = React.createClass
   displayName: 'BandList'
   render: ->
     <ul className="band-list">
       {@props.data.map((band) ->
-        <BandName key={band._id} data={band} votes={band.vote_count} />
+        <BandItem key={band._id} data={band} votes={band.vote_count} />
       )}
     </ul>
 
