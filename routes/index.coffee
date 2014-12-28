@@ -13,6 +13,10 @@ api.get '/account', userController.account
 # homepage
 router.get '/', homeController.index
 
+# this exists out of protected group because we want unauthorized
+# users to be able to see band submissions and vote counts
+router.get '/bandsNoAuth', bandsController.indexNoAuth
+
 # sign in & out
 router.get '/login', userController.login
 router.get '/logout', userController.logout
@@ -42,12 +46,9 @@ router.get '/auth/twitter/callback', passport.authenticate('twitter',
 ), (req, res) ->
   res.redirect req.session.returnTo or '/'
 
-# this exists out of protected group because we want unsigned
-# in users to be able to see votes
-router.get '/api/bands', bandsController.index
-
-api.get '/bands/:id', bandsController.show
+api.get '/bands', bandsController.index
 api.post '/bands', bandsController.create
+api.get '/bands/:id', bandsController.show
 api.post '/bands/:id/vote', bandsController.vote
 api.put '/bands/:id', bandsController.update
 api.delete '/bands/:id', bandsController.delete
