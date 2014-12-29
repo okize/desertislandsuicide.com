@@ -3,6 +3,7 @@ LogIn = require './LogIn'
 
 LoggedIn = React.createClass
   displayName: 'LoggedIn'
+
   render: ->
     <div className="logged-in">
       Signed in as {@props.userName}
@@ -12,6 +13,7 @@ LoggedIn = React.createClass
 
 LoggedOut = React.createClass
   displayName: 'LoggedOut'
+
   render: ->
     <div className="logged-out">
       <a href="#">Sign in to vote!</a>
@@ -19,6 +21,7 @@ LoggedOut = React.createClass
 
 StatusBar = React.createClass
   displayName: 'StatusBar'
+
   render: ->
     <div>
       {if @props.loggedIn then <LoggedIn userName={@props.userName} /> else <LoggedOut />}

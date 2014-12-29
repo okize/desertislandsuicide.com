@@ -2,6 +2,7 @@ React = require 'react'
 
 LogIn = React.createClass
   displayName: 'LogIn'
+
   render: ->
     <nav className="login-nav">
       <ul>

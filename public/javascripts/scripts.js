@@ -32,13 +32,16 @@ BandItem = React.createClass({
   displayName: 'BandItem',
   render: function() {
     return React.createElement("li", {
-      "className": "band-item"
+      "className": "band-item",
+      "loggedIn": this.props.loggedIn
     }, React.createElement(VoteCount, {
       "votes": this.props.votes
     }), React.createElement("div", {
       "className": "band-name"
     }, this.props.data.name), React.createElement(VoteButton, {
-      "bandId": this.props.data._id
+      "bandId": this.props.data._id,
+      "userHasVotedFor": this.props.data.userHasVotedFor,
+      "loggedIn": this.props.loggedIn
     }));
   }
 });
@@ -58,14 +61,18 @@ BandList = React.createClass({
   displayName: 'BandList',
   render: function() {
     return React.createElement("ul", {
-      "className": "band-list"
-    }, this.props.data.map(function(band) {
-      return React.createElement(BandItem, {
-        "key": band._id,
-        "data": band,
-        "votes": band.vote_count
-      });
-    }));
+      "className": "band-list",
+      "loggedIn": this.props.loggedIn
+    }, this.props.data.map((function(_this) {
+      return function(band) {
+        return React.createElement(BandItem, {
+          "key": band._id,
+          "data": band,
+          "votes": band.vote_count,
+          "loggedIn": _this.props.loggedIn
+        });
+      };
+    })(this)));
   }
 });
 
@@ -196,17 +203,28 @@ VoteButton = React.createClass({
       return function(error, res) {
         if (error != null) {
           return console.error(error);
+        } else {
+          return console.log(JSON.parse(res.text));
         }
-        return console.log(JSON.parse(res.text));
       };
     })(this));
   },
   render: function() {
-    return React.createElement("div", {
-      "className": "band-vote-for float-right"
-    }, React.createElement("button", {
-      "onClick": this.voteForBand
-    }, "Vote!"));
+    if (this.props.loggedIn) {
+      if (!this.props.userHasVotedFor) {
+        return React.createElement("div", {
+          "className": "band-vote-for float-right"
+        }, React.createElement("button", {
+          "onClick": this.voteForBand
+        }, "Vote!"));
+      } else {
+        return React.createElement("div", null);
+      }
+    } else {
+      return React.createElement("div", {
+        "className": "sign-in-to-vote float-right"
+      }, "Sign in to vote!");
+    }
   }
 });
 
@@ -251,8 +269,17 @@ NewBandForm = require('./NewBandForm');
 
 Voting = React.createClass({
   displayName: 'Voting',
+  getApiUrl: function() {
+    if (this.props.loggedIn) {
+      return '/api/bands';
+    } else {
+      return /bandsNoAuth/;
+    }
+  },
   getBandsFromServer: function() {
-    return request.get('/api/bands/', (function(result) {
+    var url;
+    url = this.getApiUrl();
+    return request.get(url, (function(result) {
       if (this.isMounted()) {
         return this.setState({
           data: result.body
@@ -292,7 +319,8 @@ Voting = React.createClass({
       "else": true,
       "null": true
     }) : void 0), React.createElement(BandList, {
-      "data": this.state.data
+      "data": this.state.data,
+      "loggedIn": this.props.loggedIn
     }));
   }
 });
