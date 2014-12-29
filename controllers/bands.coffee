@@ -1,3 +1,4 @@
+_ = require 'lodash'
 Band = require '../models/band'
 Vote = require '../models/vote'
 
@@ -14,13 +15,22 @@ exports.indexNoAuth = (req, res) ->
 
 # GET /api/bands
 exports.index = (req, res) ->
+  userId = req.user._id.toString()
   pop =
     path: 'children'
     select: 'user_id'
   Band.find().populate(pop).sort(vote_count: 'descending', name: 'ascending').exec(
     (err, result) ->
-      return res.status(500).json error: err if err?
-      return res.status(200).json result
+      if err?
+        return res.status(500).json error: err
+      else
+        # create a new result array that includes an object property
+        # boolean for whether user has voted on this particular band
+        newResult = _.map result, (obj) ->
+          hasVoted = if _.find(obj.children, { user_id: userId })? then true else false
+          console.log hasVoted
+          return _.assign obj, userHasVotedFor: hasVoted
+        return res.status(200).json newResult
   )
 
 # GET /api/bands/:id
@@ -40,6 +50,7 @@ exports.create = (req, res) ->
       return res.status(500).json error: err if err?
       # this is really hacky; should be better way
       result1.children = [result2._id]
+      result1.userHasVotedOn = true
       return res.status(200).json result1
 
 # POST /api/bands/:id/vote
