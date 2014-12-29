@@ -6,8 +6,7 @@ bandSchema = new mongoose.Schema(
   name:
     type: String
     required: true
-    index:
-      unique: true
+    index: true
     unique: true
   submitted_by:
     type: String
@@ -22,6 +21,7 @@ bandSchema = new mongoose.Schema(
   vote_count:
     type: Number
     default: 0
+    index: true
   created_at:
     type: Date
     default: Date.now
