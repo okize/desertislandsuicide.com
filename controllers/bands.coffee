@@ -28,7 +28,6 @@ exports.index = (req, res) ->
         # boolean for whether user has voted on this particular band
         newResult = _.map result, (obj) ->
           hasVoted = if _.find(obj.children, { user_id: userId })? then true else false
-          console.log hasVoted
           return _.assign obj, userHasVotedFor: hasVoted
         return res.status(200).json newResult
   )

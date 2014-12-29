@@ -9,8 +9,15 @@ NewBandForm = require './NewBandForm'
 Voting = React.createClass
   displayName: 'Voting'
 
+  getApiUrl: ->
+    if @props.loggedIn
+      '/api/bands'
+    else
+      /bandsNoAuth/
+
   getBandsFromServer: ->
-    request.get '/api/bands/', ((result) ->
+    url = @getApiUrl()
+    request.get url, ((result) ->
       if @isMounted()
         @setState
           data: result.body
@@ -43,7 +50,7 @@ Voting = React.createClass
   render: ->
     <div className="voting-wrapper">
       {if @props.loggedIn then <NewBandForm onNewBandSubmit={@handleNewBandSubmit} else null />}
-      <BandList data={@state.data} />
+      <BandList data={@state.data} loggedIn={@props.loggedIn} />
     </div>
 
 module.exports = Voting
