@@ -16,12 +16,22 @@ VoteButton = React.createClass
       .set('Accept', 'application/json')
       .end (error, res) =>
         # TODO handle errors better
-        return console.error error if error?
-        return console.log JSON.parse(res.text)
+        if error?
+          return console.error error
+        else
+          return console.log JSON.parse(res.text)
 
   render: ->
-    <div className="band-vote-for float-right">
-      <button onClick={@voteForBand}>Vote!</button>
-    </div>
+    if @props.loggedIn
+      unless @props.userHasVotedFor
+        <div className="band-vote-for float-right">
+          <button onClick={@voteForBand}>Vote!</button>
+        </div>
+      else
+        <div />
+    else
+      <div className="sign-in-to-vote float-right">
+        Sign in to vote!
+      </div>
 
 module.exports = VoteButton
