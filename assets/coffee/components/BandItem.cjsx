@@ -27,7 +27,7 @@ BandItem = React.createClass
   displayName: 'BandItem'
 
   render: ->
-    <li className="band-item" loggedIn={@props.loggedIn} >
+    <li className="band-item">
       <div className="band-vote-count">
         {@props.votes}
       </div>
