@@ -551,7 +551,9 @@ body {
 
 /* line 30, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/voting.sass */
 .add-new-band {
-  margin: 1em 0; }
+  margin: 1em 0;
+  background-color: #d2d1be;
+  padding: 1em; }
 
 /* line 1, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/invitationForm.sass */
 .invitation {

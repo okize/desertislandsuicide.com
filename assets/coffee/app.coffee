@@ -1,11 +1,20 @@
 React   = require 'react'
-App = require './components/App.cjsx'
+StatusBar = require './components/StatusBar.cjsx'
+Header = require './components/Header.cjsx'
+Voting = require './components/Voting.cjsx'
 
-config =
-  loggedIn: window.loggedIn
-  userName: window.userName || null
+App = React.createClass
+  displayName: 'App'
 
-React.render(
-  React.createElement(App, config),
-  document.getElementById 'app'
-)
+  config:
+    loggedIn: window.loggedIn
+    userName: window.userName || null
+
+  render: ->
+    <div className="main-wrapper" role="main">
+      <StatusBar loggedIn={@config.loggedIn} userName={@config.userName} />
+      <Header />
+      <Voting loggedIn={@config.loggedIn} />
+    </div>
+
+React.render <App />, document.getElementById 'app'
