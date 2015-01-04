@@ -1,25 +1,15 @@
 React = require 'react'
 request = require 'superagent'
-help = require '../helpers'
 
 VoteButton = React.createClass
   displayName: 'VoteButton'
 
   voteForBand: (e) ->
-
     e.preventDefault()
 
-    # post new vote to the server
-    request
-      .post("/api/bands/#{@props.bandId}/vote")
-      .set('X-CSRF-Token', help.getCsrfToken())
-      .set('Accept', 'application/json')
-      .end (error, res) =>
-        # TODO handle errors better
-        if error?
-          return console.error error
-        else
-          return console.log JSON.parse(res.text)
+    # pass bandId along with event
+    data = 'detail': @props.bandId
+    window.dispatchEvent new CustomEvent 'vote-for-band', data
 
   render: ->
     if @props.loggedIn

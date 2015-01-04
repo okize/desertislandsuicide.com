@@ -187,27 +187,21 @@ module.exports = StatusBar;
 
 
 },{"./LogIn":4,"react":157}],7:[function(require,module,exports){
-var React, VoteButton, help, request;
+var React, VoteButton, request;
 
 React = require('react');
 
 request = require('superagent');
 
-help = require('../helpers');
-
 VoteButton = React.createClass({
   displayName: 'VoteButton',
   voteForBand: function(e) {
+    var data;
     e.preventDefault();
-    return request.post("/api/bands/" + this.props.bandId + "/vote").set('X-CSRF-Token', help.getCsrfToken()).set('Accept', 'application/json').end((function(_this) {
-      return function(error, res) {
-        if (error != null) {
-          return console.error(error);
-        } else {
-          return console.log(JSON.parse(res.text));
-        }
-      };
-    })(this));
+    data = {
+      'detail': this.props.bandId
+    };
+    return window.dispatchEvent(new CustomEvent('vote-for-band', data));
   },
   render: function() {
     if (this.props.loggedIn) {
@@ -232,7 +226,7 @@ module.exports = VoteButton;
 
 
 
-},{"../helpers":10,"react":157,"superagent":158}],8:[function(require,module,exports){
+},{"react":157,"superagent":158}],8:[function(require,module,exports){
 var React, VoteCount;
 
 React = require('react');
@@ -297,6 +291,19 @@ Voting = React.createClass({
       data: []
     };
   },
+  handleBandVote: function(e) {
+    var bandId;
+    e.preventDefault();
+    bandId = e.detail;
+    return request.post("/api/bands/" + bandId + "/vote").set('X-CSRF-Token', help.getCsrfToken()).set('Accept', 'application/json').end((function(_this) {
+      return function(error, res) {
+        if (error != null) {
+          return console.error(error);
+        }
+        return _this.getBandsFromServer();
+      };
+    })(this));
+  },
   handleNewBandSubmit: function(formData) {
     return request.post('/api/bands/').send(formData).set('X-CSRF-Token', help.getCsrfToken()).set('Accept', 'application/json').end((function(_this) {
       return function(error, res) {
@@ -309,6 +316,7 @@ Voting = React.createClass({
   },
   componentDidMount: function() {
     this.getBandsFromServer();
+    window.addEventListener('vote-for-band', this.handleBandVote);
     return setInterval(this.getBandsFromServer, this.props.refreshRate);
   },
   render: function() {

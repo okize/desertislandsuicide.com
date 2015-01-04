@@ -32,6 +32,25 @@ Voting = React.createClass
   getInitialState: ->
     data: []
 
+  handleBandVote: (e) ->
+
+    e.preventDefault()
+
+    bandId = e.detail
+
+    # post new vote to the server
+    request
+      .post("/api/bands/#{bandId}/vote")
+      .set('X-CSRF-Token', help.getCsrfToken())
+      .set('Accept', 'application/json')
+      .end (error, res) =>
+
+        # TODO handle errors better
+        return console.error error if error?
+
+        # update band list
+        @getBandsFromServer()
+
   handleNewBandSubmit: (formData) ->
 
     # post new band to the server
@@ -50,6 +69,7 @@ Voting = React.createClass
 
   componentDidMount: ->
     @getBandsFromServer()
+    window.addEventListener 'vote-for-band', @handleBandVote
     setInterval @getBandsFromServer, @props.refreshRate
 
   render: ->
