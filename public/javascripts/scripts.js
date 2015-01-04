@@ -281,7 +281,7 @@ Voting = React.createClass({
     url = this.getApiUrl();
     return request.get(url).end((function(_this) {
       return function(err, res) {
-        if (err) {
+        if (typeof error !== "undefined" && error !== null) {
           return console.error(err);
         }
         if (_this.isMounted()) {
@@ -300,15 +300,10 @@ Voting = React.createClass({
   handleNewBandSubmit: function(formData) {
     return request.post('/api/bands/').send(formData).set('X-CSRF-Token', help.getCsrfToken()).set('Accept', 'application/json').end((function(_this) {
       return function(error, res) {
-        var bands, results;
         if (error != null) {
           return console.error(error);
         }
-        results = JSON.parse(res.text);
-        bands = _this.state.data.concat([results]);
-        return _this.setState({
-          data: _.sortBy(bands, 'created_at').reverse()
-        });
+        return _this.getBandsFromServer();
       };
     })(this));
   },

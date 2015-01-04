@@ -20,8 +20,11 @@ Voting = React.createClass
     request
       .get url
       .end (err, res) =>
-        if err
-          return console.error err
+
+        # TODO handle errors better
+        return console.error err if error?
+
+        # update state with bands
         if @isMounted()
           @setState
             data: res.body
@@ -38,13 +41,12 @@ Voting = React.createClass
       .set 'X-CSRF-Token', help.getCsrfToken()
       .set 'Accept', 'application/json'
       .end (error, res) =>
+
         # TODO handle errors better
         return console.error error if error?
 
         # update band list
-        results = JSON.parse(res.text)
-        bands = @state.data.concat [results]
-        @setState data: _.sortBy(bands, 'created_at').reverse()
+        @getBandsFromServer()
 
   componentDidMount: ->
     @getBandsFromServer()
