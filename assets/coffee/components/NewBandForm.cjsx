@@ -6,7 +6,7 @@ NewBandForm = React.createClass
   handleSubmit: (e) ->
     e.preventDefault()
     name = @refs.name.getDOMNode().value.trim()
-    return unless name
+    return unless name and name.length > 2
     @props.onNewBandSubmit {name: name}
     @refs.name.getDOMNode().value = ''
     return
