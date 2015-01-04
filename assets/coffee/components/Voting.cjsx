@@ -9,6 +9,8 @@ NewBandForm = require './NewBandForm'
 Voting = React.createClass
   displayName: 'Voting'
 
+  refreshRate: 500000
+
   getApiUrl: ->
     if @props.loggedIn
       '/api/bands'
@@ -70,7 +72,7 @@ Voting = React.createClass
   componentDidMount: ->
     @getBandsFromServer()
     window.addEventListener 'vote-for-band', @handleBandVote
-    setInterval @getBandsFromServer, @props.refreshRate
+    setInterval @getBandsFromServer, @refreshRate
 
   render: ->
     <div className="voting-wrapper">
