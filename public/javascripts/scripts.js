@@ -115,7 +115,7 @@ NewBandForm = React.createClass({
     var name;
     e.preventDefault();
     name = this.refs.name.getDOMNode().value.trim();
-    if (!name) {
+    if (!(name && name.length > 2)) {
       return;
     }
     this.props.onNewBandSubmit({
@@ -279,13 +279,18 @@ Voting = React.createClass({
   getBandsFromServer: function() {
     var url;
     url = this.getApiUrl();
-    return request.get(url, (function(result) {
-      if (this.isMounted()) {
-        return this.setState({
-          data: result.body
-        });
-      }
-    }).bind(this));
+    return request.get(url).end((function(_this) {
+      return function(err, res) {
+        if (err) {
+          return console.error(err);
+        }
+        if (_this.isMounted()) {
+          return _this.setState({
+            data: res.body
+          });
+        }
+      };
+    })(this));
   },
   getInitialState: function() {
     return {

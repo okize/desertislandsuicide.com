@@ -17,11 +17,14 @@ Voting = React.createClass
 
   getBandsFromServer: ->
     url = @getApiUrl()
-    request.get url, ((result) ->
-      if @isMounted()
-        @setState
-          data: result.body
-    ).bind(this)
+    request
+      .get url
+      .end (err, res) =>
+        if err
+          return console.error err
+        if @isMounted()
+          @setState
+            data: res.body
 
   getInitialState: ->
     data: []
