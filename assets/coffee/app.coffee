@@ -1,7 +1,15 @@
 React   = require 'react'
+FastClick = require 'fastclick'
 StatusBar = require './components/StatusBar.cjsx'
 Header = require './components/Header.cjsx'
 Voting = require './components/Voting.cjsx'
+
+appEl = document.getElementById 'app'
+
+# init FastClick
+FastClick appEl
+
+React.initializeTouchEvents true
 
 App = React.createClass
   displayName: 'App'
@@ -17,4 +25,4 @@ App = React.createClass
       <Voting loggedIn={@config.loggedIn} />
     </div>
 
-React.render <App />, document.getElementById 'app'
+React.render <App />, appEl
