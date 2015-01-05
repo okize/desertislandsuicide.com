@@ -19,11 +19,14 @@ Voting = React.createClass
     else
       /bandsNoAuth/
 
-  getBandsFromServer: ->
+  getBandList: ->
 
     url = @getApiUrl()
+
+    # get a list of bands and vote counts
     request
       .get url
+      .query isCacheBuster: Date.now().toString()
       .end (error, res) =>
 
         # TODO handle errors better
@@ -50,7 +53,7 @@ Voting = React.createClass
         return console.error error if error?
 
         # update band list
-        @getBandsFromServer()
+        @getBandList()
 
   handleNewBandSubmit: (formData) ->
 
@@ -66,15 +69,15 @@ Voting = React.createClass
         return console.error error if error?
 
         # update band list
-        @getBandsFromServer()
+        @getBandList()
 
   componentDidMount: ->
 
     # load band list
-    @getBandsFromServer()
+    @getBandList()
 
     # periodically update list with new entries
-    setInterval @getBandsFromServer, @refreshRate
+    setInterval @getBandList, @refreshRate
 
     # listener for band votes
     @addListener 'Voting', 'vote-for-band', @handleBandVote
