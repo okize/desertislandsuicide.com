@@ -15,9 +15,8 @@ EventEmitterMixin =
     emitter.off name
 
   #Payload should be an array
-  emit: (rootComponentName, eventToFire, payload, callback) ->
+  emit: (rootComponentName, eventToFire, payload) ->
     emitter = components[rootComponentName]
     emitter.emit eventToFire, payload
-    callback.call this
 
 module.exports = EventEmitterMixin

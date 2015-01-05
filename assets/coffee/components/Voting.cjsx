@@ -1,7 +1,7 @@
 React = require 'react'
 request = require 'superagent'
-_ = require 'lodash'
 help = require '../helpers'
+EventEmitterMixin = require '../mixins/EventEmitterMixin'
 LogIn = require './LogIn'
 BandList = require './BandList'
 NewBandForm = require './NewBandForm'
@@ -11,6 +11,8 @@ Voting = React.createClass
 
   refreshRate: 500000
 
+  mixins: [EventEmitterMixin]
+
   getApiUrl: ->
     if @props.loggedIn
       '/api/bands'
@@ -18,6 +20,7 @@ Voting = React.createClass
       /bandsNoAuth/
 
   getBandsFromServer: ->
+
     url = @getApiUrl()
     request
       .get url
@@ -34,11 +37,7 @@ Voting = React.createClass
   getInitialState: ->
     data: []
 
-  handleBandVote: (e) ->
-
-    e.preventDefault()
-
-    bandId = e.detail
+  handleBandVote: (bandId) ->
 
     # post new vote to the server
     request
@@ -70,9 +69,15 @@ Voting = React.createClass
         @getBandsFromServer()
 
   componentDidMount: ->
+
+    # load band list
     @getBandsFromServer()
-    window.addEventListener 'vote-for-band', @handleBandVote
+
+    # periodically update list with new entries
     setInterval @getBandsFromServer, @refreshRate
+
+    # listener for band votes
+    @addListener 'Voting', 'vote-for-band', @handleBandVote
 
   render: ->
     <div className="voting-wrapper">

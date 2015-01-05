@@ -1,14 +1,16 @@
 React = require 'react'
+EventEmitterMixin = require '../mixins/EventEmitterMixin'
 
 VoteButton = React.createClass
   displayName: 'VoteButton'
+
+  mixins: [EventEmitterMixin]
 
   voteForBand: (e) ->
     e.preventDefault()
 
     # pass bandId along with event
-    data = 'detail': @props.bandId
-    window.dispatchEvent new CustomEvent 'vote-for-band', data
+    @emit 'Voting', 'vote-for-band', @props.bandId
 
   render: ->
     if @props.loggedIn
