@@ -24,10 +24,10 @@ Voting = React.createClass
     url = @getApiUrl()
     request
       .get url
-      .end (err, res) =>
+      .end (error, res) =>
 
         # TODO handle errors better
-        return console.error err if error?
+        return console.error error if error?
 
         # update state with bands
         if @isMounted()

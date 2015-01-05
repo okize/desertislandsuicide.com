@@ -290,9 +290,9 @@ Voting = React.createClass({
     var url;
     url = this.getApiUrl();
     return request.get(url).end((function(_this) {
-      return function(err, res) {
-        if (typeof error !== "undefined" && error !== null) {
-          return console.error(err);
+      return function(error, res) {
+        if (error != null) {
+          return console.error(error);
         }
         if (_this.isMounted()) {
           return _this.setState({
