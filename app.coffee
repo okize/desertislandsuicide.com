@@ -12,7 +12,7 @@ app = express()
 db = require './lib/mongodb'
 
 # config
-app.set 'app name', process.env.APP_NAME or 'app'
+app.set 'app name', process.env.APP_NAME or 'DesertIslandSuicide'
 app.set 'port', process.env.PORT or 4444
 app.set 'env', process.env.NODE_ENV or 'development'
 app.set 'views', path.join(__dirname, 'views')

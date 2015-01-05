@@ -1,12 +1,13 @@
-if messages.errors
-  .flash-messages
-    for error in messages.errors
-      div= error.msg
-if messages.info
-  .flash-messages
-    for info in messages.info
-      div= info.msg
-if messages.success
-  .flash-messages
-    for success in messages.success
-      div= success.msg
+if messages
+  if messages.errors
+    .flash-messages
+      for error in messages.errors
+        div= error.msg
+  if messages.info
+    .flash-messages
+      for info in messages.info
+        div= info.msg
+  if messages.success
+    .flash-messages
+      for success in messages.success
+        div= success.msg

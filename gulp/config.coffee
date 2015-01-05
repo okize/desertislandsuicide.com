@@ -1,33 +1,46 @@
 # configuration file for Gulp tasks
 
 path = require 'path'
-root = path.resolve(__dirname, '..')
-assets = path.resolve(root, 'public')
+rootPath = path.resolve(__dirname, '..')
+assetsPath = path.resolve(rootPath, 'public')
 
 module.exports =
-  root: root
-  taskDir: "#{root}/gulp/tasks/"
-  main: "#{root}/app.coffee"
-  publicAssetsDir: assets
+
+  app:
+    root: root: rootPath
+    main: "#{rootPath}/app.coffee"
+
+  js:
+    entry: 'app.coffee'
+    src: "#{rootPath}/assets/coffee/"
+    dest: "#{assetsPath}/javascripts/"
+    maps: './'
+    name: 'scripts.js'
+
+  css:
+    entry: 'main.sass'
+    src: "#{rootPath}/assets/sass/"
+    dest: "#{assetsPath}/stylesheets/"
+    maps: './'
+    name: 'styles.css'
+
+  images:
+    src: "#{rootPath}/assets/images/"
+    dest: "#{assetsPath}/images/"
+
+  favicons:
+    src: "#{rootPath}/assets/favicons/"
+    dest: "#{assetsPath}/favicons/"
 
   # DO NOT restart node app when files change in these directories
-  appIgnoreDirs: [
-    'node_modules',
-    'gulp',
-    'assets',
-    'public'
-  ]
+  nodemon:
+    ignore: [
+      'node_modules/',
+      'gulp/',
+      'assets/',
+      'public/'
+    ]
 
-  # asset sources
-  src:
-    favicons: "#{root}/assets/favicons/"
-    images: "#{root}/assets/images/"
-    sassEntry: 'main.sass'
-    sassDir: "#{root}/assets/sass/"
-
-  # asset compilation targets
-  dist:
-    faviconsDir: "#{assets}/favicons/"
-    imagesDir: "#{assets}/images/"
-    cssName: 'styles.css'
-    cssDir: "#{assets}/stylesheets/"
+  gulp:
+    src: "#{rootPath}/gulp/tasks/"
+    publicAssets: assetsPath

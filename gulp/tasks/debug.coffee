@@ -9,4 +9,4 @@ log = require '../helpers/log'
 
 gulp.task 'debug', ->
   log.info 'Starting debugging session'
-  bg './node_modules/.bin/node-debug', config.main
+  bg './node_modules/.bin/node-debug', config.app.main

@@ -7,12 +7,15 @@ log = require '../helpers/log'
 config = require '../config'
 
 gulp.task 'images', ->
-  log.info 'Copying favicons & images to public folder'
+  log.info 'Copying images to public folder'
 
   gulp
-    .src "#{config.src.images}/**/*"
-    .pipe gulp.dest "#{config.publicAssetsDir}/images"
+    .src "#{config.images.src}/**/*"
+    .pipe gulp.dest config.images.dest
+
+gulp.task 'favicons', ->
+  log.info 'Copying favicons public folder'
 
   gulp
-    .src "#{config.src.favicons}/**/*"
-    .pipe gulp.dest "#{config.publicAssetsDir}/favicons"
+    .src "#{config.favicons.src}/**/*"
+    .pipe gulp.dest config.favicons.dest

@@ -7,14 +7,13 @@ html
     meta(name='csrf-token', content=_csrf)
     title #{title}
     link(rel='stylesheet', href=asset('/stylesheets/styles.css', '/stylesheets/styles.min.css'))
-    include partials/new-relic
+    include partials/newRelic
+    include partials/login
+
   body
-
-    include partials/header
-
     include partials/flash
 
-    div.wrapper(role="main")
-      block content
+    block content
 
-    include partials/footer
+    include partials/googleAnalytics
+    script(async, src=asset('/javascripts/scripts.js', '/javascripts/scripts.min.js'))

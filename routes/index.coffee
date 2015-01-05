@@ -4,11 +4,18 @@ api = express.Router()
 passport = require 'passport'
 auth = require '../lib/authentication'
 homeController = require '../controllers/home'
-userController = require '../controllers/user'
+userController = require '../controllers/users'
+bandsController = require '../controllers/bands'
+
+# "account" page (temp)
+api.get '/account', userController.account
 
 # homepage
 router.get '/', homeController.index
-router.get '/subscribed', homeController.subscribed
+
+# this exists out of protected group because we want unauthorized
+# users to be able to see band submissions and vote counts
+router.get '/bandsNoAuth', bandsController.indexNoAuth
 
 # sign in & out
 router.get '/login', userController.login
@@ -39,8 +46,12 @@ router.get '/auth/twitter/callback', passport.authenticate('twitter',
 ), (req, res) ->
   res.redirect req.session.returnTo or '/'
 
-# "account" page
-api.get '/account', userController.account
+api.get '/bands', bandsController.index
+api.post '/bands', bandsController.create
+api.get '/bands/:id', bandsController.show
+api.post '/bands/:id/vote', bandsController.vote
+api.put '/bands/:id', bandsController.update
+api.delete '/bands/:id', bandsController.delete
 
 module.exports =
   unprotected: router

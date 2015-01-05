@@ -8,11 +8,16 @@ config = require '../config'
 log = require '../helpers/log'
 
 # files to watch
-sass = path.join(config.src.sassDir, '**/*.{sass,scss}')
+javascript = path.join(config.js.src, '**/**/*.{coffee,cjsx,js}')
+css = path.join(config.css.src, '**/**/*.{sass,scss}')
 
 gulp.task 'watch', ['sync'], ->
   log.info 'Watching assets for changes...'
 
-  watch sass, (files, cb) ->
-    gulp.start 'sass', cb
+  watch javascript, (files, cb) ->
+    gulp.start 'javascript', cb
+
+  watch css, (files, cb) ->
+    gulp.start 'css', cb
+
   return

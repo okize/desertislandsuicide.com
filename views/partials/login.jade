@@ -1,0 +1,8 @@
+- if (user && user.profile.name)
+  script.
+    window.loggedIn = true
+    window.userName = "#{user.profile.name}"
+- else
+  script.
+    window.loggedIn = false
+    window.userName = null
