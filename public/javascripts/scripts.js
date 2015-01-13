@@ -288,10 +288,8 @@ Voting = React.createClass({
   },
   getBandList: function() {
     var url;
-    url = this.getApiUrl();
-    return request.get(url).query({
-      isCacheBuster: Date.now().toString()
-    }).end((function(_this) {
+    url = "" + (this.getApiUrl()) + "?cacheBuster=" + (Date.now().toString());
+    return request.get(url).end((function(_this) {
       return function(error, res) {
         if (error != null) {
           return console.error(error);

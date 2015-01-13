@@ -21,12 +21,11 @@ Voting = React.createClass
 
   getBandList: ->
 
-    url = @getApiUrl()
+    url = "#{@getApiUrl()}?cacheBuster=#{Date.now().toString()}"
 
     # get a list of bands and vote counts
     request
       .get url
-      .query isCacheBuster: Date.now().toString()
       .end (error, res) =>
 
         # TODO handle errors better
