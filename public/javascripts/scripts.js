@@ -162,13 +162,31 @@ LogIn = React.createClass({
   render: function() {
     return React.createElement("nav", {
       "className": "login-nav"
-    }, React.createElement("ul", null, React.createElement("li", null, React.createElement("a", {
-      "href": "/auth/facebook"
-    }, "Sign in with Facebook")), React.createElement("li", null, React.createElement("a", {
-      "href": "/auth/twitter"
-    }, "Sign in with Twitter")), React.createElement("li", null, React.createElement("a", {
-      "href": "/auth/google"
-    }, "Sign in with Google"))));
+    }, React.createElement("a", {
+      "href": "/auth/facebook",
+      "className": "login-button login-facebook flag"
+    }, React.createElement("img", {
+      "src": "../images/icon-facebook.svg",
+      "className": "flag-image"
+    }), React.createElement("span", {
+      "className": "flag-body"
+    }, "Sign in with ", React.createElement("strong", null, "Facebook"))), React.createElement("a", {
+      "href": "/auth/twitter",
+      "className": "login-button login-twitter flag"
+    }, React.createElement("img", {
+      "src": "../images/icon-twitter.svg",
+      "className": "flag-image"
+    }), React.createElement("span", {
+      "className": "flag-body"
+    }, "Sign in with ", React.createElement("strong", null, "Twitter"))), React.createElement("a", {
+      "href": "/auth/google",
+      "className": "login-button login-google flag"
+    }, React.createElement("img", {
+      "src": "../images/icon-google.svg",
+      "className": "flag-image"
+    }), React.createElement("span", {
+      "className": "flag-body"
+    }, "Sign in with ", React.createElement("strong", null, "Google"))));
   }
 });
 

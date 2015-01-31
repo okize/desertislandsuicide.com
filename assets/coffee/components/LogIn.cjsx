@@ -5,20 +5,18 @@ LogIn = React.createClass
 
   render: ->
     <nav className="login-nav">
-      <ul>
-        <li className="login-nav-facebook">
-          <img src="../images/icon-facebook.svg" />
-          <a href="/auth/facebook">Sign in with Facebook</a>
-        </li>
-        <li className="login-nav-twitter">
-          <img src="../images/icon-twitter.svg" />
-          <a href="/auth/twitter">Sign in with Twitter</a>
-        </li>
-        <li className="login-nav-google">
-          <img src="../images/icon-google.svg" />
-          <a href="/auth/google">Sign in with Google</a>
-        </li>
-      </ul>
+      <a href="/auth/facebook" className="login-button login-facebook flag">
+        <img src="../images/icon-facebook.svg" className="flag-image" />
+        <span className="flag-body">Sign in with <strong>Facebook</strong></span>
+      </a>
+      <a href="/auth/twitter" className="login-button login-twitter flag">
+        <img src="../images/icon-twitter.svg" className="flag-image" />
+        <span className="flag-body">Sign in with <strong>Twitter</strong></span>
+      </a>
+      <a href="/auth/google" className="login-button login-google flag">
+        <img src="../images/icon-google.svg"  className="flag-image"/>
+        <span className="flag-body">Sign in with <strong>Google</strong></span>
+      </a>
     </nav>
 
 module.exports = LogIn
