@@ -22,8 +22,8 @@ sourcemapOptions =
   loadMaps: true
   debug: true
 
-gulp.task 'javascript', ->
-  log.info 'Bundling modules into javascript'
+gulp.task 'js', ->
+  log.info 'Bundling coffeescript and modules into javascript'
   browserify browserifyOptions
   .on 'error', handleErrors
   .transform reactify

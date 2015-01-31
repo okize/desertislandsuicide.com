@@ -9,7 +9,7 @@ gulp.task 'build', (done) ->
   log.info 'Building static assets'
   run(
     'clean'
-    ['css', 'javascript', 'images', 'favicons']
+    ['css', 'js', 'images', 'favicons']
     'minify'
     done
   )
