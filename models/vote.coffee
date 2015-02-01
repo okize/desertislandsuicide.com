@@ -6,6 +6,9 @@ voteSchema = new mongoose.Schema(
   user_id:
     type: String
     required: true
+  user_ip_address:
+    type: String
+    required: true
   parent: [
     type: Schema.ObjectId
     ref: 'Band'

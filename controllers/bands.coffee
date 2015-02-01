@@ -2,6 +2,12 @@ _ = require 'lodash'
 Band = require '../models/band'
 Vote = require '../models/vote'
 
+getIpAddress = (ipObj) ->
+  if ipObj?
+    ipObj.clientIp
+  else
+    'unknown'
+
 # GET /bandsNoAuth
 exports.indexNoAuth = (req, res) ->
   pop =
@@ -44,7 +50,10 @@ exports.create = (req, res) ->
   req.body.submitted_by = userId
   new Band(req.body).save (err, result1) ->
     return res.status(500).json error: err if err?
-    data = {parent: result1._id, user_id: userId}
+    data =
+      parent: req.params.id
+      user_id: req.user._id
+      user_ip_address: getIpAddress(req.session.ipAddress)
     new Vote(data).save (err, result2) ->
       return res.status(500).json error: err if err?
       # this is really hacky; should be better way
@@ -54,7 +63,10 @@ exports.create = (req, res) ->
 
 # POST /api/bands/:id/vote
 exports.vote = (req, res) ->
-  data = {parent: req.params.id, user_id: req.user._id}
+  data =
+    parent: req.params.id
+    user_id: req.user._id
+    user_ip_address: getIpAddress(req.session.ipAddress)
   new Vote(data).save (err, result) ->
     return res.status(500).json error: err if err?
     return res.status(200).json result
