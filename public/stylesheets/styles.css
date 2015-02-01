@@ -474,6 +474,24 @@ body {
 .flag-body {
   width: 100%; }
 
+/* line 1, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_modal.sass */
+.modal-overlay {
+  z-index: 100;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5); }
+
+/* line 10, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_modal.sass */
+.modal-content {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 25px;
+  width: 300px; }
+
 /* line 1, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_notifications.sass */
 .flash-messages {
   width: 80%;

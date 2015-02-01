@@ -1,6 +1,6 @@
 React = require 'react'
 Modal = require './Modal'
-LogIn = require './LogIn'
+LogInButtons = require './LogInButtons'
 ReactLayeredComponentMixin = require '../mixins/ReactLayeredComponentMixin'
 
 LogInLink = React.createClass
@@ -22,7 +22,7 @@ LogInLink = React.createClass
     else
       return (
         <Modal onRequestClose={@handleClick}>
-          <LogIn />
+          <LogInButtons />
         </Modal>
       )
 
