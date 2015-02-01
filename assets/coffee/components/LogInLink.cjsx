@@ -32,6 +32,6 @@ LogInLink = React.createClass
       )
 
   render: ->
-    <a href="#" role="button" onClick={@handleClick}>Sign in to vote!</a>
+    <button className="button-link" onClick={@handleClick}>Sign in to vote!</button>
 
 module.exports = LogInLink
