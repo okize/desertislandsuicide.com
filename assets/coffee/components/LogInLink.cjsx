@@ -12,7 +12,6 @@ LogInLink = React.createClass
   componentDidMount: ->
     # listener for displaying modal
     @addListener 'LogInLink', 'show-modal', @handleClick
-    console.log 'foo'
 
   handleClick: ->
     @setState {modalShown: !@state.modalShown}
