@@ -285,10 +285,12 @@ Modal = React.createClass({
   render: function() {
     return React.createElement("div", {
       "className": "modal-overlay",
-      "onClick": this.handleOverlayClick
+      "onClick": this.handleOverlayClick,
+      "onTouchStart": this.handleOverlayClick
     }, React.createElement("div", {
       "className": "modal-content",
-      "onClick": this.killClick
+      "onClick": this.killClick,
+      "onTouchStart": this.killClick
     }, this.props.children));
   }
 });
@@ -394,7 +396,7 @@ NewBandForm = require('./NewBandForm');
 
 Voting = React.createClass({
   displayName: 'Voting',
-  refreshRate: 5000,
+  refreshRate: 500000,
   mixins: [EventEmitterMixin],
   getApiUrl: function() {
     if (this.props.loggedIn) {

@@ -21,8 +21,8 @@ Modal = React.createClass
     @props.onRequestClose()
 
   render: ->
-    <div className="modal-overlay" onClick={@handleOverlayClick}>
-      <div className="modal-content" onClick={@killClick}>
+    <div className="modal-overlay" onClick={@handleOverlayClick} onTouchStart={@handleOverlayClick}>
+      <div className="modal-content" onClick={@killClick} onTouchStart={@killClick}>
         {@props.children}
       </div>
     </div>

@@ -8,7 +8,7 @@ NewBandForm = require './NewBandForm'
 Voting = React.createClass
   displayName: 'Voting'
 
-  refreshRate: 5000
+  refreshRate: 500000
 
   mixins: [EventEmitterMixin]
 
