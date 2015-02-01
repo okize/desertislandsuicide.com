@@ -26,7 +26,7 @@ router.get '/auth/facebook', passport.authenticate('facebook',
   scope: ['email', 'user_location']
 )
 router.get '/auth/facebook/callback', passport.authenticate('facebook',
-  failureRedirect: '/login'
+  failureRedirect: '/'
 ), (req, res) ->
   res.redirect req.session.returnTo or '/'
 
@@ -35,14 +35,14 @@ router.get '/auth/google', passport.authenticate('google',
   scope: 'profile email'
 )
 router.get '/auth/google/callback', passport.authenticate('google',
-  failureRedirect: '/login'
+  failureRedirect: '/'
 ), (req, res) ->
   res.redirect req.session.returnTo or '/'
 
 # twitter OAuth
 router.get '/auth/twitter', passport.authenticate('twitter')
 router.get '/auth/twitter/callback', passport.authenticate('twitter',
-  failureRedirect: '/login'
+  failureRedirect: '/'
 ), (req, res) ->
   res.redirect req.session.returnTo or '/'
 
