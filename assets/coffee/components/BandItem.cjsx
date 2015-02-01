@@ -13,6 +13,12 @@ VoteButton = React.createClass
     # pass bandId along with event
     @emit 'Voting', 'vote-for-band', @props.bandId
 
+  showLoginButtons: (e) ->
+    e.preventDefault()
+
+    # display login buttons when unauthenticated user votes
+    @emit 'LogInLink', 'show-modal'
+
   render: ->
     if @props.loggedIn
       unless @props.userHasVotedFor
@@ -23,7 +29,7 @@ VoteButton = React.createClass
         <div />
     else
       <div className="sign-in-to-vote float-right">
-        <LogInLink />
+        <button onClick={@showLoginButtons}>Vote!</button>
       </div>
 
 BandItem = React.createClass

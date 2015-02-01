@@ -56,6 +56,10 @@ VoteButton = React.createClass({
     e.preventDefault();
     return this.emit('Voting', 'vote-for-band', this.props.bandId);
   },
+  showLoginButtons: function(e) {
+    e.preventDefault();
+    return this.emit('LogInLink', 'show-modal');
+  },
   render: function() {
     if (this.props.loggedIn) {
       if (!this.props.userHasVotedFor) {
@@ -70,7 +74,9 @@ VoteButton = React.createClass({
     } else {
       return React.createElement("div", {
         "className": "sign-in-to-vote float-right"
-      }, React.createElement(LogInLink, null));
+      }, React.createElement("button", {
+        "onClick": this.showLoginButtons
+      }, "Vote!"));
     }
   }
 });
@@ -197,7 +203,7 @@ module.exports = LogInButtons;
 
 
 },{"react":178}],6:[function(require,module,exports){
-var LogInButtons, LogInLink, Modal, React, ReactLayeredComponentMixin;
+var EventEmitterMixin, LogInButtons, LogInLink, Modal, React, ReactLayeredComponentMixin;
 
 React = require('react');
 
@@ -207,9 +213,15 @@ LogInButtons = require('./LogInButtons');
 
 ReactLayeredComponentMixin = require('../mixins/ReactLayeredComponentMixin');
 
+EventEmitterMixin = require('../mixins/EventEmitterMixin');
+
 LogInLink = React.createClass({
   displayName: 'LogInLink',
-  mixins: [ReactLayeredComponentMixin],
+  mixins: [ReactLayeredComponentMixin, EventEmitterMixin],
+  componentDidMount: function() {
+    this.addListener('LogInLink', 'show-modal', this.handleClick);
+    return console.log('foo');
+  },
   handleClick: function() {
     return this.setState({
       modalShown: !this.state.modalShown
@@ -222,7 +234,9 @@ LogInLink = React.createClass({
   },
   renderLayer: function() {
     if (!this.state.modalShown) {
-      return React.createElement("span", null);
+      return React.createElement("span", {
+        "className": "login-buttons-target"
+      });
     } else {
       return React.createElement(Modal, {
         "onRequestClose": this.handleClick
@@ -242,7 +256,7 @@ module.exports = LogInLink;
 
 
 
-},{"../mixins/ReactLayeredComponentMixin":13,"./LogInButtons":5,"./Modal":7,"react":178}],7:[function(require,module,exports){
+},{"../mixins/EventEmitterMixin":12,"../mixins/ReactLayeredComponentMixin":13,"./LogInButtons":5,"./Modal":7,"react":178}],7:[function(require,module,exports){
 var Modal, React, keymaster;
 
 React = require('react');
@@ -497,7 +511,6 @@ var React, ReactLayeredComponentMixin;
 React = require('react');
 
 ReactLayeredComponentMixin = {
-  displayName: 'ReactLayeredComponentMixin',
   componentWillUnmount: function() {
     this._unrenderLayer();
     return document.body.removeChild(this._target);

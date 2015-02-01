@@ -1,8 +1,6 @@
 React = require 'react'
 
 ReactLayeredComponentMixin =
-  displayName: 'ReactLayeredComponentMixin'
-
   componentWillUnmount: ->
     @_unrenderLayer()
     document.body.removeChild @_target

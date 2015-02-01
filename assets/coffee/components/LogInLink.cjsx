@@ -2,11 +2,17 @@ React = require 'react'
 Modal = require './Modal'
 LogInButtons = require './LogInButtons'
 ReactLayeredComponentMixin = require '../mixins/ReactLayeredComponentMixin'
+EventEmitterMixin = require '../mixins/EventEmitterMixin'
 
 LogInLink = React.createClass
   displayName: 'LogInLink'
 
-  mixins: [ReactLayeredComponentMixin],
+  mixins: [ReactLayeredComponentMixin, EventEmitterMixin]
+
+  componentDidMount: ->
+    # listener for displaying modal
+    @addListener 'LogInLink', 'show-modal', @handleClick
+    console.log 'foo'
 
   handleClick: ->
     @setState {modalShown: !@state.modalShown}
@@ -17,7 +23,7 @@ LogInLink = React.createClass
   renderLayer: ->
     if (!@state.modalShown)
       return (
-        <span />
+        <span className="login-buttons-target" />
       )
     else
       return (
