@@ -396,7 +396,7 @@ body {
   position: relative;
   margin: 0;
   padding: 0;
-  font-size: 14px;
+  font-size: 100%;
   font-family: "Open Sans", "Lucida Grande", Helvetica, Arial, sans-serif;
   color: #454136;
   background: #00A7D4;
@@ -412,14 +412,14 @@ body {
     color: red; }
   /* line 25, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_global.sass */
   .error-page pre {
-    border: 2px solid #000;
+    border: .1rem solid #000;
     background-color: #fff;
     padding: 1rem; }
 
 /* line 1, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_utilities.sass */
 .accessible-hide {
   position: absolute !important;
-  clip: rect(1px, 1px, 1px, 1px); }
+  clip: rect(.1rem, .1rem, .1rem, .1rem); }
 
 /* line 5, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_utilities.sass */
 .align-left {
@@ -450,7 +450,7 @@ body {
 /* line 25, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_utilities.sass */
 .separator {
   display: inline-block;
-  margin: 0 .25em; }
+  margin: 0 .25rem; }
 
 /* line 29, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_utilities.sass */
 .flag {
@@ -470,7 +470,7 @@ body {
 
 /* line 41, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_utilities.sass */
 .flag-image {
-  padding-right: 10px; }
+  padding-right: 1rem; }
   /* line 43, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_utilities.sass */
   .flag-image > img {
     display: block;
@@ -478,7 +478,7 @@ body {
   /* line 46, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_utilities.sass */
   .flag-rev .flag-image {
     padding-right: 0;
-    padding-left: 10px; }
+    padding-left: 1rem; }
 
 /* line 50, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_utilities.sass */
 .flag-body {
@@ -499,7 +499,7 @@ body {
   position: relative;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 50%;
+  top: 5rem;
   width: 100%; }
 
 /* line 1, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_notifications.sass */
@@ -511,7 +511,7 @@ body {
   top: 4rem;
   width: 100%;
   padding: 1rem;
-  border: 2px solid maroon;
+  border: .2rem solid maroon;
   border-left: none;
   border-right: none; }
 
@@ -519,9 +519,9 @@ body {
 .sunshine {
   background: #f5ce33;
   width: 100%;
-  height: 50em;
+  height: 50rem;
   position: absolute;
-  top: -46em;
+  top: -46rem;
   border-radius: 100%; }
 
 /* line 9, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_header.sass */
@@ -529,7 +529,7 @@ body {
   z-index: 1;
   position: relative;
   display: block;
-  margin: 2.5em auto 0;
+  margin: 2.5rem auto 0;
   width: 85%; }
 
 /* line 16, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_header.sass */
@@ -539,9 +539,9 @@ body {
 
 /* line 20, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_header.sass */
 .mission-statement {
-  margin: 1em auto;
+  margin: 1rem auto;
   font-weight: bold;
-  font-size: 1.25em;
+  font-size: 1.25rem;
   width: 85%; }
 
 /* line 26, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_header.sass */
@@ -560,23 +560,23 @@ body {
 
 /* line 9, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_login.sass */
 .login-button {
-  border-radius: 5px;
-  width: 200px;
-  margin: 20px auto 0;
+  border-radius: .5rem;
+  width: 15rem;
+  margin: 1rem auto 0;
   text-align: left;
   text-decoration: none;
   color: #fff;
-  border-bottom: 2px solid black; }
+  border-bottom: .2rem solid black; }
   /* line 17, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_login.sass */
   .login-button .flag-image {
-    border-right: 1px solid black;
-    height: 50px;
-    padding: .5em; }
+    border-right: .15rem solid black;
+    height: 4rem;
+    padding: .5rem; }
   /* line 21, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_login.sass */
   .login-button .flag-body {
-    border-left: 1px solid black;
+    border-left: .15rem solid black;
     text-align: right;
-    padding: .5em; }
+    padding: .5rem; }
 
 /* line 26, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_login.sass */
 .login-facebook {
@@ -613,12 +613,12 @@ body {
 
 /* line 1, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_voting.sass */
 .voting-wrapper {
-  margin: 2em auto 4em;
+  margin: 2rem auto 4rem;
   width: 85%; }
 
 /* line 5, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_voting.sass */
 .band-list {
-  margin: 1rem 0;
+  margin: 1rrem 0;
   list-style: none;
   padding: 0; }
 
@@ -626,33 +626,39 @@ body {
 .band-item {
   position: relative;
   background-color: #ebead5;
-  border-radius: 5px;
+  border-radius: .5rem;
   border-bottom: 3px solid #d2d1be;
-  padding: 1em;
-  margin-bottom: 1em;
-  margin-left: 2em; }
+  padding: 1rem;
+  margin-bottom: 1rem;
+  margin-left: 5rem; }
 
 /* line 19, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_voting.sass */
 .band-name {
-  display: inline-block; }
+  display: inline-block;
+  font-size: 1.5rem; }
 
-/* line 22, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_voting.sass */
+/* line 23, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_voting.sass */
 .band-vote-count {
+  text-align: center;
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 1rem;
   text-align: right;
   display: inline-block;
-  width: 1rem;
+  font-size: 1.5rem;
+  top: 0;
   position: absolute;
-  left: -2em;
+  left: -5rem;
   font-weight: bold; }
 
-/* line 30, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_voting.sass */
+/* line 36, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_voting.sass */
 .add-new-band {
   margin: 1rem 0 2rem; }
-  /* line 32, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_voting.sass */
+  /* line 38, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_voting.sass */
   .add-new-band input[type="text"] {
     width: 90%;
     font-size: 1.5rem; }
-  /* line 35, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_voting.sass */
+  /* line 41, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_voting.sass */
   .add-new-band input[type="submit"] {
     visibility: hidden;
     position: absolute; }
@@ -662,16 +668,16 @@ body {
   background-color: #ebead5;
   border-radius: 5px;
   border-bottom: 3px solid #d2d1be;
-  padding: 1em; }
+  padding: 1rem; }
 
 /* line 7, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_invitationForm.sass */
 .subscription-confirmation {
   background-color: #ebead5;
   border-radius: 5px;
   border-bottom: 3px solid #d2d1be;
-  padding: 1em;
+  padding: 1rem;
   text-align: center;
-  font-size: 1.25em;
+  font-size: 1.25rem;
   font-weight: bold; }
 
 /* line 16, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_invitationForm.sass */
@@ -680,7 +686,7 @@ body {
 
 /* line 19, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_invitationForm.sass */
 .invitation-form-input, .invitation-form-button {
-  font-size: 1.25em;
+  font-size: 1.25rem;
   border-radius: 4px; }
 
 /* line 23, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_invitationForm.sass */
@@ -688,7 +694,7 @@ body {
   width: calc(100% - 29%);
   float: left;
   line-height: 1.2;
-  padding: .6em 1em;
+  padding: .6em 1rem;
   border: 1px solid #d2d1be;
   color: #454136; }
 
@@ -699,7 +705,7 @@ body {
   color: #454136;
   width: 27%;
   text-align: center;
-  padding: .6em .25em;
+  padding: .6rem .25rem;
   line-height: 1.25;
   float: right; }
   /* line 40, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_invitationForm.sass */
@@ -709,13 +715,13 @@ body {
 @media screen and (max-width: 400px) {
   /* line 44, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_invitationForm.sass */
   .banner {
-    margin-top: 2em; }
+    margin-top: 2rem; }
   /* line 46, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_invitationForm.sass */
   .wrapper {
-    margin-top: 1em; }
+    margin-top: 1rem; }
   /* line 48, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_invitationForm.sass */
   .invitation-form-input, .invitation-form-button {
-    font-size: 1em; } }
+    font-size: 1rem; } }
 
 @media screen and (max-width: 750px) {
   /* line 52, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_invitationForm.sass */
