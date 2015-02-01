@@ -16,7 +16,7 @@ sassOptions =
   outputStyle: 'nested' #compressed
   sourceComments: 'map'
   errLogToConsole: false
-  onError: (e) -> handleErrors e
+  onError: (err) -> log.error err
   onSuccess: () -> log.info 'Sass compiled without errors'
 
 autoprefixerOptions =
