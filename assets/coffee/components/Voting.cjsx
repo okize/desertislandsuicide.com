@@ -2,7 +2,6 @@ React = require 'react'
 request = require 'superagent'
 help = require '../helpers'
 EventEmitterMixin = require '../mixins/EventEmitterMixin'
-LogIn = require './LogIn'
 BandList = require './BandList'
 NewBandForm = require './NewBandForm'
 

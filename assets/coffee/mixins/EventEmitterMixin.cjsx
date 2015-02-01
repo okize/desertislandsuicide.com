@@ -14,7 +14,7 @@ EventEmitterMixin =
     emitter = components[rootComponentName]
     emitter.off name
 
-  #Payload should be an array
+  # payload should be an array
   emit: (rootComponentName, eventToFire, payload) ->
     emitter = components[rootComponentName]
     emitter.emit eventToFire, payload

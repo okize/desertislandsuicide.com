@@ -1,6 +1,7 @@
 # small wrapper for gulp logging
 
 gutil = require 'gulp-util'
+_ = require 'lodash'
 prettyHrtime = require 'pretty-hrtime'
 startTime = undefined
 
@@ -16,8 +17,6 @@ module.exports =
       err = gutil.colors.red("#{err.plugin}: #{err.name}: ") +
             gutil.colors.bold.red("#{err.message}") +
             "\n#{err.stack}"
-    else
-      err = gutil.colors.red err
     gutil.log err
 
   # start logging with timer

@@ -1,0 +1,33 @@
+@mixin socialMediaColors($color)
+  background-color: $color
+  border-color: darken($color, 10%)
+  .flag-image
+    border-color: darken($color, 10%)
+  .flag-body
+    border-color: lighten($color, 5%)
+
+.login-button
+  border-radius: 5px
+  width: 200px
+  margin: 20px auto 0
+  text-align: left
+  text-decoration: none
+  color: $loginColor
+  border-bottom: 2px solid black
+  .flag-image
+    border-right: 1px solid black
+    height: 50px
+    padding: .5em
+  .flag-body
+    border-left: 1px solid black
+    text-align: right
+    padding: .5em
+
+.login-facebook
+  @include socialMediaColors($facebook)
+
+.login-twitter
+  @include socialMediaColors($twitter)
+
+.login-google
+  @include socialMediaColors($google)
