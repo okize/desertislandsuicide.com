@@ -647,10 +647,12 @@ body {
 
 /* line 30, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_voting.sass */
 .add-new-band {
-  margin: 1em 0;
-  background-color: #d2d1be;
-  padding: 1em; }
-  /* line 34, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_voting.sass */
+  margin: 1rem 0 2rem; }
+  /* line 32, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_voting.sass */
+  .add-new-band input[type="text"] {
+    width: 90%;
+    font-size: 1.5rem; }
+  /* line 35, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_voting.sass */
   .add-new-band input[type="submit"] {
     visibility: hidden;
     position: absolute; }
