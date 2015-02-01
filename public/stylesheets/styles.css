@@ -447,10 +447,16 @@ body {
 
 /* line 1, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_notifications.sass */
 .flash-messages {
-  width: 80%;
-  margin: 1rem auto 0;
-  border: 1px solid #000;
-  padding: 1rem; }
+  position: absolute;
+  background-color: red;
+  font-weight: bold;
+  color: #fff;
+  top: 4rem;
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid maroon;
+  border-left: none;
+  border-right: none; }
 
 /* line 1, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_header.sass */
 .sunshine {
