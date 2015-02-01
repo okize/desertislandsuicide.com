@@ -1,4 +1,5 @@
 React = require 'react'
+LogInLink = require './LogInLink'
 EventEmitterMixin = require '../mixins/EventEmitterMixin'
 
 VoteButton = React.createClass
@@ -22,7 +23,7 @@ VoteButton = React.createClass
         <div />
     else
       <div className="sign-in-to-vote float-right">
-        Sign in to vote!
+        <LogInLink />
       </div>
 
 BandItem = React.createClass
