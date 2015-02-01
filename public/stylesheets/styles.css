@@ -417,63 +417,60 @@ body {
     padding: 1rem; }
 
 /* line 1, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_utilities.sass */
+.accessible-hide {
+  position: absolute !important;
+  clip: rect(1px, 1px, 1px, 1px); }
+
+/* line 5, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_utilities.sass */
 .align-left {
   text-align: left; }
 
-/* line 4, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_utilities.sass */
+/* line 8, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_utilities.sass */
 .align-right {
   text-align: right; }
 
-/* line 7, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_utilities.sass */
+/* line 11, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_utilities.sass */
 .float-left {
   float: left; }
 
-/* line 10, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_utilities.sass */
+/* line 14, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_utilities.sass */
 .float-right {
   float: right; }
 
-/* line 13, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_utilities.sass */
-.accessible-hide {
-  position: absolute;
-  text-indent: 100%;
-  height: 0;
-  white-space: nowrap;
-  overflow: hidden; }
-
-/* line 20, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_utilities.sass */
+/* line 17, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_utilities.sass */
 .separator {
   display: inline-block;
   margin: 0 .25em; }
 
-/* line 24, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_utilities.sass */
+/* line 21, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_utilities.sass */
 .flag {
   display: table;
   width: 100%; }
 
-/* line 28, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_utilities.sass */
+/* line 25, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_utilities.sass */
 .flag-image, .flag-body {
   display: table-cell;
   vertical-align: middle; }
-  /* line 31, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_utilities.sass */
+  /* line 28, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_utilities.sass */
   .flag-top .flag-image, .flag-top .flag-body {
     vertical-align: top; }
-  /* line 33, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_utilities.sass */
+  /* line 30, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_utilities.sass */
   .flag-bottom .flag-image, .flag-bottom .flag-body {
     vertical-align: bottom; }
 
-/* line 36, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_utilities.sass */
+/* line 33, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_utilities.sass */
 .flag-image {
   padding-right: 10px; }
-  /* line 38, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_utilities.sass */
+  /* line 35, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_utilities.sass */
   .flag-image > img {
     display: block;
     max-width: none; }
-  /* line 41, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_utilities.sass */
+  /* line 38, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_utilities.sass */
   .flag-rev .flag-image {
     padding-right: 0;
     padding-left: 10px; }
 
-/* line 45, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_utilities.sass */
+/* line 42, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_utilities.sass */
 .flag-body {
   width: 100%; }
 
