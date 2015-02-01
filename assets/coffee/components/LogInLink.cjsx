@@ -9,13 +9,13 @@ LogInLink = React.createClass
   mixins: [ReactLayeredComponentMixin],
 
   handleClick: ->
-    @setState {shown: !@state.shown}
+    @setState {modalShown: !@state.modalShown}
 
   getInitialState: ->
-    {shown: false, modalShown: false}
+    {modalShown: false}
 
   renderLayer: ->
-    if (!@state.shown)
+    if (!@state.modalShown)
       return (
         <span />
       )

@@ -1,20 +1,27 @@
 React = require 'react'
+keymaster = require 'keymaster'
 
 Modal = React.createClass
   displayName: 'Modal'
 
+  componentDidMount: ->
+    # add keybinding to 'esc' to close modal when shown
+    keymaster 'esc', () =>
+      @props.onRequestClose()
+
+  componentWillUnmount: ->
+    keymaster.unbind 'esc'
+
   killClick: (e) ->
-    # clicks on the content shouldn't close the modal
+    # prevent clicks on modal content from closing modal
     e.stopPropagation()
 
-  handleBackdropClick: ->
-    # when you click the background, the user is requesting that the modal gets closed.
-    # note that the modal has no say over whether it actually gets closed. the owner of the
-    # modal owns the state. this just "asks" to be closed.
+  handleOverlayClick: ->
+    # click on the modal overlay requests that modal be closed
     @props.onRequestClose()
 
   render: ->
-    <div className="modal-overlay" onClick={@handleBackdropClick}>
+    <div className="modal-overlay" onClick={@handleOverlayClick}>
       <div className="modal-content" onClick={@killClick}>
         {@props.children}
       </div>
