@@ -25,4 +25,5 @@ App = React.createClass
       <Voting loggedIn={@config.loggedIn} />
     </div>
 
-React.render <App />, appEl
+if appEl?
+  React.render <App />, appEl
