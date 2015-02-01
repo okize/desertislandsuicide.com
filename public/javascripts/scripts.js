@@ -394,7 +394,7 @@ NewBandForm = require('./NewBandForm');
 
 Voting = React.createClass({
   displayName: 'Voting',
-  refreshRate: 500000,
+  refreshRate: 5000,
   mixins: [EventEmitterMixin],
   getApiUrl: function() {
     if (this.props.loggedIn) {
