@@ -51,8 +51,8 @@ exports.create = (req, res) ->
   new Band(req.body).save (err, result1) ->
     return res.status(500).json error: err if err?
     data =
-      parent: req.params.id
-      user_id: req.user._id
+      parent: result1._id,
+      user_id: userId
       user_ip_address: getIpAddress(req.session.ipAddress)
     new Vote(data).save (err, result2) ->
       return res.status(500).json error: err if err?
