@@ -15,9 +15,8 @@ bandSchema = new mongoose.Schema(
     type: Schema.ObjectId
     ref: 'Vote'
   ]
-  userHasVotedFor:
-    type: Boolean
-    default: false
+  users_who_voted_for:
+    type: Array
   vote_count:
     type: Number
     default: 0
