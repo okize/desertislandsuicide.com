@@ -62,21 +62,14 @@ exports.show = (req, res) ->
 exports.create = (req, res) ->
   userId = req.user._id
   req.body.submitted_by = userId
-  new Band(req.body).save (err, result1) ->
+  new Band(req.body).save (err, result) ->
     return res.status(500).json error: err if err?
-    data =
-      parent: result1._id,
-      user_id: userId
-      user_ip_address: getIpAddress(req.session.ipAddress)
-    new Vote(data).save (err, result2) ->
-      return res.status(500).json error: err if err?
-      # this is really hacky; should be better way
-      result1.children = [result2._id]
-      result1.userHasVotedOn = true
-      return res.status(200).json partialResponse(result1)
+    req.params.id = result._id
+    # when creating a new band record simultaneously add a vote
+    return voteForBand(req, res)
 
 # POST /api/bands/:id/vote
-exports.vote = (req, res) ->
+exports.vote = voteForBand = (req, res) ->
   data =
     parent: req.params.id
     user_id: req.user._id
