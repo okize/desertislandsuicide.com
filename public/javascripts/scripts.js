@@ -245,9 +245,8 @@ LogInLink = React.createClass({
     }
   },
   render: function() {
-    return React.createElement("a", {
-      "href": "#",
-      "role": "button",
+    return React.createElement("button", {
+      "className": "button-link",
       "onClick": this.handleClick
     }, "Sign in to vote!");
   }
