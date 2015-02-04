@@ -1,5 +1,7 @@
 mongoose = require 'mongoose'
+_ = require 'lodash'
 relationship = require 'mongoose-relationship'
+Band = require './band'
 Schema = mongoose.Schema
 
 voteSchema = new mongoose.Schema(
@@ -23,6 +25,20 @@ voteSchema = new mongoose.Schema(
   ,
     strict: true
 )
+
+voteSchema.pre 'save', (next) ->
+  Band.findById @parent, (err, result) =>
+    if err
+      error = new Error 'something went wrong'
+      return next(error)
+    users = result.users_who_voted_for
+    if _.contains(users, @user_id)
+      error = new Error 'User already voted for this band'
+      return next(error)
+    else
+      users.push @user_id
+      result.save()
+      return next()
 
 relationshipOpts =
   relationshipPathName: 'parent'
