@@ -44,7 +44,8 @@ exports.index = (req, res) ->
         # create a new result array that includes an object property
         # boolean for whether user has voted on this particular band
         newResult = _.map result, (obj) ->
-          hasVoted = if _.find(obj.children, { user_id: userId })? then true else false
+          userVotes = obj.users_who_voted_for
+          hasVoted = if _.contains(userVotes, userId) then true else false
           return _.assign obj, userHasVotedFor: hasVoted
         return res.status(200).json partialResponse(newResult)
   )
