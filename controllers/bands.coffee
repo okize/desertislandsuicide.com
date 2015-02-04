@@ -1,7 +1,21 @@
 _ = require 'lodash'
+mask = require 'json-mask'
 Band = require '../models/band'
 Vote = require '../models/vote'
 
+WHITELIST = [
+  '_id'
+  'name'
+  'parent'
+  'vote_count'
+  'userHasVotedFor'
+].join(',')
+
+# removes data that shouldn't be returned in json
+partialResponse = (json) ->
+  mask(json, WHITELIST)
+
+# returns ip address
 getIpAddress = (ipObj) ->
   if ipObj?
     ipObj.clientIp
@@ -16,7 +30,7 @@ exports.indexNoAuth = (req, res) ->
   Band.find().populate(pop).sort(vote_count: 'descending', name: 'ascending').exec(
     (err, result) ->
       return res.status(500).json error: err if err?
-      return res.status(200).json result
+      return res.status(200).json partialResponse(result)
   )
 
 # GET /api/bands
@@ -35,14 +49,14 @@ exports.index = (req, res) ->
         newResult = _.map result, (obj) ->
           hasVoted = if _.find(obj.children, { user_id: userId })? then true else false
           return _.assign obj, userHasVotedFor: hasVoted
-        return res.status(200).json newResult
+        return res.status(200).json partialResponse(newResult)
   )
 
 # GET /api/bands/:id
 exports.show = (req, res) ->
   Band.findById req.params.id, (err, result) ->
     return res.status(500).json error: err if err?
-    return res.status(200).json result
+    return res.status(200).json partialResponse(result)
 
 # POST /api/bands
 exports.create = (req, res) ->
@@ -59,7 +73,7 @@ exports.create = (req, res) ->
       # this is really hacky; should be better way
       result1.children = [result2._id]
       result1.userHasVotedOn = true
-      return res.status(200).json result1
+      return res.status(200).json partialResponse(result1)
 
 # POST /api/bands/:id/vote
 exports.vote = (req, res) ->
@@ -69,7 +83,7 @@ exports.vote = (req, res) ->
     user_ip_address: getIpAddress(req.session.ipAddress)
   new Vote(data).save (err, result) ->
     return res.status(500).json error: err if err?
-    return res.status(200).json result
+    return res.status(200).json partialResponse(result)
 
 # PUT /api/bands/:id
 exports.update = (req, res) ->
