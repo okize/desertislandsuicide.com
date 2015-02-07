@@ -2,7 +2,12 @@ mongoose = require 'mongoose'
 log = (require './logger').logger
 
 # mongo connection string
-mongoUri = process.env.MONGODB_URI or process.env.MONGODB
+if process.env.NODE_ENV == 'production'
+  mongoUri = process.env.MONGODB_URI
+else if process.env.NODE_ENV == 'test'
+  mongoUri = process.env.MONGODB_TEST
+else
+  mongoUri = process.env.MONGODB_DEV
 
 # init database connection
 mongoose.connect mongoUri
