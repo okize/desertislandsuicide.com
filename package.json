@@ -81,7 +81,8 @@
     "reactify": "^0.17.1",
     "run-sequence": "^1.0.1",
     "vinyl-buffer": "^1.0.0",
-    "vinyl-source-stream": "^1.0.0"
+    "vinyl-source-stream": "^1.0.0",
+    "yargs": "^2.1.1"
   },
   "repository": {
     "type": "git",
