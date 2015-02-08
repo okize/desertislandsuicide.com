@@ -2,7 +2,6 @@
 *.log
 *.flags.json
 dumps/
-seeds/
 tests/
 temp/
 
