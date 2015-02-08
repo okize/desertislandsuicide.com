@@ -12,8 +12,8 @@ config = require '../config'
 log = require '../helpers/log'
 
 gulp.task 'minify', [
-  'minify-js',
-  'minify-css'
+  'minify:js',
+  'minify:css'
 ], ->
   log.info 'Minification complete'
 
@@ -21,7 +21,7 @@ sourcemapOptions =
   loadMaps: true
   debug: true
 
-gulp.task 'minify-js', ->
+gulp.task 'minify:js', ->
   log.info 'Minifying js'
   gulp
     .src path.join(config.js.dest, config.js.name)
@@ -39,7 +39,7 @@ gulp.task 'minify-js', ->
     .pipe gulp.dest config.js.dest
     .on 'error', (e) -> log.error e
 
-gulp.task 'minify-css', ->
+gulp.task 'minify:css', ->
   log.info 'Minifying css'
   gulp
     .src path.join(config.css.dest, config.css.name)

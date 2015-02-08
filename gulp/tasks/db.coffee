@@ -21,24 +21,63 @@ getArgValue = (argv) ->
 
 getMongoStr = (db, filepath, type, collectionName) ->
   switch type
+    when 'import'
+      "
+        mongoimport --db #{db.database} --collection #{collectionName}
+          --file #{filepath}
+      "
     when 'export'
       "
-        mongoexport -d desertislandsuicide
-          -c #{collectionName} > #{filepath}
+        mongoexport --db #{db.database} --collection #{collectionName}
+          --out #{filepath}
       "
     when 'restore'
-      "mongorestore --drop -d #{db.database} #{filepath}/#{db.database}"
+      "mongorestore --drop --db #{db.database} #{filepath}/#{db.database}"
     when 'short'
       "
         mongodump --host #{db.hosts[0].host}
-          --db #{db.database} -o #{filepath}
+          --db #{db.database} --out #{filepath}
       "
     else
       "
-        mongodump --host #{db.hosts[0].host}:#{db.hosts[0].port}
-          --db #{db.database} -u #{db.username}
-          -p#{db.password} -o #{filepath}
+        mongodump --host #{db.hosts[0].host} --port #{db.hosts[0].port}
+          --db #{db.database} --username #{db.username}
+          --password#{db.password} --out #{filepath}
       "
+
+# seed database
+gulp.task 'db:seed', ->
+  dir = config.dbDirs.seeds
+  seeds = fs.readdirSync dir
+  envName = 'dev'
+  db = mongodbUri.parse config.db[envName]
+  filepath = ''
+  collectionName = ''
+  _.each seeds, (seed) ->
+    filepath = "#{dir}/#{seed}"
+    collectionName = seed.replace('.json', '')
+    run(getMongoStr(db, filepath, 'import', collectionName))
+    .exec( ->
+      log.info "Seeded #{collectionName} model."
+    )
+
+# pass collection name as flag arg
+gulp.task 'db:create:seed', ->
+  # array of collection names based on model filenames
+  collections = _.map fs.readdirSync('./models'), (f) -> f.replace('.coffee', 's')
+  unless _.size(argv) == 3
+    return log.error 'Pass name of collection to export as a flag.'
+  collectionName = getArgValue argv
+  unless _.include(collections, collectionName)
+    return log.error "Not a valid collection name; must be one of: #{collections.join(', ')}"
+  dir = config.dbDirs.seeds
+  filepath = "#{dir}/#{collectionName}.json"
+  envName = 'dev'
+  db = mongodbUri.parse config.db[envName]
+  mkdirp(dir, (err) ->
+    throw err if err
+    run(getMongoStr(db, filepath, 'export', collectionName)).exec()
+  )
 
 # pass db env as flag arg
 gulp.task 'db:dump', ->
@@ -58,7 +97,6 @@ gulp.task 'db:dump', ->
       run(getMongoStr(db, filepath)).exec()
     else
       run(getMongoStr(db, filepath, 'short')).exec()
-      .exec()
   )
 
 # import production db into local db
@@ -76,23 +114,4 @@ gulp.task 'db:dump:import', ->
         log.info 'Database downloaded from production and imported to dev'
       )
     )
-  )
-
-# pass collection name as flag arg
-gulp.task 'db:create:seed', ->
-  # array of collection names based on model filenames
-  collections = _.map fs.readdirSync('./models'), (f) -> f.replace('.coffee', 's')
-  unless _.size(argv) == 3
-    return log.error 'Pass name of collection to export as a flag.'
-  collectionName = getArgValue argv
-  unless _.include(collections, collectionName)
-    return log.error "Not a valid collection name; must be one of: #{collections.join(', ')}"
-  dir = config.dbDirs.seeds
-  filepath = "#{dir}/#{collectionName}.json"
-  envName = 'dev'
-  db = mongodbUri.parse config.db[envName]
-  mkdirp(dir, (err) ->
-    throw err if err
-    run(getMongoStr(db, filepath, 'export', collectionName))
-    .exec()
   )
