@@ -21,6 +21,8 @@ getArgValue = (argv) ->
 
 getMongoStr = (db, filepath, type, collectionName) ->
   switch type
+    when 'reset'
+      "mongo #{db.database} --eval 'db.dropDatabase()'"
     when 'import'
       "
         mongoimport --db #{db.database} --collection #{collectionName}
@@ -62,7 +64,7 @@ gulp.task 'db:seed', ->
     )
 
 # pass collection name as flag arg
-gulp.task 'db:create:seed', ->
+gulp.task 'db:seed:save', ->
   # array of collection names based on model filenames
   collections = _.map fs.readdirSync('./models'), (f) -> f.replace('.coffee', 's')
   unless _.size(argv) == 3
@@ -114,4 +116,13 @@ gulp.task 'db:dump:import', ->
         log.info 'Database downloaded from production and imported to dev'
       )
     )
+  )
+
+# drops the database
+gulp.task 'db:reset', ->
+  envName = 'dev'
+  db = mongodbUri.parse config.db[envName]
+  run(getMongoStr(db, null, 'reset'))
+  .exec( ->
+    log.info "Dropped database #{db.database}"
   )
