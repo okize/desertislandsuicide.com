@@ -1,7 +1,7 @@
 .env
 *.log
 *.flags.json
-dump/
+db/
 temp/
 tests/
 
