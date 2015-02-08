@@ -36,6 +36,8 @@ module.exports =
     dev: process.env.MONGODB_DEV
     test: process.env.MONGODB_TEST
     prod: process.env.MONGODB_URI
+
+  dbDirs:
     dumps: path.resolve(rootPath, 'dumps')
     seeds: path.resolve(rootPath, 'seeds')
 
