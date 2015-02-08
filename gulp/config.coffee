@@ -36,6 +36,8 @@ module.exports =
     dev: process.env.MONGODB_DEV
     test: process.env.MONGODB_TEST
     prod: process.env.MONGODB_URI
+    dumps: path.resolve(rootPath, 'dumps')
+    seeds: path.resolve(rootPath, 'seeds')
 
   # DO NOT restart node app when files change in these directories
   nodemon:
