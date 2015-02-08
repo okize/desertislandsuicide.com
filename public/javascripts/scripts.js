@@ -114,18 +114,22 @@ BandItem = require('./BandItem');
 BandList = React.createClass({
   displayName: 'BandList',
   render: function() {
-    return React.createElement("ul", {
-      "className": "band-list"
-    }, this.props.data.map((function(_this) {
-      return function(band) {
-        return React.createElement(BandItem, {
-          "key": band._id,
-          "data": band,
-          "votes": band.vote_count,
-          "loggedIn": _this.props.loggedIn
-        });
-      };
-    })(this)));
+    if (this.props.data.length <= 0) {
+      return React.createElement("h1", null, "No bands have been nominated yet!");
+    } else {
+      return React.createElement("ul", {
+        "className": "band-list"
+      }, this.props.data.map((function(_this) {
+        return function(band) {
+          return React.createElement(BandItem, {
+            "key": band._id,
+            "data": band,
+            "votes": band.vote_count,
+            "loggedIn": _this.props.loggedIn
+          });
+        };
+      })(this)));
+    }
   }
 });
 
