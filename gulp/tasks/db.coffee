@@ -19,20 +19,26 @@ getDateStamp = ->
 getArgValue = (argv) ->
   _.findKey argv, (v, k) -> v == true
 
-getMongoStr = (db, filepath, type) ->
-  if type == 'restore'
-    "mongorestore --drop -d #{db.database} #{filepath}/#{db.database}"
-  else if type == 'short'
-    "
-      mongodump --host #{db.hosts[0].host}
-        --db #{db.database} -o #{filepath}
-    "
-  else
-    "
-      mongodump --host #{db.hosts[0].host}:#{db.hosts[0].port}
-        --db #{db.database} -u #{db.username}
-        -p#{db.password} -o #{filepath}
-    "
+getMongoStr = (db, filepath, type, collectionName) ->
+  switch type
+    when 'export'
+      "
+        mongoexport -d desertislandsuicide
+          -c #{collectionName} > #{filepath}
+      "
+    when 'restore'
+      "mongorestore --drop -d #{db.database} #{filepath}/#{db.database}"
+    when 'short'
+      "
+        mongodump --host #{db.hosts[0].host}
+          --db #{db.database} -o #{filepath}
+      "
+    else
+      "
+        mongodump --host #{db.hosts[0].host}:#{db.hosts[0].port}
+          --db #{db.database} -u #{db.username}
+          -p#{db.password} -o #{filepath}
+      "
 
 # pass db env as flag arg
 gulp.task 'db:dump', ->
@@ -82,11 +88,11 @@ gulp.task 'db:create:seed', ->
   unless _.include(collections, collectionName)
     return log.error "Not a valid collection name; must be one of: #{collections.join(', ')}"
   dir = config.dbDirs.seeds
+  filepath = "#{dir}/#{collectionName}.json"
+  envName = 'dev'
+  db = mongodbUri.parse config.db[envName]
   mkdirp(dir, (err) ->
     throw err if err
-    run("
-      mongoexport -d desertislandsuicide
-      -c #{collectionName} > #{dir}/#{collectionName}.json
-    ")
+    run(getMongoStr(db, filepath, 'export', collectionName))
     .exec()
   )
