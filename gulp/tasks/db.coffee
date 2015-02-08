@@ -26,12 +26,12 @@ getMongoStr = (db, filepath, type, collectionName) ->
     when 'import'
       "
         mongoimport --db #{db.database} --collection #{collectionName}
-          --file #{filepath}
+          --jsonArray --file #{filepath}
       "
     when 'export'
       "
         mongoexport --db #{db.database} --collection #{collectionName}
-          --out #{filepath}
+          --jsonArray --out #{filepath}
       "
     when 'restore'
       "mongorestore --drop --db #{db.database} #{filepath}/#{db.database}"
@@ -64,7 +64,7 @@ gulp.task 'db:seed', ->
     )
 
 # pass collection name as flag arg
-gulp.task 'db:seed:save', ->
+gulp.task 'db:seed:create', ->
   # array of collection names based on model filenames
   collections = _.map fs.readdirSync('./models'), (f) -> f.replace('.coffee', 's')
   unless _.size(argv) == 3
