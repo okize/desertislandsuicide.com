@@ -7,7 +7,7 @@ assetsPath = path.resolve(rootPath, 'public')
 module.exports =
 
   app:
-    root: root: rootPath
+    root: rootPath
     main: "#{rootPath}/app.coffee"
 
   js:
@@ -31,6 +31,11 @@ module.exports =
   favicons:
     src: "#{rootPath}/assets/favicons/"
     dest: "#{assetsPath}/favicons/"
+
+  db:
+    dev: process.env.MONGODB_DEV
+    test: process.env.MONGODB_TEST
+    prod: process.env.MONGODB_URI
 
   # DO NOT restart node app when files change in these directories
   nodemon:
