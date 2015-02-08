@@ -1,16 +1,19 @@
 .env
 *.log
 *.flags.json
-db/
-temp/
+dump/
+seeds/
 tests/
+temp/
 
 # npm build files
 node_modules/node-inspector/node_modules/ws/build/
 node_modules/mongoose/node_modules/mongodb/node_modules/bson/build/
 node_modules/mongoose/node_modules/mongodb/node_modules/kerberos/build/
-node_modules/connect-mongo/node_modules/mongodb/node_modules/kerberos/build/
 node_modules/connect-mongo/node_modules/mongodb/node_modules/bson/build
+node_modules/connect-mongo/node_modules/mongodb/node_modules/kerberos/build/
+node_modules/node-mongo-seeds/node_modules/mongodb/node_modules/bson/build/
+node_modules/node-mongo-seeds/node_modules/mongodb/node_modules/kerberos/build/
 node_modules/browser-sync/node_modules/socket.io/node_modules/engine.io/node_modules/ws/build/
 node_modules/browser-sync/node_modules/socket.io/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/ws/build/
 node_modules/gulp-sass/node_modules/node-sass/vendor/
