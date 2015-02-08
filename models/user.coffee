@@ -28,6 +28,12 @@ userSchema = new mongoose.Schema(
       default: ''
   resetPasswordToken: String
   resetPasswordExpires: Date
+  created_at:
+    type: Date
+    default: Date.now
+  updated_at:
+    type: Date
+    default: Date.now
 )
 
 module.exports = mongoose.model('User', userSchema)
