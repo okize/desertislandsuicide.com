@@ -618,11 +618,12 @@ body {
 
 /* line 5, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_voting.sass */
 .band-list {
-  margin: 1rem 0;
+  margin: 1rem 0 1rem;
   list-style: none;
-  padding: 0; }
+  padding: 0;
+  overflow: hidden; }
 
-/* line 10, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_voting.sass */
+/* line 11, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_voting.sass */
 .band-item {
   position: relative;
   background-color: #ebead5;
@@ -633,12 +634,12 @@ body {
   margin-left: 5rem;
   transition: all 0.2s ease-in; }
 
-/* line 20, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_voting.sass */
+/* line 21, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_voting.sass */
 .band-name {
   display: inline-block;
   font-size: 1.5rem; }
 
-/* line 24, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_voting.sass */
+/* line 25, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_voting.sass */
 .band-vote-count {
   text-align: center;
   background-color: #fff;
@@ -652,17 +653,20 @@ body {
   left: -5rem;
   font-weight: bold; }
 
-/* line 37, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_voting.sass */
+/* line 38, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_voting.sass */
 .add-new-band {
+  overflow: hidden;
   margin: 1rem 0 2rem; }
-  /* line 39, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_voting.sass */
+  /* line 41, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_voting.sass */
   .add-new-band input[type="text"] {
-    width: 90%;
-    font-size: 1.5rem; }
-  /* line 42, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_voting.sass */
+    height: 4rem;
+    font-size: 2rem;
+    width: 100%;
+    padding: 1rem;
+    font-weight: bold; }
+  /* line 47, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_voting.sass */
   .add-new-band input[type="submit"] {
-    visibility: hidden;
-    position: absolute; }
+    display: none; }
 
 /* line 1, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_invitationForm.sass */
 .invitation {
