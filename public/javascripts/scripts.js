@@ -310,28 +310,28 @@ React = require('react');
 NewBandForm = React.createClass({
   displayName: 'NewBandForm',
   handleSubmit: function(e) {
-    var name;
-    e.preventDefault();
-    name = this.refs.name.getDOMNode().value.trim();
-    if (!(name && name.length > 2)) {
+    var ENTER_KEY, name;
+    ENTER_KEY = 13;
+    if (e.which !== ENTER_KEY) {
       return;
     }
-    this.props.onNewBandSubmit({
-      name: name
-    });
-    this.refs.name.getDOMNode().value = '';
+    e.preventDefault();
+    name = this.refs.bandName.getDOMNode().value.trim();
+    if (name) {
+      this.props.onNewBandSubmit({
+        name: name
+      });
+      this.refs.bandName.getDOMNode().value = '';
+    }
   },
   render: function() {
     return React.createElement("form", {
-      "className": "add-new-band",
-      "onSubmit": this.handleSubmit
+      "className": "add-new-band"
     }, React.createElement("input", {
-      "type": "text",
+      "onKeyDown": this.handleSubmit,
+      "autoFocus": true,
       "placeholder": "Enter band name",
-      "ref": "name"
-    }), React.createElement("input", {
-      "type": "submit",
-      "value": "Submit"
+      "ref": "bandName"
     }));
   }
 });
