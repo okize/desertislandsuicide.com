@@ -329,7 +329,6 @@ NewBandForm = React.createClass({
       "className": "add-new-band"
     }, React.createElement("input", {
       "onKeyDown": this.handleSubmit,
-      "autoFocus": true,
       "placeholder": "Enter band name",
       "ref": "bandName"
     }));
@@ -473,13 +472,25 @@ module.exports = Voting;
 
 
 },{"../helpers":11,"../mixins/EventEmitterMixin":12,"./BandList":3,"./NewBandForm":8,"react":178,"superagent":179}],11:[function(require,module,exports){
+var _;
+
+_ = require('lodash');
+
 exports.getCsrfToken = function() {
-  return document.getElementsByTagName('meta')['csrf-token'].getAttribute('content');
+  var metas, token;
+  token = '';
+  metas = document.getElementsByTagName('meta');
+  _.each(metas, function(el) {
+    if (el.getAttribute('name') === 'csrf-token') {
+      return token = el.getAttribute('content');
+    }
+  });
+  return token;
 };
 
 
 
-},{}],12:[function(require,module,exports){
+},{"lodash":16}],12:[function(require,module,exports){
 var EventEmitter, EventEmitterMixin, React, components, emitter, _;
 
 React = require('react/addons');

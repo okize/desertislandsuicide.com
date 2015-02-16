@@ -1,4 +1,10 @@
 # various helper functions
+_ = require 'lodash'
 
 exports.getCsrfToken = () ->
-  document.getElementsByTagName('meta')['csrf-token'].getAttribute('content')
+  token = ''
+  metas = document.getElementsByTagName('meta')
+  _.each metas, (el) ->
+    if (el.getAttribute('name') == 'csrf-token')
+      token = el.getAttribute('content')
+  token
