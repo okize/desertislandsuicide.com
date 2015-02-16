@@ -17,7 +17,6 @@ NewBandForm = React.createClass
     <form className="add-new-band">
       <input
         onKeyDown={@handleSubmit}
-        autoFocus={true}
         placeholder="Enter band name"
         ref="bandName"
       />
