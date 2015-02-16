@@ -42,9 +42,9 @@ Voting = React.createClass
 
     # post new vote to the server
     request
-      .post("/api/bands/#{bandId}/vote")
-      .set('X-CSRF-Token', help.getCsrfToken())
-      .set('Accept', 'application/json')
+      .post "/api/bands/#{bandId}/vote"
+      .set 'X-CSRF-Token', help.getCsrfToken()
+      .set 'Accept', 'application/json'
       .end (error, res) =>
 
         # TODO handle errors better
