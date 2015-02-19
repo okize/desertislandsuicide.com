@@ -1,16 +1,16 @@
 React = require 'react'
-keymaster = require 'keymaster'
+key = require 'keymaster'
 
 Modal = React.createClass
   displayName: 'Modal'
 
   componentDidMount: ->
     # add keybinding to 'esc' to close modal when shown
-    keymaster 'esc', () =>
+    key 'esc', () =>
       @props.onRequestClose()
 
   componentWillUnmount: ->
-    keymaster.unbind 'esc'
+    key.unbind 'esc'
 
   killClick: (e) ->
     # prevent clicks on modal content from closing modal

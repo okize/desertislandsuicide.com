@@ -4,22 +4,18 @@ NewBandForm = React.createClass
   displayName: 'NewBandForm'
 
   handleSubmit: (e) ->
-    ENTER_KEY = 13
-    return if e.which != ENTER_KEY
     e.preventDefault()
-    name = @refs.bandName.getDOMNode().value.trim()
-    if name
-      @props.onNewBandSubmit {name: name}
-      @refs.bandName.getDOMNode().value = ''
+    input = @refs.bandName.getDOMNode()
+    name = input.value.trim()
+    return unless name and name.length > 2
+    @props.onNewBandSubmit {name: name}
+    input.value = ''
+    input.blur()
     return
 
   render: ->
-    <form className="add-new-band">
-      <input
-        onKeyDown={@handleSubmit}
-        placeholder="Enter band name"
-        ref="bandName"
-      />
+    <form className="add-new-band" onSubmit={@handleSubmit}>
+      <input placeholder="Enter band name" ref="bandName" />
     </form>
 
 module.exports = NewBandForm
