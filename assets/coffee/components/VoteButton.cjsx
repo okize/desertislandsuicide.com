@@ -11,7 +11,7 @@ VoteButton = React.createClass
     e.preventDefault()
 
     # pass bandId along with event
-    @emit 'Voting', 'vote-for-band', @props.bandId
+    @emit 'Voting', 'vote-for-band', {id: @props.bandId, name: @props.bandName}
 
   showLoginButtons: (e) ->
     e.preventDefault()
