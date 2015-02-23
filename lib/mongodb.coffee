@@ -19,6 +19,7 @@ mongoose.connection.on 'connected', ->
 # connection error
 mongoose.connection.on 'error', (err) ->
   log.error "MongoDB connection error: #{err}"
+  mongoose.disconnect()
 
 # disconnected connection
 mongoose.connection.on 'disconnected', ->
