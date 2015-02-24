@@ -1,9 +1,9 @@
 React = require 'react'
 request = require 'superagent'
 help = require '../helpers'
-EventEmitterMixin = require '../mixins/EventEmitterMixin'
 BandList = require './BandList'
 NewBandForm = require './NewBandForm'
+EventEmitterMixin = require '../mixins/EventEmitterMixin'
 
 Voting = React.createClass
   displayName: 'Voting'
@@ -38,17 +38,19 @@ Voting = React.createClass
   getInitialState: ->
     data: []
 
-  handleBandVote: (bandId) ->
+  handleBandVote: (band) ->
 
     # post new vote to the server
     request
-      .post "/api/bands/#{bandId}/vote"
+      .post "/api/bands/#{band.id}/vote"
       .set 'X-CSRF-Token', help.getCsrfToken()
       .set 'Accept', 'application/json'
       .end (error, res) =>
 
         # TODO handle errors better
         return console.error error if error?
+
+        @emit 'App', 'notification', {msg: "You voted for #{band.name}!", type: 'info', delay: 3000}
 
         # update band list
         @getBandList()
@@ -65,6 +67,8 @@ Voting = React.createClass
 
         # TODO handle errors better
         return console.error error if error?
+
+        @emit 'App', 'notification', {msg: "#{formData.name} has been nominated!", type: 'info', delay: 3000}
 
         # update band list
         @getBandList()

@@ -3,11 +3,6 @@ React = require 'react'
 Notification = React.createClass
   displayName: 'Notification'
 
-  getDefaultProps: ->
-    delay: 1000
-    type: 'info'
-    message: ''
-
   getInitialState: ->
     visible: true
 
@@ -34,16 +29,14 @@ Notification = React.createClass
     @_timer = setTimeout((->
       @dismiss()
       @_timer = null
-    ).bind(this), @props.delay)
+    ).bind(this), @props.delay * 1000)
 
   render: ->
     if @state.visible
       className = "notification notification--#{@props.type}"
-      <div
-        className={className}
-        onClick={@dismiss}
-        onTouchStart={@dismiss}
-      >{@props.message}</div>
+      <div className={className} onClick={@dismiss} onTouchStart={@dismiss}>
+        {@props.children}
+      </div>
     else
       <span />
 

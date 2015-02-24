@@ -12,7 +12,7 @@ BandItem = React.createClass
       <div className="band-name">
         {@props.data.name}
       </div>
-      <VoteButton bandId={@props.data._id} userHasVotedFor={@props.data.userHasVotedFor} loggedIn={@props.loggedIn} />
+      <VoteButton bandId={@props.data._id} bandName={@props.data.name} userHasVotedFor={@props.data.userHasVotedFor} loggedIn={@props.loggedIn} />
     </li>
 
 module.exports = BandItem
