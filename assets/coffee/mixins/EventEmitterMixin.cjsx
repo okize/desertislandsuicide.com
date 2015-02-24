@@ -1,5 +1,4 @@
 React = require 'react/addons'
-_ = require 'lodash'
 EventEmitter = require 'wolfy87-eventemitter'
 emitter = new EventEmitter()
 
