@@ -27,8 +27,9 @@ Voting = React.createClass
       .get url
       .end (error, res) =>
 
-        # TODO handle errors better
-        return console.error error if error?
+        if error?
+          console.error error
+          return @emit 'App', 'notification', {msg: 'Error getting band list, please refresh page.', type: 'error', delay: 5}
 
         # update state with bands
         if @isMounted()
@@ -47,10 +48,11 @@ Voting = React.createClass
       .set 'Accept', 'application/json'
       .end (error, res) =>
 
-        # TODO handle errors better
-        return console.error error if error?
+        if error? or res.status != 200
+          console.error error
+          return @emit 'App', 'notification', {msg: 'Sorry, your vote was not recorded, please try again.', type: 'error', delay: 5}
 
-        @emit 'App', 'notification', {msg: "You voted for #{band.name}!", type: 'info', delay: 3000}
+        @emit 'App', 'notification', {msg: "You voted for #{band.name}!", type: 'info', delay: 3}
 
         # update band list
         @getBandList()
@@ -65,10 +67,11 @@ Voting = React.createClass
       .set 'Accept', 'application/json'
       .end (error, res) =>
 
-        # TODO handle errors better
-        return console.error error if error?
+        if error? or res.status != 200
+          console.error error
+          return @emit 'App', 'notification', {msg: 'Sorry, your band was not saved, try again.', type: 'error', delay: 5}
 
-        @emit 'App', 'notification', {msg: "#{formData.name} has been nominated!", type: 'info', delay: 3000}
+        @emit 'App', 'notification', {msg: "#{formData.name} has been nominated!", type: 'info', delay: 3}
 
         # update band list
         @getBandList()
