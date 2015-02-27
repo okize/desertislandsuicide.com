@@ -1,3 +1,21 @@
+.notification
+  position: fixed
+  z-index: 10
+  top: .5rem
+  left: .5rem
+  right: .5rem
+  padding: 1rem
+  border-radius: .25rem
+  &.notification--info
+    background-color: blue
+    color: white
+  &.notification--error
+    background-color: red
+    color: black
+  &.notification--warning
+    background-color: yellow
+    color: black
+
 .flash-messages
   position: absolute
   background-color: red
