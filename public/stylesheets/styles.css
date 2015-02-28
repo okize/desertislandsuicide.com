@@ -404,13 +404,17 @@ body {
   background-repeat: no-repeat; }
 
 /* line 20, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_global.sass */
+.main-wrapper {
+  position: relative; }
+
+/* line 23, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_global.sass */
 .error-page {
   width: 80%;
   margin: 1rem auto 0; }
-  /* line 23, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_global.sass */
+  /* line 26, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_global.sass */
   .error-page h1 {
     color: red; }
-  /* line 25, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_global.sass */
+  /* line 28, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_global.sass */
   .error-page pre {
     border: .1rem solid #000;
     background-color: #fff;
@@ -503,6 +507,28 @@ body {
   width: 100%; }
 
 /* line 1, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_notifications.sass */
+.notification {
+  position: fixed;
+  z-index: 10;
+  top: .5rem;
+  left: .5rem;
+  right: .5rem;
+  padding: 1rem;
+  border-radius: .25rem; }
+  /* line 9, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_notifications.sass */
+  .notification.notification--info {
+    background-color: blue;
+    color: white; }
+  /* line 12, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_notifications.sass */
+  .notification.notification--error {
+    background-color: red;
+    color: black; }
+  /* line 15, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_notifications.sass */
+  .notification.notification--warning {
+    background-color: yellow;
+    color: black; }
+
+/* line 19, /Users/morganwigmanich/src/localhost/heroku-apps/desertislandsuicide.com/assets/sass/_notifications.sass */
 .flash-messages {
   position: absolute;
   background-color: red;
