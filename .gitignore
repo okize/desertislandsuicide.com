@@ -20,6 +20,7 @@ node_modules/gulp-sass/node_modules/node-sass/vendor/
 node_modules/node-inspector/node_modules/v8-debug/
 node_modules/node-inspector/node_modules/v8-profiler/
 node_modules/node-inspector/node_modules/ws/node_modules/bufferutil/build/
+node_modules/node-inspector/node_modules/ws/node_modules/utf-8-validate/build/
 
 # have to remove gulp-sass from node_modules because of build issue on Heroku
 node_modules/gulp-sass/
