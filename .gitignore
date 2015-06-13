@@ -17,6 +17,9 @@ node_modules/browser-sync/node_modules/socket.io/node_modules/engine.io/node_mod
 node_modules/browser-sync/node_modules/socket.io/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/ws/build/
 node_modules/browser-sync/node_modules/chokidar/node_modules/fsevents/build/
 node_modules/gulp-sass/node_modules/node-sass/vendor/
+node_modules/node-inspector/node_modules/v8-debug/
+node_modules/node-inspector/node_modules/v8-profiler/
+node_modules/node-inspector/node_modules/ws/node_modules/bufferutil/build/
 
 # have to remove gulp-sass from node_modules because of build issue on Heroku
 node_modules/gulp-sass/
