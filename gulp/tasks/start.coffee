@@ -13,7 +13,7 @@ gulp.task 'start', ->
     ext: 'coffee js'
     env: process.env
     stdout: false
-    nodeArgs: ['--nodejs', "--debug=#{process.env.DEBUG_PORT or 5858}"]
+    nodeArgs: ["--debug=#{process.env.DEBUG_PORT or 5858}"]
     ignore: config.nodemon.ignore
   ).on('readable', ->
     @stdout.pipe process.stdout
