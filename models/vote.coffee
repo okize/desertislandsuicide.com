@@ -32,7 +32,7 @@ voteSchema.pre 'save', (next) ->
       error = new Error 'something went wrong'
       return next(error)
     users = result.users_who_voted_for
-    if _.contains(users, @user_id)
+    if users.includes(@user_id)
       error = new Error 'User already voted for this band'
       return next(error)
     else
