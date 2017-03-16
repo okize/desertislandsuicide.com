@@ -1,4 +1,5 @@
 React = require 'react'
+ReactDOM = require 'react-dom'
 
 ReactLayeredComponentMixin =
   componentWillUnmount: ->
@@ -20,12 +21,12 @@ ReactLayeredComponentMixin =
     # By calling this method in componentDidMount() and componentDidUpdate(), you're effectively
     # creating a "wormhole" that funnels React's hierarchical updates through to a DOM node on an
     # entirely different part of the page.
-    React.render @renderLayer(), @_target
+    ReactDOM.render @renderLayer(), @_target
 
   _unrenderLayer: ->
     React.unmountComponentAtNode @_target
 
   _getLayerNode: ->
-    @_target.getDOMNode()
+    ReactDOM.findDOMNode(@_target)
 
 module.exports = ReactLayeredComponentMixin

@@ -1,4 +1,4 @@
-React = require 'react/addons'
+React = require 'react'
 EventEmitter = require 'wolfy87-eventemitter'
 emitter = new EventEmitter()
 

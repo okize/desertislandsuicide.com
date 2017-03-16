@@ -1,11 +1,12 @@
 React = require 'react'
+ReactDOM = require 'react-dom'
 
 NewBandForm = React.createClass
   displayName: 'NewBandForm'
 
   handleSubmit: (e) ->
     e.preventDefault()
-    input = @refs.bandName.getDOMNode()
+    input = ReactDOM.findDOMNode(@refs.bandName)
     name = input.value.trim()
     return unless name and name.length > 2
     @props.onNewBandSubmit {name: name}

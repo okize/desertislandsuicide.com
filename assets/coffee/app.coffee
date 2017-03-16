@@ -1,4 +1,5 @@
-React   = require 'react'
+React = require 'react'
+ReactDOM = require 'react-dom'
 FastClick = require 'fastclick'
 Notification = require './components/Notification.cjsx'
 StatusBar = require './components/StatusBar.cjsx'
@@ -12,7 +13,7 @@ appEl = document.getElementById 'app'
 # init FastClick
 FastClick appEl
 
-React.initializeTouchEvents true
+# React.initializeTouchEvents true
 
 App = React.createClass
   displayName: 'App'
@@ -47,4 +48,4 @@ App = React.createClass
     </div>
 
 if appEl?
-  React.render <App />, appEl
+  ReactDOM.render <App />, appEl
