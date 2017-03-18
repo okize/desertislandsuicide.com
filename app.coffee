@@ -16,7 +16,7 @@ app.set 'app name', process.env.APP_NAME or 'DesertIslandSuicide'
 app.set 'port', process.env.PORT or 4444
 app.set 'env', process.env.NODE_ENV or 'development'
 app.set 'views', path.join(__dirname, 'views')
-app.set 'view engine', 'jade'
+app.set 'view engine', 'pug'
 
 # init middlewares & routes
 middlewares app
