@@ -10,10 +10,11 @@ EventEmitterMixin = require './mixins/EventEmitterMixin'
 # mount point for app
 appEl = document.getElementById 'app'
 
+# needed for React Developer Tools
+window.React = React
+
 # init FastClick
 FastClick appEl
-
-# React.initializeTouchEvents true
 
 App = React.createClass
   displayName: 'App'
