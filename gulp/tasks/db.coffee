@@ -118,7 +118,17 @@ gulp.task 'db:dump:import', ->
     )
   )
 
-# drops the database
+# import local db into production db (folder as argument flag)
+# may have to delete collections manually on mongolab
+gulp.task 'db:dump:import:prod', ->
+  db = mongodbUri.parse config.db['prod']
+  dumpFile = "./dumps/dev/#{getArgValue(argv)}/#{db.database}"
+  mongoCommand = "mongorestore -h #{db.hosts[0].host}:#{db.hosts[0].port} -d #{db.database} -u #{db.username} -p #{db.password} #{dumpFile}"
+  run(mongoCommand).exec( ->
+    log.info 'Production database updated'
+  )
+
+# drops the local database
 gulp.task 'db:reset', ->
   envName = 'dev'
   db = mongodbUri.parse config.db[envName]
