@@ -8,7 +8,7 @@ module.exports =
 
   app:
     root: rootPath
-    main: "#{rootPath}/app.coffee"
+    main: "#{rootPath}/app.js"
 
   js:
     entry: 'app.coffee'
