@@ -1,8 +1,8 @@
 let voteForBand;
-let _ = require('lodash');
-let mask = require('json-mask');
-let Band = require('../models/band');
-let Vote = require('../models/vote');
+const _ = require('lodash');
+const mask = require('json-mask');
+const Band = require('../models/band');
+const Vote = require('../models/vote');
 
 const WHITELIST = [
   '_id',
@@ -13,10 +13,10 @@ const WHITELIST = [
 ].join(',');
 
 // removes data that shouldn't be returned in json
-let partialResponse = json => mask(json, WHITELIST);
+const partialResponse = json => mask(json, WHITELIST);
 
 // returns ip address
-let getIpAddress = function(ipObj) {
+const getIpAddress = function(ipObj) {
   if (ipObj != null) {
     return ipObj.clientIp;
   } else {
@@ -35,8 +35,8 @@ exports.indexNoAuth = (req, res) =>
 
 // GET /api/bands
 exports.index = function(req, res) {
-  let userId = req.user._id.toString();
-  let pop = {
+  const userId = req.user._id.toString();
+  const pop = {
     path: 'children',
     select: 'user_id'
   };
@@ -47,9 +47,9 @@ exports.index = function(req, res) {
       } else {
         // create a new result array that includes an object property
         // boolean for whether user has voted on this particular band
-        let newResult = _.map(result, function(obj) {
-          let userVotes = obj.users_who_voted_for;
-          let hasVoted = userVotes.includes(userId) ? true : false;
+        const newResult = _.map(result, function(obj) {
+          const userVotes = obj.users_who_voted_for;
+          const hasVoted = userVotes.includes(userId) ? true : false;
           return _.assign(obj, {userHasVotedFor: hasVoted});
         });
         return res.status(200).json(partialResponse(newResult));
@@ -67,7 +67,7 @@ exports.show = (req, res) =>
 
 // POST /api/bands
 exports.create = function(req, res) {
-  let userId = req.user._id;
+  const userId = req.user._id;
   req.body.submitted_by = userId;
   return new Band(req.body).save(function(err, result) {
     if (err != null) { return res.status(500).json({error: err}); }
@@ -79,7 +79,7 @@ exports.create = function(req, res) {
 
 // POST /api/bands/:id/vote
 exports.vote = voteForBand = function(req, res) {
-  let data = {
+  const data = {
     parent: req.params.id,
     user_id: req.user._id,
     user_ip_address: getIpAddress(req.session.ipAddress)

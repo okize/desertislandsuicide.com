@@ -1,15 +1,12 @@
 if (process.env.NODE_ENV === 'production') { require('newrelic'); } // this needs to be first line of app
 
-let path = require('path');
-let express = require('express');
-let middlewares = require('./middlewares');
-let log = require('./lib/logger').logger;
+const path = require('path');
+const express = require('express');
+const middlewares = require('./middlewares');
+const log = require('./lib/logger').logger;
 
-// init app
-let app = express();
-
-// connect to db
-let db = require('./lib/mongodb');
+const app = express(); // init app
+const db = require('./lib/mongodb'); // connect to db
 
 // config
 app.set('app name', process.env.APP_NAME || 'DesertIslandSuicide');
@@ -22,6 +19,8 @@ app.set('view engine', 'pug');
 middlewares(app);
 
 // await connections
-app.listen(app.get('port'), () => log.info(`${app.get('app name')} started on port ${app.get('port')} in [${app.get('env')}]`));
+app.listen(app.get('port'), () => {
+  log.info(`${app.get('app name')} started on http://localhost:${app.get('port')} in [${app.get('env')}]`);
+});
 
 module.exports = app;

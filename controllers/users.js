@@ -1,4 +1,4 @@
-let User = require('../models/user');
+const User = require('../models/user');
 
 // GET /login
 exports.login = function(req, res) {

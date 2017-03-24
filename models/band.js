@@ -1,8 +1,8 @@
-let mongoose = require('mongoose');
-let uniqueValidator = require('mongoose-unique-validator');
-let { Schema } = mongoose;
+const mongoose = require('mongoose');
+const uniqueValidator = require('mongoose-unique-validator');
+const { Schema } = mongoose;
 
-let bandSchema = new mongoose.Schema({
+const bandSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,

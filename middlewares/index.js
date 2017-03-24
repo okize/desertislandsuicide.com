@@ -1,30 +1,30 @@
-let path = require('path');
-let _ = require('lodash');
-let express = require('express');
-let session = require('express-session');
-let MongoStore = require('connect-mongo')(session);
-let lusca = require('lusca');
-let passport = require('passport');
-let bodyParser = require('body-parser');
-let methodOverride = require('method-override');
-let cookieParser = require('cookie-parser');
-let assets = require('express-asset-versions');
-let compression = require('compression');
-let flash = require('express-flash');
-let sm = require('sitemap');
-let favicon = require('serve-favicon');
-let getIp = require('ipware')().get_ip;
-let help = require('../lib/helpers');
-let routes = require('../routes');
-let logger = require('../lib/logger');
-let log = logger.logger;
+const path = require('path');
+const _ = require('lodash');
+const express = require('express');
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+const lusca = require('lusca');
+const passport = require('passport');
+const bodyParser = require('body-parser');
+const methodOverride = require('method-override');
+const cookieParser = require('cookie-parser');
+const assets = require('express-asset-versions');
+const compression = require('compression');
+const flash = require('express-flash');
+const sm = require('sitemap');
+const favicon = require('serve-favicon');
+const getIp = require('ipware')().get_ip;
+const help = require('../lib/helpers');
+const routes = require('../routes');
+const logger = require('../lib/logger');
+const log = logger.logger;
 
 // public assets directory
-let assetPath = path.join(__dirname, '..', 'public');
+const assetPath = path.join(__dirname, '..', 'public');
 
 // if app is running in dev mode, pass through entire stack trace
 // otherwise return an empty object
-let getErrorStack = function(err, env) {
+const getErrorStack = function(err, env) {
   if (env === 'development') {
     return err;
   } else {
@@ -51,7 +51,7 @@ module.exports = function(app) {
   });
 
   // sitemap.xml
-  let sitemap = sm.createSitemap({
+  const sitemap = sm.createSitemap({
     hostname: process.env.APP_URL,
     cacheTime: 600000000,
     urls: [
@@ -130,7 +130,7 @@ module.exports = function(app) {
 
   // catch 404s
   app.use(function(req, res, next) {
-    let err = new Error('Not Found');
+    const err = new Error('Not Found');
     err.status = 404;
     return next(err);
   });
