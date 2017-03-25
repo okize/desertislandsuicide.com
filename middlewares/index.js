@@ -24,7 +24,7 @@ const assetPath = path.join(__dirname, '..', 'public');
 
 // if app is running in dev mode, pass through entire stack trace
 // otherwise return an empty object
-const getErrorStack = function(err, env) {
+const getErrorStack = (err, env) => {
   if (env === 'development') {
     return err;
   } else {
@@ -32,7 +32,7 @@ const getErrorStack = function(err, env) {
   }
 };
 
-module.exports = function(app) {
+module.exports = (app) => {
 
   // gzip assets
   app.use(compression({threshold: 1024}));
@@ -41,7 +41,7 @@ module.exports = function(app) {
   app.use(logger.http);
 
   // robots.txt
-  app.use(function(req, res, next) {
+  app.use((req, res, next) => {
     if ('/robots.txt' === req.url) {
       res.type('text/plain');
       return res.send('User-agent: *\nSitemap: /sitemap.xml\nDisallow: /dash/');
@@ -58,7 +58,7 @@ module.exports = function(app) {
       {url: '/', changefreq: 'daily'}
     ]
   });
-  app.get('/sitemap.xml', function(req, res) {
+  app.get('/sitemap.xml', (req, res) => {
     res.header('Content-Type', 'application/xml');
     return res.send(sitemap.toString());
   });
@@ -108,13 +108,13 @@ module.exports = function(app) {
   //   next()
 
   // make user object available in templates
-  app.use(function(req, res, next) {
+  app.use((req, res, next) => {
     res.locals.user = req.user;
     return next();
   });
 
   // add user ip address to request session object
-  app.use(function(req, res, next) {
+  app.use((req, res, next) => {
     req.session.ipAddress = getIp(req);
     return next();
   });
@@ -129,14 +129,14 @@ module.exports = function(app) {
   app.use('/api', help.isAuthenticated, routes.protected);
 
   // catch 404s
-  app.use(function(req, res, next) {
+  app.use((req, res, next) => {
     const err = new Error('Not Found');
     err.status = 404;
     return next(err);
   });
 
   // error handlers
-  app.use(function(err, req, res, next) {
+  app.use((err, req, res, next) => {
     if (err) { log.error(err); }
     res.status(err.status || 500);
     return res.render('error', {

@@ -27,10 +27,7 @@ const voteSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   }
-}
-  ,
-    {strict: true}
-);
+}, { strict: true });
 
 voteSchema.pre('save', function(next) {
   return Band.findById(this.parent, (err, result) => {
@@ -48,8 +45,7 @@ voteSchema.pre('save', function(next) {
       result.save();
       return next();
     }
-  }
-  );
+  });
 });
 
 const relationshipOpts = {

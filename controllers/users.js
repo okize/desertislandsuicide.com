@@ -1,7 +1,7 @@
 const User = require('../models/user');
 
 // GET /login
-exports.login = function(req, res) {
+exports.login = (req, res) => {
   if (req.user) {
     res.redirect('/');
   }
@@ -10,13 +10,12 @@ exports.login = function(req, res) {
 };
 
 // GET /logout
-exports.logout = function(req, res) {
+exports.logout = (req, res) => {
   req.logout();
   return res.redirect('/');
 };
 
 // GET /api/account
-exports.account = (req, res) =>
-  res.render('account',
-    {title: 'Account'})
-;
+exports.account = (req, res) => {
+  res.render('account', {title: 'Account'});
+};

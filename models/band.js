@@ -34,10 +34,7 @@ const bandSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   }
-}
-  ,
-    {strict: true}
-);
+}, { strict: true });
 
 // hook to keep vote_count up to date
 bandSchema.pre('save', function(next) {
