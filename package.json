@@ -56,6 +56,8 @@
     "wolfy87-eventemitter": "^5.1.0"
   },
   "devDependencies": {
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-react": "^6.23.0",
     "browser-sync": "^2.0.0",
     "del": "^2.2.2",
     "dotenv": "^4.0.0",
