@@ -8,7 +8,7 @@ config = require '../config'
 log = require '../helpers/log'
 
 # files to watch
-js = path.join(config.js.src, '**/**/*.{coffee,cjsx,js}')
+js = path.join(config.js.src, '**/**/*.{js,jsx}')
 css = path.join(config.css.src, '**/**/*.{sass,scss}')
 images = path.join(config.images.src, '**/**/*.svg')
 

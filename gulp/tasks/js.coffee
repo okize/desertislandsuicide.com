@@ -4,6 +4,7 @@ path = require 'path'
 gulp = require 'gulp'
 gutil = require 'gulp-util'
 browserify = require 'browserify'
+babelify = require 'babelify'
 reactify = require 'coffee-reactify'
 source = require 'vinyl-source-stream'
 buff = require 'vinyl-buffer'
@@ -15,7 +16,7 @@ handleErrors = require '../helpers/handleErrors'
 
 browserifyOptions =
   entries: [path.join config.js.src, config.js.entry]
-  extensions: ['.coffee', '.cjsx']
+  extensions: ['.coffee', '.jsx']
   debug: true
 
 sourcemapOptions =
@@ -26,7 +27,10 @@ gulp.task 'js', ->
   log.info 'Bundling coffeescript and modules into javascript'
   browserify browserifyOptions
   .on 'error', handleErrors
-  .transform reactify
+  .transform('babelify', presets: [
+    'es2015'
+    'react'
+  ])
   .bundle()
   .pipe source config.js.name
   .pipe buff()

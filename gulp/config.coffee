@@ -11,7 +11,7 @@ module.exports =
     main: "#{rootPath}/app.js"
 
   js:
-    entry: 'app.coffee'
+    entry: 'app.jsx'
     src: "#{rootPath}/assets/coffee/"
     dest: "#{assetsPath}/javascripts/"
     maps: './'
