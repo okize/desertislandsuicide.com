@@ -1,5 +1,5 @@
 import React from "react";
-import LogInLink from "./LogInLink";
+import LogInLink from "./LogInLink.jsx";
 import EventEmitterMixin from "../mixins/EventEmitterMixin";
 
 let VoteButton = React.createClass({

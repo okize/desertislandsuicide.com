@@ -1,9 +1,9 @@
 import React from "react";
 import request from "superagent";
-import help from "../helpers";
-import BandList from "./BandList";
-import NewBandForm from "./NewBandForm";
-import EventEmitterMixin from "../mixins/EventEmitterMixin";
+import {getCsrfToken} from "../helpers";
+import BandList from "./BandList.jsx";
+import NewBandForm from "./NewBandForm.jsx";
+import EventEmitterMixin from "../mixins/EventEmitterMixin.jsx";
 
 let Voting = React.createClass({
   displayName: "Voting",
@@ -45,7 +45,7 @@ let Voting = React.createClass({
     // post new vote to the server
     return request
       .post(`/api/bands/${band.id}/vote`)
-      .set("X-CSRF-Token", help.getCsrfToken())
+      .set("X-CSRF-Token", getCsrfToken())
       .set("Accept", "application/json")
       .end((error, res) => {
         if (error != null || res.status !== 200) {
@@ -72,7 +72,7 @@ let Voting = React.createClass({
     return request
       .post("/api/bands/")
       .send(formData)
-      .set("X-CSRF-Token", help.getCsrfToken())
+      .set("X-CSRF-Token", getCsrfToken())
       .set("Accept", "application/json")
       .end((error, res) => {
         if (error != null || res.status !== 200) {

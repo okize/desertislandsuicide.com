@@ -1,5 +1,5 @@
 import React from "react";
-import BandItem from "./BandItem";
+import BandItem from "./BandItem.jsx";
 
 let BandList = React.createClass({
   displayName: "BandList",

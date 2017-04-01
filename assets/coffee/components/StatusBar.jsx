@@ -1,5 +1,5 @@
 import React from "react";
-import LogInLink from "./LogInLink";
+import LogInLink from "./LogInLink.jsx";
 
 let LoggedIn = React.createClass({
   displayName: "LoggedIn",

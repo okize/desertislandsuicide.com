@@ -1,5 +1,5 @@
 import React from "react";
-import VoteButton from "./VoteButton";
+import VoteButton from "./VoteButton.jsx";
 
 let BandItem = React.createClass({
   displayName: "BandItem",

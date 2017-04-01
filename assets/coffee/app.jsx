@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import FastClick from "fastclick";
-import Notification from "./components/Notification.cjsx";
-import StatusBar from "./components/StatusBar.cjsx";
-import Header from "./components/Header.cjsx";
-import Voting from "./components/Voting.cjsx";
-import EventEmitterMixin from "./mixins/EventEmitterMixin";
+import Notification from "./components/Notification.jsx";
+import StatusBar from "./components/StatusBar.jsx";
+import Header from "./components/Header.jsx";
+import Voting from "./components/Voting.jsx";
+import EventEmitterMixin from "./mixins/EventEmitterMixin.jsx";
 
 // mount point for app
 let appEl = document.getElementById("app");
