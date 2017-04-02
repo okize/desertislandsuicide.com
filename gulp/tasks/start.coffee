@@ -10,7 +10,7 @@ config = require '../config'
 gulp.task 'start', ->
   nodemon(
     script: config.app.main
-    ext: 'coffee js'
+    ext: 'js'
     env: process.env
     stdout: false
     nodeArgs: ["--debug=#{process.env.DEBUG_PORT or 5858}"]

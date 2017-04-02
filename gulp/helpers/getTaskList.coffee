@@ -1,4 +1,4 @@
-# returns a filtered list of all the scripts in tasks dir (js & coffee only)
+# returns a filtered list of all the scripts in tasks dir (js only)
 
 fs = require 'fs'
 config = require '../config'
