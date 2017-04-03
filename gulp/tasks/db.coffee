@@ -66,7 +66,7 @@ gulp.task 'db:seed', ->
 # pass collection name as flag arg
 gulp.task 'db:seed:create', ->
   # array of collection names based on model filenames
-  collections = _.map fs.readdirSync('./models'), (f) -> f.replace('.coffee', 's')
+  collections = _.map fs.readdirSync('./models'), (f) -> f.replace('.js', 's')
   unless _.size(argv) == 3
     return log.error 'Pass name of collection to export as a flag.'
   collectionName = getArgValue argv

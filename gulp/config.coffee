@@ -12,7 +12,7 @@ module.exports =
 
   js:
     entry: 'app.jsx'
-    src: "#{rootPath}/assets/coffee/"
+    src: "#{rootPath}/assets/src/"
     dest: "#{assetsPath}/javascripts/"
     maps: './'
     name: 'scripts.js'

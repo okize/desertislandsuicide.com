@@ -1,11 +1,10 @@
-# compile coffeescript into js
+# compile es6 into js
 
 path = require 'path'
 gulp = require 'gulp'
 gutil = require 'gulp-util'
 browserify = require 'browserify'
 babelify = require 'babelify'
-reactify = require 'coffee-reactify'
 source = require 'vinyl-source-stream'
 buff = require 'vinyl-buffer'
 sourcemaps = require 'gulp-sourcemaps'
@@ -16,7 +15,7 @@ handleErrors = require '../helpers/handleErrors'
 
 browserifyOptions =
   entries: [path.join config.js.src, config.js.entry]
-  extensions: ['.coffee', '.jsx']
+  extensions: ['.js', '.jsx']
   debug: true
 
 sourcemapOptions =
@@ -24,7 +23,7 @@ sourcemapOptions =
   debug: true
 
 gulp.task 'js', ->
-  log.info 'Bundling coffeescript and modules into javascript'
+  log.info 'Bundling ES6 and modules into javascript'
   browserify browserifyOptions
   .on 'error', handleErrors
   .transform('babelify', presets: [
