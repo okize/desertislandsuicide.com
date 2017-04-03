@@ -1277,32 +1277,7 @@ code-point-at@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/code-point-at/-/code-point-at-1.1.0.tgz#0d070b4d043a5bea33a2f1a40e2edb3d9a4ccf77"
 
-coffee-react-jstransform@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/coffee-react-jstransform/-/coffee-react-jstransform-1.0.0.tgz#d3d343cede33c8f2b2ea37cb7fa0f84987236214"
-
-coffee-react-transform@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/coffee-react-transform/-/coffee-react-transform-4.0.0.tgz#731a79fd445a56e93926c72e983eff937f7c6fde"
-
-coffee-react@^5.0.0:
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/coffee-react/-/coffee-react-5.0.1.tgz#3d03566e8646894c962193c42c2e895f91f49ecb"
-  dependencies:
-    coffee-react-jstransform "^1.0.0"
-    coffee-react-transform "^4.0.0"
-    coffee-script "^1.10.0"
-    mkdirp "^0.5.0"
-
-coffee-reactify@^5.1.0:
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/coffee-reactify/-/coffee-reactify-5.1.0.tgz#5418e093ca3b539cfabc7efe2b96ae1690d4f3b8"
-  dependencies:
-    coffee-react "^5.0.0"
-    convert-source-map "~0.3.3"
-    through "~2.3.4"
-
-coffee-script@^1.10.0, coffee-script@^1.8.0:
+coffee-script@^1.8.0:
   version "1.12.4"
   resolved "https://registry.yarnpkg.com/coffee-script/-/coffee-script-1.12.4.tgz#fe1bced97fe1fb3927b998f2b45616e0658be1ff"
 
@@ -1477,10 +1452,6 @@ content-type@~1.0.2:
 convert-source-map@1.X, convert-source-map@^1.1.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/convert-source-map/-/convert-source-map-1.4.0.tgz#e3dad195bf61bfe13a7a3c73e9876ec14a0268f3"
-
-convert-source-map@~0.3.3:
-  version "0.3.5"
-  resolved "https://registry.yarnpkg.com/convert-source-map/-/convert-source-map-0.3.5.tgz#f1d802950af7dd2631a1febe0596550c86ab3190"
 
 convert-source-map@~1.1.0:
   version "1.1.3"
