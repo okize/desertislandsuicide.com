@@ -1,0 +1,14 @@
+// add rule overrides as needed
+{
+  'extends': 'airbnb',
+  'parser': 'babel-eslint',
+  'env': {
+    'browser' : true,
+    'node' : true,
+  },
+  'rules': {
+    'max-len': ['error', { 'code': 140 }],
+    'object-shorthand': 'off',
+    'react/jsx-boolean-value': ['error', 'always'],
+  }
+}
