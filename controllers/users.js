@@ -6,7 +6,7 @@ exports.login = (req, res) => {
     res.redirect('/');
   }
   return res.render('login',
-    {title: 'Login'});
+    { title: 'Login' });
 };
 
 // GET /logout
@@ -17,5 +17,5 @@ exports.logout = (req, res) => {
 
 // GET /api/account
 exports.account = (req, res) => {
-  res.render('account', {title: 'Account'});
+  res.render('account', { title: 'Account' });
 };

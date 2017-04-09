@@ -1,8 +1,8 @@
-import React from "react";
-import VoteButton from "./VoteButton.jsx";
+import React from 'react';
+import VoteButton from './VoteButton.jsx';
 
-let BandItem = React.createClass({
-  displayName: "BandItem",
+const BandItem = React.createClass({
+  displayName: 'BandItem',
   render() {
     return (
       <li className="band-item">
@@ -20,7 +20,7 @@ let BandItem = React.createClass({
         />
       </li>
     );
-  }
+  },
 });
 
 export default BandItem;

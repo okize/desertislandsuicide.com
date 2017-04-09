@@ -1,16 +1,14 @@
-import React from "react";
-import key from "keymaster";
+import React from 'react';
+import key from 'keymaster';
 
-let Modal = React.createClass({
-  displayName: "Modal",
+const Modal = React.createClass({
+  displayName: 'Modal',
   componentDidMount() {
     // add keybinding to 'esc' to close modal when shown
-    return key("esc", () => {
-      return this.props.onRequestClose();
-    });
+    return key('esc', () => this.props.onRequestClose());
   },
   componentWillUnmount() {
-    return key.unbind("esc");
+    return key.unbind('esc');
   },
   killClick(e) {
     // prevent clicks on modal content from closing modal
@@ -36,7 +34,7 @@ let Modal = React.createClass({
         </div>
       </div>
     );
-  }
+  },
 });
 
 export default Modal;

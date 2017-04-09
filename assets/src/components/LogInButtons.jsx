@@ -1,14 +1,14 @@
-import React from "react";
+import React from 'react';
 
-let LogInButtons = React.createClass({
-  displayName: "LogInButtons",
+const LogInButtons = React.createClass({
+  displayName: 'LogInButtons',
   render() {
     return (
       <nav className="login-nav">
         <a href="/auth/facebook" className="login-button login-facebook flag">
           <img src="../images/icon-facebook.svg" className="flag-image" />
           <span className="flag-body">
-            {"Sign in with "}
+            {'Sign in with '}
             <strong>
               Facebook
             </strong>
@@ -17,7 +17,7 @@ let LogInButtons = React.createClass({
         <a href="/auth/twitter" className="login-button login-twitter flag">
           <img src="../images/icon-twitter.svg" className="flag-image" />
           <span className="flag-body">
-            {"Sign in with "}
+            {'Sign in with '}
             <strong>
               Twitter
             </strong>
@@ -26,7 +26,7 @@ let LogInButtons = React.createClass({
         <a href="/auth/google" className="login-button login-google flag">
           <img src="../images/icon-google.svg" className="flag-image" />
           <span className="flag-body">
-            {"Sign in with "}
+            {'Sign in with '}
             <strong>
               Google
             </strong>
@@ -34,7 +34,7 @@ let LogInButtons = React.createClass({
         </a>
       </nav>
     );
-  }
+  },
 });
 
 export default LogInButtons;

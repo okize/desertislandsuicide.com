@@ -1,4 +1,5 @@
-if (process.env.NODE_ENV === 'production') { require('newrelic'); } // this needs to be first line of app
+if (process.env.NODE_ENV === 'production') { require('newrelic'); } // eslint-disable-line global-require
+// ^-- this needs to be first line of app
 
 const path = require('path');
 const express = require('express');

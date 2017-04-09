@@ -27,27 +27,24 @@ const assetPath = path.join(__dirname, '..', 'public');
 const getErrorStack = (err, env) => {
   if (env === 'development') {
     return err;
-  } else {
-    return {};
   }
+  return {};
 };
 
 module.exports = (app) => {
-
   // gzip assets
-  app.use(compression({threshold: 1024}));
+  app.use(compression({ threshold: 1024 }));
 
   // http logger
   app.use(logger.http);
 
   // robots.txt
   app.use((req, res, next) => {
-    if ('/robots.txt' === req.url) {
+    if (req.url === '/robots.txt') {
       res.type('text/plain');
       return res.send('User-agent: *\nSitemap: /sitemap.xml\nDisallow: /dash/');
-    } else {
-      return next();
     }
+    return next();
   });
 
   // sitemap.xml
@@ -55,9 +52,10 @@ module.exports = (app) => {
     hostname: process.env.APP_URL,
     cacheTime: 600000000,
     urls: [
-      {url: '/', changefreq: 'daily'}
-    ]
+      { url: '/', changefreq: 'daily' },
+    ],
   });
+
   app.get('/sitemap.xml', (req, res) => {
     res.header('Content-Type', 'application/xml');
     return res.send(sitemap.toString());
@@ -65,7 +63,7 @@ module.exports = (app) => {
 
   // parsers
   app.use(bodyParser.json());
-  app.use(bodyParser.urlencoded({extended: true}));
+  app.use(bodyParser.urlencoded({ extended: true }));
   app.use(methodOverride());
   app.use(cookieParser());
 
@@ -76,10 +74,9 @@ module.exports = (app) => {
     saveUninitialized: true,
     store: new MongoStore({
       url: process.env.MONGODB_URI || process.env.MONGODB,
-      auto_reconnect: true
-    })
-  })
-  );
+      auto_reconnect: true,
+    }),
+  }));
 
   // webapp security defaults
   app.use(lusca({
@@ -88,9 +85,8 @@ module.exports = (app) => {
     xframe: 'SAMEORIGIN',
     p3p: false,
     hsts: false,
-    xssProtection: true
-  })
-  );
+    xssProtection: true,
+  }));
 
   // init passport authentication
   app.use(passport.initialize());
@@ -120,7 +116,7 @@ module.exports = (app) => {
   });
 
   // static assets
-  app.use(express.static(assetPath, {maxAge: 86400000}));
+  app.use(express.static(assetPath, { maxAge: 86400000 }));
   app.use(favicon(path.join(assetPath, 'favicons', 'favicon.ico')));
   app.use(assets('', assetPath));
 
@@ -141,9 +137,8 @@ module.exports = (app) => {
     res.status(err.status || 500);
     return res.render('error', {
       message: err.message,
-      error: getErrorStack(err, app.get('env'))
-    }
-    );
+      error: getErrorStack(err, app.get('env')),
+    });
   });
 
   // error logger

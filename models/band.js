@@ -7,37 +7,37 @@ const bandSchema = new mongoose.Schema({
     type: String,
     required: true,
     index: true,
-    unique: true
+    unique: true,
   },
   submitted_by: {
     type: String,
-    required: true
+    required: true,
   },
   children: [{
     type: Schema.ObjectId,
-    ref: 'Vote'
-  }
+    ref: 'Vote',
+  },
   ],
   users_who_voted_for: {
-    type: Array
+    type: Array,
   },
   vote_count: {
     type: Number,
     default: 0,
-    index: true
+    index: true,
   },
   created_at: {
     type: Date,
-    default: Date.now
+    default: Date.now,
   },
   updated_at: {
     type: Date,
-    default: Date.now
-  }
+    default: Date.now,
+  },
 }, { strict: true });
 
 // hook to keep vote_count up to date
-bandSchema.pre('save', function(next) {
+bandSchema.pre('save', function (next) {
   this.vote_count = this.children.length;
   return next();
 });

@@ -1,10 +1,10 @@
-import React from "react";
-import EventEmitter from "wolfy87-eventemitter";
+import React from 'react';
+import EventEmitter from 'wolfy87-eventemitter';
 let emitter = new EventEmitter();
 
-let components = {};
+const components = {};
 
-let EventEmitterMixin = {
+const EventEmitterMixin = {
   addListener(rootComponentName, eventName, listenerFunction) {
     components[rootComponentName] = new EventEmitter();
     return components[rootComponentName].on(eventName, listenerFunction);
@@ -17,7 +17,7 @@ let EventEmitterMixin = {
   emit(rootComponentName, eventToFire, payload) {
     emitter = components[rootComponentName];
     return emitter.emit(eventToFire, payload);
-  }
+  },
 };
 
 export default EventEmitterMixin;

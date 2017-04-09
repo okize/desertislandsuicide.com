@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
-let Notification = React.createClass({
-  displayName: "Notification",
+const Notification = React.createClass({
+  displayName: 'Notification',
   getInitialState() {
     return { visible: true };
   },
@@ -35,12 +35,12 @@ let Notification = React.createClass({
         this.dismiss();
         return this._timer = null;
       },
-      this.props.delay * 1000
+      this.props.delay * 1000,
     );
   },
   render() {
     if (this.state.visible) {
-      let className = `notification notification--${this.props.type}`;
+      const className = `notification notification--${this.props.type}`;
       return (
         <div
           className={className}
@@ -50,10 +50,9 @@ let Notification = React.createClass({
           {this.props.children}
         </div>
       );
-    } else {
-      return <span />;
     }
-  }
+    return <span />;
+  },
 });
 
 export default Notification;

@@ -22,21 +22,21 @@ router.get('/login', userController.login);
 router.get('/logout', userController.logout);
 
 // facebook OAuth
-router.get('/auth/facebook', passport.authenticate('facebook', {scope: ['email', 'user_location']}));
-router.get('/auth/facebook/callback', passport.authenticate('facebook', {failureRedirect: '/'}), (req, res) => {
-  res.redirect(req.session.returnTo || '/')
+router.get('/auth/facebook', passport.authenticate('facebook', { scope: ['email', 'user_location'] }));
+router.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/' }), (req, res) => {
+  res.redirect(req.session.returnTo || '/');
 });
 
 // google OAuth
-router.get('/auth/google', passport.authenticate('google', {scope: 'profile email'}));
-router.get('/auth/google/callback', passport.authenticate('google', {failureRedirect: '/'}), (req, res) => {
+router.get('/auth/google', passport.authenticate('google', { scope: 'profile email' }));
+router.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/' }), (req, res) => {
   res.redirect(req.session.returnTo || '/');
 });
 
 // twitter OAuth
 router.get('/auth/twitter', passport.authenticate('twitter'));
-router.get('/auth/twitter/callback', passport.authenticate('twitter',  {failureRedirect: '/'}), (req, res) => {
-  res.redirect(req.session.returnTo || '/')
+router.get('/auth/twitter/callback', passport.authenticate('twitter', { failureRedirect: '/' }), (req, res) => {
+  res.redirect(req.session.returnTo || '/');
 });
 
 api.get('/bands', bandsController.index);
@@ -48,5 +48,5 @@ api.delete('/bands/:id', bandsController.delete);
 
 module.exports = {
   unprotected: router,
-  protected: api
+  protected: api,
 };

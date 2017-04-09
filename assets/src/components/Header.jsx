@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
-let Header = React.createClass({
-  displayName: "Header",
+const Header = React.createClass({
+  displayName: 'Header',
   render() {
     return (
       <div>
@@ -14,14 +14,14 @@ let Header = React.createClass({
         </header>
         <div className="mission-statement">
           {
-            `\
+            '\
     If you were marooned on a desert island and you were limited to the music of only ONE band, what band would immediately cause you to choose suicide over survival?\
-    `
+    '
           }
         </div>
       </div>
     );
-  }
+  },
 });
 
 export default Header;

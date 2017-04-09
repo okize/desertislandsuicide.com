@@ -1,17 +1,17 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-let NewBandForm = React.createClass({
-  displayName: "NewBandForm",
+const NewBandForm = React.createClass({
+  displayName: 'NewBandForm',
   handleSubmit(e) {
     e.preventDefault();
-    let input = ReactDOM.findDOMNode(this.refs.bandName);
-    let name = input.value.trim();
+    const input = ReactDOM.findDOMNode(this.refs.bandName);
+    const name = input.value.trim();
     if (!name || name.length <= 2) {
       return;
     }
     this.props.onNewBandSubmit({ name });
-    input.value = "";
+    input.value = '';
     input.blur();
   },
   render() {
@@ -20,7 +20,7 @@ let NewBandForm = React.createClass({
         <input placeholder="Enter band name" ref="bandName" />
       </form>
     );
-  }
+  },
 });
 
 export default NewBandForm;

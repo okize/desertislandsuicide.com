@@ -4,7 +4,7 @@ const userSchema = new mongoose.Schema({
   email: {
     type: String,
     unique: true,
-    lowercase: true
+    lowercase: true,
   },
   password: String,
   facebook: String,
@@ -14,35 +14,35 @@ const userSchema = new mongoose.Schema({
   profile: {
     name: {
       type: String,
-      default: ''
+      default: '',
     },
     gender: {
       type: String,
-      default: ''
+      default: '',
     },
     location: {
       type: String,
-      default: ''
+      default: '',
     },
     website: {
       type: String,
-      default: ''
+      default: '',
     },
     picture: {
       type: String,
-      default: ''
-    }
+      default: '',
+    },
   },
   resetPasswordToken: String,
   resetPasswordExpires: Date,
   created_at: {
     type: Date,
-    default: Date.now
+    default: Date.now,
   },
   updated_at: {
     type: Date,
-    default: Date.now
-  }
+    default: Date.now,
+  },
 });
 
 module.exports = mongoose.model('User', userSchema);

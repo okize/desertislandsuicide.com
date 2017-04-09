@@ -1,14 +1,14 @@
-import React from "react";
-import LogInLink from "./LogInLink.jsx";
+import React from 'react';
+import LogInLink from './LogInLink.jsx';
 
-let LoggedIn = React.createClass({
-  displayName: "LoggedIn",
+const LoggedIn = React.createClass({
+  displayName: 'LoggedIn',
   render() {
     return (
       <div className="logged-in">
         {
-          `\
-    Signed in as `
+          '\
+    Signed in as '
         }
         {this.props.userName}
         <span className="separator">
@@ -19,22 +19,22 @@ let LoggedIn = React.createClass({
         </a>
       </div>
     );
-  }
+  },
 });
 
-let LoggedOut = React.createClass({
-  displayName: "LoggedOut",
+const LoggedOut = React.createClass({
+  displayName: 'LoggedOut',
   render() {
     return (
       <div className="logged-out">
         <LogInLink />
       </div>
     );
-  }
+  },
 });
 
-let StatusBar = React.createClass({
-  displayName: "StatusBar",
+const StatusBar = React.createClass({
+  displayName: 'StatusBar',
   render() {
     return (
       <div>
@@ -43,7 +43,7 @@ let StatusBar = React.createClass({
           : <LoggedOut />}
       </div>
     );
-  }
+  },
 });
 
 export default StatusBar;

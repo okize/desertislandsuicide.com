@@ -1,7 +1,7 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-let ReactLayeredComponentMixin = {
+const ReactLayeredComponentMixin = {
   componentWillUnmount() {
     this._unrenderLayer();
     return document.body.removeChild(this._target);
@@ -13,7 +13,7 @@ let ReactLayeredComponentMixin = {
     // Appending to the body is easier than managing the z-index of everything on the page.
     // It's also better for accessibility and makes stacking a snap (since components will stack
     // in mount order).
-    this._target = document.createElement("div");
+    this._target = document.createElement('div');
     document.body.appendChild(this._target);
     return this._renderLayer();
   },
@@ -28,7 +28,7 @@ let ReactLayeredComponentMixin = {
   },
   _getLayerNode() {
     return ReactDOM.findDOMNode(this._target);
-  }
+  },
 };
 
 export default ReactLayeredComponentMixin;
