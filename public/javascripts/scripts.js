@@ -1,666 +1,911 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-var App, EventEmitterMixin, FastClick, Header, Notification, React, ReactDOM, StatusBar, Voting, appEl;
+'use strict';
 
-React = require('react');
+var _react = require('react');
 
-ReactDOM = require('react-dom');
+var _react2 = _interopRequireDefault(_react);
 
-FastClick = require('fastclick');
+var _reactDom = require('react-dom');
 
-Notification = require('./components/Notification.cjsx');
+var _reactDom2 = _interopRequireDefault(_reactDom);
 
-StatusBar = require('./components/StatusBar.cjsx');
+var _fastclick = require('fastclick');
 
-Header = require('./components/Header.cjsx');
+var _fastclick2 = _interopRequireDefault(_fastclick);
 
-Voting = require('./components/Voting.cjsx');
+var _Notification = require('./components/Notification.jsx');
 
-EventEmitterMixin = require('./mixins/EventEmitterMixin');
+var _Notification2 = _interopRequireDefault(_Notification);
 
-appEl = document.getElementById('app');
+var _StatusBar = require('./components/StatusBar.jsx');
 
-window.React = React;
+var _StatusBar2 = _interopRequireDefault(_StatusBar);
 
-FastClick(appEl);
+var _Header = require('./components/Header.jsx');
 
-App = React.createClass({
+var _Header2 = _interopRequireDefault(_Header);
+
+var _Voting = require('./components/Voting.jsx');
+
+var _Voting2 = _interopRequireDefault(_Voting);
+
+var _EventEmitterMixin = require('./mixins/EventEmitterMixin.jsx');
+
+var _EventEmitterMixin2 = _interopRequireDefault(_EventEmitterMixin);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// mount point for app
+var appEl = document.getElementById('app');
+
+// needed for React Developer Tools
+window.React = _react2.default;
+
+// init FastClick
+(0, _fastclick2.default)(appEl);
+
+var App = _react2.default.createClass({
   displayName: 'App',
-  mixins: [EventEmitterMixin],
-  getDefaultProps: function() {
+  mixins: [_EventEmitterMixin2.default],
+  getDefaultProps: function getDefaultProps() {
     return {
       loggedIn: window.loggedIn,
       userName: window.userName || null
     };
   },
-  getInitialState: function() {
-    return {
-      notifications: []
-    };
+  getInitialState: function getInitialState() {
+    return { notifications: [] };
   },
-  displayNotification: function(obj) {
-    return this.setState({
-      notifications: [obj]
-    });
+  displayNotification: function displayNotification(obj) {
+    return this.setState({ notifications: [obj] });
   },
-  componentDidMount: function() {
+  componentDidMount: function componentDidMount() {
+    // listener for notifications
     return this.addListener('App', 'notification', this.displayNotification);
   },
-  render: function() {
-    var note, notifications;
+  render: function render() {
+    var notifications = void 0;
     if (this.state.notifications.length) {
-      note = this.state.notifications.pop();
-      notifications = React.createElement(Notification, {
-        "delay": note.delay,
-        "type": note.type
-      }, note.msg);
+      var note = this.state.notifications.pop();
+      notifications = _react2.default.createElement(
+        _Notification2.default,
+        { delay: note.delay, type: note.type },
+        note.msg
+      );
     } else {
-      notifications = React.createElement("span", null);
+      notifications = _react2.default.createElement('span', null);
     }
-    return React.createElement("div", {
-      "className": "main-wrapper",
-      "role": "main"
-    }, notifications, React.createElement(StatusBar, {
-      "loggedIn": this.props.loggedIn,
-      "userName": this.props.userName
-    }), React.createElement(Header, null), React.createElement(Voting, {
-      "loggedIn": this.props.loggedIn
-    }));
+    return _react2.default.createElement(
+      'div',
+      { className: 'main-wrapper', role: 'main' },
+      notifications,
+      _react2.default.createElement(_StatusBar2.default, {
+        loggedIn: this.props.loggedIn,
+        userName: this.props.userName
+      }),
+      _react2.default.createElement(_Header2.default, null),
+      _react2.default.createElement(_Voting2.default, { loggedIn: this.props.loggedIn })
+    );
   }
 });
 
 if (appEl != null) {
-  ReactDOM.render(React.createElement(App, null), appEl);
+  _reactDom2.default.render(_react2.default.createElement(App, null), appEl);
 }
 
+},{"./components/Header.jsx":4,"./components/Notification.jsx":9,"./components/StatusBar.jsx":10,"./components/Voting.jsx":12,"./mixins/EventEmitterMixin.jsx":14,"fastclick":17,"react":196,"react-dom":43}],2:[function(require,module,exports){
+'use strict';
 
-},{"./components/Header.cjsx":4,"./components/Notification.cjsx":9,"./components/StatusBar.cjsx":10,"./components/Voting.cjsx":12,"./mixins/EventEmitterMixin":14,"fastclick":17,"react":196,"react-dom":43}],2:[function(require,module,exports){
-var BandItem, React, VoteButton;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-React = require('react');
+var _react = require('react');
 
-VoteButton = require('./VoteButton');
+var _react2 = _interopRequireDefault(_react);
 
-BandItem = React.createClass({
+var _VoteButton = require('./VoteButton.jsx');
+
+var _VoteButton2 = _interopRequireDefault(_VoteButton);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var BandItem = _react2.default.createClass({
   displayName: 'BandItem',
-  render: function() {
-    return React.createElement("li", {
-      "className": "band-item"
-    }, React.createElement("div", {
-      "className": "band-vote-count"
-    }, this.props.votes), React.createElement("div", {
-      "className": "band-name"
-    }, this.props.data.name), React.createElement(VoteButton, {
-      "bandId": this.props.data._id,
-      "bandName": this.props.data.name,
-      "userHasVotedFor": this.props.data.userHasVotedFor,
-      "loggedIn": this.props.loggedIn
-    }));
+  render: function render() {
+    return _react2.default.createElement(
+      'li',
+      { className: 'band-item' },
+      _react2.default.createElement(
+        'div',
+        { className: 'band-vote-count' },
+        this.props.votes
+      ),
+      _react2.default.createElement(
+        'div',
+        { className: 'band-name' },
+        this.props.data.name
+      ),
+      _react2.default.createElement(_VoteButton2.default, {
+        bandId: this.props.data._id,
+        bandName: this.props.data.name,
+        userHasVotedFor: this.props.data.userHasVotedFor,
+        loggedIn: this.props.loggedIn
+      })
+    );
   }
 });
 
-module.exports = BandItem;
+exports.default = BandItem;
 
+},{"./VoteButton.jsx":11,"react":196}],3:[function(require,module,exports){
+'use strict';
 
-},{"./VoteButton":11,"react":196}],3:[function(require,module,exports){
-var BandItem, BandList, React;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-React = require('react');
+var _react = require('react');
 
-BandItem = require('./BandItem');
+var _react2 = _interopRequireDefault(_react);
 
-BandList = React.createClass({
+var _BandItem = require('./BandItem.jsx');
+
+var _BandItem2 = _interopRequireDefault(_BandItem);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var BandList = _react2.default.createClass({
   displayName: 'BandList',
-  render: function() {
+  render: function render() {
+    var _this = this;
+
     if (this.props.data.length <= 0) {
-      return React.createElement("h1", null, "No bands have been nominated yet!");
-    } else {
-      return React.createElement("ul", {
-        "className": "band-list"
-      }, this.props.data.map((function(_this) {
-        return function(band) {
-          return React.createElement(BandItem, {
-            "key": band._id,
-            "data": band,
-            "votes": band.vote_count,
-            "loggedIn": _this.props.loggedIn
-          });
-        };
-      })(this)));
+      return _react2.default.createElement(
+        'h1',
+        null,
+        'No bands have been nominated yet!'
+      );
     }
+    return _react2.default.createElement(
+      'ul',
+      { className: 'band-list' },
+      this.props.data.map(function (band) {
+        return _react2.default.createElement(_BandItem2.default, {
+          key: band._id,
+          data: band,
+          votes: band.vote_count,
+          loggedIn: _this.props.loggedIn
+        });
+      })
+    );
   }
 });
 
-module.exports = BandList;
+exports.default = BandList;
 
+},{"./BandItem.jsx":2,"react":196}],4:[function(require,module,exports){
+'use strict';
 
-},{"./BandItem":2,"react":196}],4:[function(require,module,exports){
-var Header, React;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-React = require('react');
+var _react = require('react');
 
-Header = React.createClass({
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Header = _react2.default.createClass({
   displayName: 'Header',
-  render: function() {
-    return React.createElement("div", null, React.createElement("div", {
-      "className": "sunshine",
-      "role": "presentation"
-    }), React.createElement("header", {
-      "className": "banner",
-      "role": "banner"
-    }, React.createElement("h1", {
-      "className": "accessible-hide"
-    }, "Desert Island Suicide"), React.createElement("img", {
-      "className": "logo",
-      "src": "../images/dis-logo.svg"
-    })), React.createElement("div", {
-      "className": "mission-statement"
-    }, "If you were marooned on a desert island and you were limited to the music of only ONE band, what band would immediately cause you to choose suicide over survival?"));
+  render: function render() {
+    return _react2.default.createElement(
+      'div',
+      null,
+      _react2.default.createElement('div', { className: 'sunshine', role: 'presentation' }),
+      _react2.default.createElement(
+        'header',
+        { className: 'banner', role: 'banner' },
+        _react2.default.createElement(
+          'h1',
+          { className: 'accessible-hide' },
+          'Desert Island Suicide'
+        ),
+        _react2.default.createElement('img', { className: 'logo', src: '../images/dis-logo.svg' })
+      ),
+      _react2.default.createElement(
+        'div',
+        { className: 'mission-statement' },
+        '\
+    If you were marooned on a desert island and you were limited to the music of only ONE band, what band would immediately cause you to choose suicide over survival?\
+    '
+      )
+    );
   }
 });
 
-module.exports = Header;
-
+exports.default = Header;
 
 },{"react":196}],5:[function(require,module,exports){
-var LogInButtons, React;
+'use strict';
 
-React = require('react');
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-LogInButtons = React.createClass({
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var LogInButtons = _react2.default.createClass({
   displayName: 'LogInButtons',
-  render: function() {
-    return React.createElement("nav", {
-      "className": "login-nav"
-    }, React.createElement("a", {
-      "href": "/auth/facebook",
-      "className": "login-button login-facebook flag"
-    }, React.createElement("img", {
-      "src": "../images/icon-facebook.svg",
-      "className": "flag-image"
-    }), React.createElement("span", {
-      "className": "flag-body"
-    }, "Sign in with ", React.createElement("strong", null, "Facebook"))), React.createElement("a", {
-      "href": "/auth/twitter",
-      "className": "login-button login-twitter flag"
-    }, React.createElement("img", {
-      "src": "../images/icon-twitter.svg",
-      "className": "flag-image"
-    }), React.createElement("span", {
-      "className": "flag-body"
-    }, "Sign in with ", React.createElement("strong", null, "Twitter"))), React.createElement("a", {
-      "href": "/auth/google",
-      "className": "login-button login-google flag"
-    }, React.createElement("img", {
-      "src": "../images/icon-google.svg",
-      "className": "flag-image"
-    }), React.createElement("span", {
-      "className": "flag-body"
-    }, "Sign in with ", React.createElement("strong", null, "Google"))));
+  render: function render() {
+    return _react2.default.createElement(
+      'nav',
+      { className: 'login-nav' },
+      _react2.default.createElement(
+        'a',
+        { href: '/auth/facebook', className: 'login-button login-facebook flag' },
+        _react2.default.createElement('img', { src: '../images/icon-facebook.svg', className: 'flag-image' }),
+        _react2.default.createElement(
+          'span',
+          { className: 'flag-body' },
+          'Sign in with ',
+          _react2.default.createElement(
+            'strong',
+            null,
+            'Facebook'
+          )
+        )
+      ),
+      _react2.default.createElement(
+        'a',
+        { href: '/auth/twitter', className: 'login-button login-twitter flag' },
+        _react2.default.createElement('img', { src: '../images/icon-twitter.svg', className: 'flag-image' }),
+        _react2.default.createElement(
+          'span',
+          { className: 'flag-body' },
+          'Sign in with ',
+          _react2.default.createElement(
+            'strong',
+            null,
+            'Twitter'
+          )
+        )
+      ),
+      _react2.default.createElement(
+        'a',
+        { href: '/auth/google', className: 'login-button login-google flag' },
+        _react2.default.createElement('img', { src: '../images/icon-google.svg', className: 'flag-image' }),
+        _react2.default.createElement(
+          'span',
+          { className: 'flag-body' },
+          'Sign in with ',
+          _react2.default.createElement(
+            'strong',
+            null,
+            'Google'
+          )
+        )
+      )
+    );
   }
 });
 
-module.exports = LogInButtons;
-
+exports.default = LogInButtons;
 
 },{"react":196}],6:[function(require,module,exports){
-var EventEmitterMixin, LogInButtons, LogInLink, Modal, React, ReactLayeredComponentMixin;
+'use strict';
 
-React = require('react');
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-Modal = require('./Modal');
+var _react = require('react');
 
-LogInButtons = require('./LogInButtons');
+var _react2 = _interopRequireDefault(_react);
 
-ReactLayeredComponentMixin = require('../mixins/ReactLayeredComponentMixin');
+var _Modal = require('./Modal.jsx');
 
-EventEmitterMixin = require('../mixins/EventEmitterMixin');
+var _Modal2 = _interopRequireDefault(_Modal);
 
-LogInLink = React.createClass({
+var _LogInButtons = require('./LogInButtons.jsx');
+
+var _LogInButtons2 = _interopRequireDefault(_LogInButtons);
+
+var _ReactLayeredComponentMixin = require('../mixins/ReactLayeredComponentMixin.jsx');
+
+var _ReactLayeredComponentMixin2 = _interopRequireDefault(_ReactLayeredComponentMixin);
+
+var _EventEmitterMixin = require('../mixins/EventEmitterMixin.jsx');
+
+var _EventEmitterMixin2 = _interopRequireDefault(_EventEmitterMixin);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var LogInLink = _react2.default.createClass({
   displayName: 'LogInLink',
-  mixins: [ReactLayeredComponentMixin, EventEmitterMixin],
-  componentDidMount: function() {
+  mixins: [_ReactLayeredComponentMixin2.default, _EventEmitterMixin2.default],
+  componentDidMount: function componentDidMount() {
+    // listener for displaying modal
     return this.addListener('LogInLink', 'show-modal', this.handleClick);
   },
-  handleClick: function() {
-    return this.setState({
-      modalShown: !this.state.modalShown
-    });
+  handleClick: function handleClick() {
+    return this.setState({ modalShown: !this.state.modalShown });
   },
-  getInitialState: function() {
-    return {
-      modalShown: false
-    };
+  getInitialState: function getInitialState() {
+    return { modalShown: false };
   },
-  renderLayer: function() {
+  renderLayer: function renderLayer() {
     if (!this.state.modalShown) {
-      return React.createElement("span", {
-        "className": "login-buttons-target"
-      });
-    } else {
-      return React.createElement(Modal, {
-        "onRequestClose": this.handleClick
-      }, React.createElement(LogInButtons, null));
+      return _react2.default.createElement('span', { className: 'login-buttons-target' });
     }
+    return _react2.default.createElement(
+      _Modal2.default,
+      { onRequestClose: this.handleClick },
+      _react2.default.createElement(_LogInButtons2.default, null)
+    );
   },
-  render: function() {
-    return React.createElement("button", {
-      "className": "button-link",
-      "onClick": this.handleClick
-    }, "Sign in to vote!");
+  render: function render() {
+    return _react2.default.createElement(
+      'button',
+      { className: 'button-link', onClick: this.handleClick },
+      'Sign in to vote!'
+    );
   }
 });
 
-module.exports = LogInLink;
+exports.default = LogInLink;
 
+},{"../mixins/EventEmitterMixin.jsx":14,"../mixins/ReactLayeredComponentMixin.jsx":15,"./LogInButtons.jsx":5,"./Modal.jsx":7,"react":196}],7:[function(require,module,exports){
+'use strict';
 
-},{"../mixins/EventEmitterMixin":14,"../mixins/ReactLayeredComponentMixin":15,"./LogInButtons":5,"./Modal":7,"react":196}],7:[function(require,module,exports){
-var Modal, React, key;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-React = require('react');
+var _react = require('react');
 
-key = require('keymaster');
+var _react2 = _interopRequireDefault(_react);
 
-Modal = React.createClass({
+var _keymaster = require('keymaster');
+
+var _keymaster2 = _interopRequireDefault(_keymaster);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Modal = _react2.default.createClass({
   displayName: 'Modal',
-  componentDidMount: function() {
-    return key('esc', (function(_this) {
-      return function() {
-        return _this.props.onRequestClose();
-      };
-    })(this));
+  componentDidMount: function componentDidMount() {
+    var _this = this;
+
+    // add keybinding to 'esc' to close modal when shown
+    return (0, _keymaster2.default)('esc', function () {
+      return _this.props.onRequestClose();
+    });
   },
-  componentWillUnmount: function() {
-    return key.unbind('esc');
+  componentWillUnmount: function componentWillUnmount() {
+    return _keymaster2.default.unbind('esc');
   },
-  killClick: function(e) {
+  killClick: function killClick(e) {
+    // prevent clicks on modal content from closing modal
     return e.stopPropagation();
   },
-  handleOverlayClick: function() {
+  handleOverlayClick: function handleOverlayClick() {
+    // click on the modal overlay requests that modal be closed
     return this.props.onRequestClose();
   },
-  render: function() {
-    return React.createElement("div", {
-      "className": "modal-overlay",
-      "onClick": this.handleOverlayClick,
-      "onTouchStart": this.handleOverlayClick
-    }, React.createElement("div", {
-      "className": "modal-content",
-      "onClick": this.killClick,
-      "onTouchStart": this.killClick
-    }, this.props.children));
+  render: function render() {
+    return _react2.default.createElement(
+      'div',
+      {
+        className: 'modal-overlay',
+        onClick: this.handleOverlayClick,
+        onTouchStart: this.handleOverlayClick
+      },
+      _react2.default.createElement(
+        'div',
+        {
+          className: 'modal-content',
+          onClick: this.killClick,
+          onTouchStart: this.killClick
+        },
+        this.props.children
+      )
+    );
   }
 });
 
-module.exports = Modal;
-
+exports.default = Modal;
 
 },{"keymaster":41,"react":196}],8:[function(require,module,exports){
-var NewBandForm, React, ReactDOM;
+'use strict';
 
-React = require('react');
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-ReactDOM = require('react-dom');
+var _react = require('react');
 
-NewBandForm = React.createClass({
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = require('react-dom');
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var NewBandForm = _react2.default.createClass({
   displayName: 'NewBandForm',
-  handleSubmit: function(e) {
-    var input, name;
+  handleSubmit: function handleSubmit(e) {
     e.preventDefault();
-    input = ReactDOM.findDOMNode(this.refs.bandName);
-    name = input.value.trim();
-    if (!(name && name.length > 2)) {
+    var input = _reactDom2.default.findDOMNode(this.refs.bandName);
+    var name = input.value.trim();
+    if (!name || name.length <= 2) {
       return;
     }
-    this.props.onNewBandSubmit({
-      name: name
-    });
+    this.props.onNewBandSubmit({ name: name });
     input.value = '';
     input.blur();
   },
-  render: function() {
-    return React.createElement("form", {
-      "className": "add-new-band",
-      "onSubmit": this.handleSubmit
-    }, React.createElement("input", {
-      "placeholder": "Enter band name",
-      "ref": "bandName"
-    }));
+  render: function render() {
+    return _react2.default.createElement(
+      'form',
+      { className: 'add-new-band', onSubmit: this.handleSubmit },
+      _react2.default.createElement('input', { placeholder: 'Enter band name', ref: 'bandName' })
+    );
   }
 });
 
-module.exports = NewBandForm;
-
+exports.default = NewBandForm;
 
 },{"react":196,"react-dom":43}],9:[function(require,module,exports){
-var Notification, React;
+'use strict';
 
-React = require('react');
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-Notification = React.createClass({
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Notification = _react2.default.createClass({
   displayName: 'Notification',
-  getInitialState: function() {
-    return {
-      visible: true
-    };
+  getInitialState: function getInitialState() {
+    return { visible: true };
   },
-  show: function() {
-    return this.setState({
-      visible: true
-    });
+  show: function show() {
+    return this.setState({ visible: true });
   },
-  dismiss: function() {
-    return this.setState({
-      visible: false
-    });
+  dismiss: function dismiss() {
+    return this.setState({ visible: false });
   },
-  componentWillReceiveProps: function(nextProps) {
+  componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
+    // reset the timer if children are changed
     if (nextProps.children !== this.props.children) {
       this.setTimer();
       return this.show();
     }
   },
-  componentDidMount: function() {
+  componentDidMount: function componentDidMount() {
     return this.setTimer();
   },
-  setTimer: function() {
+  setTimer: function setTimer() {
+    var _this = this;
+
+    // clear any existing timer
     if (this._timer !== null) {
       clearTimeout(this._timer);
     } else {
       null;
     }
-    return this._timer = setTimeout((function() {
-      this.dismiss();
-      return this._timer = null;
-    }).bind(this), this.props.delay * 1000);
+
+    // dismiss after delay
+    return this._timer = setTimeout(function () {
+      _this.dismiss();
+      return _this._timer = null;
+    }, this.props.delay * 1000);
   },
-  render: function() {
-    var className;
+  render: function render() {
     if (this.state.visible) {
-      className = "notification notification--" + this.props.type;
-      return React.createElement("div", {
-        "className": className,
-        "onClick": this.dismiss,
-        "onTouchStart": this.dismiss
-      }, this.props.children);
-    } else {
-      return React.createElement("span", null);
+      var className = 'notification notification--' + this.props.type;
+      return _react2.default.createElement(
+        'div',
+        {
+          className: className,
+          onClick: this.dismiss,
+          onTouchStart: this.dismiss
+        },
+        this.props.children
+      );
     }
+    return _react2.default.createElement('span', null);
   }
 });
 
-module.exports = Notification;
-
+exports.default = Notification;
 
 },{"react":196}],10:[function(require,module,exports){
-var LogInLink, LoggedIn, LoggedOut, React, StatusBar;
+'use strict';
 
-React = require('react');
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-LogInLink = require('./LogInLink');
+var _react = require('react');
 
-LoggedIn = React.createClass({
+var _react2 = _interopRequireDefault(_react);
+
+var _LogInLink = require('./LogInLink.jsx');
+
+var _LogInLink2 = _interopRequireDefault(_LogInLink);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var LoggedIn = _react2.default.createClass({
   displayName: 'LoggedIn',
-  render: function() {
-    return React.createElement("div", {
-      "className": "logged-in"
-    }, "Signed in as ", this.props.userName, React.createElement("span", {
-      "className": "separator"
-    }, "|"), React.createElement("a", {
-      "href": "/logout"
-    }, "Sign out"));
+  render: function render() {
+    return _react2.default.createElement(
+      'div',
+      { className: 'logged-in' },
+      '\
+    Signed in as ',
+      this.props.userName,
+      _react2.default.createElement(
+        'span',
+        { className: 'separator' },
+        '|'
+      ),
+      _react2.default.createElement(
+        'a',
+        { href: '/logout' },
+        'Sign out'
+      )
+    );
   }
 });
 
-LoggedOut = React.createClass({
+var LoggedOut = _react2.default.createClass({
   displayName: 'LoggedOut',
-  render: function() {
-    return React.createElement("div", {
-      "className": "logged-out"
-    }, React.createElement(LogInLink, null));
+  render: function render() {
+    return _react2.default.createElement(
+      'div',
+      { className: 'logged-out' },
+      _react2.default.createElement(_LogInLink2.default, null)
+    );
   }
 });
 
-StatusBar = React.createClass({
+var StatusBar = _react2.default.createClass({
   displayName: 'StatusBar',
-  render: function() {
-    return React.createElement("div", null, (this.props.loggedIn ? React.createElement(LoggedIn, {
-      "userName": this.props.userName
-    }) : React.createElement(LoggedOut, null)));
+  render: function render() {
+    return _react2.default.createElement(
+      'div',
+      null,
+      this.props.loggedIn ? _react2.default.createElement(LoggedIn, { userName: this.props.userName }) : _react2.default.createElement(LoggedOut, null)
+    );
   }
 });
 
-module.exports = StatusBar;
+exports.default = StatusBar;
 
+},{"./LogInLink.jsx":6,"react":196}],11:[function(require,module,exports){
+'use strict';
 
-},{"./LogInLink":6,"react":196}],11:[function(require,module,exports){
-var EventEmitterMixin, LogInLink, React, VoteButton;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-React = require('react');
+var _react = require('react');
 
-LogInLink = require('./LogInLink');
+var _react2 = _interopRequireDefault(_react);
 
-EventEmitterMixin = require('../mixins/EventEmitterMixin');
+var _LogInLink = require('./LogInLink.jsx');
 
-VoteButton = React.createClass({
+var _LogInLink2 = _interopRequireDefault(_LogInLink);
+
+var _EventEmitterMixin = require('../mixins/EventEmitterMixin');
+
+var _EventEmitterMixin2 = _interopRequireDefault(_EventEmitterMixin);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var VoteButton = _react2.default.createClass({
   displayName: 'VoteButton',
-  mixins: [EventEmitterMixin],
-  voteForBand: function(e) {
+  mixins: [_EventEmitterMixin2.default],
+  voteForBand: function voteForBand(e) {
     e.preventDefault();
+
+    // pass bandId along with event
     return this.emit('Voting', 'vote-for-band', {
       id: this.props.bandId,
       name: this.props.bandName
     });
   },
-  showLoginButtons: function(e) {
+  showLoginButtons: function showLoginButtons(e) {
     e.preventDefault();
+
+    // display login buttons when unauthenticated user votes
     return this.emit('LogInLink', 'show-modal');
   },
-  render: function() {
+  render: function render() {
     if (this.props.loggedIn) {
       if (!this.props.userHasVotedFor) {
-        return React.createElement("div", {
-          "className": "band-vote-for float-right"
-        }, React.createElement("button", {
-          "onClick": this.voteForBand
-        }, "Vote!"));
-      } else {
-        return React.createElement("div", null);
+        return _react2.default.createElement(
+          'div',
+          { className: 'band-vote-for float-right' },
+          _react2.default.createElement(
+            'button',
+            { onClick: this.voteForBand },
+            'Vote!'
+          )
+        );
       }
-    } else {
-      return React.createElement("div", {
-        "className": "sign-in-to-vote float-right"
-      }, React.createElement("button", {
-        "onClick": this.showLoginButtons
-      }, "Vote!"));
+      return _react2.default.createElement('div', null);
     }
+    return _react2.default.createElement(
+      'div',
+      { className: 'sign-in-to-vote float-right' },
+      _react2.default.createElement(
+        'button',
+        { onClick: this.showLoginButtons },
+        'Vote!'
+      )
+    );
   }
 });
 
-module.exports = VoteButton;
+exports.default = VoteButton;
 
+},{"../mixins/EventEmitterMixin":14,"./LogInLink.jsx":6,"react":196}],12:[function(require,module,exports){
+'use strict';
 
-},{"../mixins/EventEmitterMixin":14,"./LogInLink":6,"react":196}],12:[function(require,module,exports){
-var BandList, EventEmitterMixin, NewBandForm, React, Voting, help, request;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-React = require('react');
+var _react = require('react');
 
-request = require('superagent');
+var _react2 = _interopRequireDefault(_react);
 
-help = require('../helpers');
+var _superagent = require('superagent');
 
-BandList = require('./BandList');
+var _superagent2 = _interopRequireDefault(_superagent);
 
-NewBandForm = require('./NewBandForm');
+var _helpers = require('../helpers');
 
-EventEmitterMixin = require('../mixins/EventEmitterMixin');
+var _BandList = require('./BandList.jsx');
 
-Voting = React.createClass({
+var _BandList2 = _interopRequireDefault(_BandList);
+
+var _NewBandForm = require('./NewBandForm.jsx');
+
+var _NewBandForm2 = _interopRequireDefault(_NewBandForm);
+
+var _EventEmitterMixin = require('../mixins/EventEmitterMixin.jsx');
+
+var _EventEmitterMixin2 = _interopRequireDefault(_EventEmitterMixin);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Voting = _react2.default.createClass({
   displayName: 'Voting',
   refreshRate: 500000,
-  mixins: [EventEmitterMixin],
-  getApiUrl: function() {
+  mixins: [_EventEmitterMixin2.default],
+  getApiUrl: function getApiUrl() {
     if (this.props.loggedIn) {
       return '/api/bands';
-    } else {
-      return /bandsNoAuth/;
     }
+    return (/bandsNoAuth/
+    );
   },
-  getBandList: function() {
-    var url;
-    url = (this.getApiUrl()) + "?cacheBuster=" + (Date.now().toString());
-    return request.get(url).end((function(_this) {
-      return function(error, res) {
-        if (error != null) {
-          console.error(error);
-          return _this.emit('App', 'notification', {
-            msg: 'Error getting band list, please refresh page.',
-            type: 'error',
-            delay: 5
-          });
-        }
-        if (_this.isMounted()) {
-          return _this.setState({
-            data: res.body
-          });
-        }
-      };
-    })(this));
-  },
-  getInitialState: function() {
-    return {
-      data: []
-    };
-  },
-  handleBandVote: function(band) {
-    return request.post("/api/bands/" + band.id + "/vote").set('X-CSRF-Token', help.getCsrfToken()).set('Accept', 'application/json').end((function(_this) {
-      return function(error, res) {
-        if ((error != null) || res.status !== 200) {
-          console.error(error);
-          return _this.emit('App', 'notification', {
-            msg: 'Sorry, your vote was not recorded, please try again.',
-            type: 'error',
-            delay: 5
-          });
-        }
-        _this.emit('App', 'notification', {
-          msg: "You voted for " + band.name + "!",
-          type: 'info',
-          delay: 3
+  getBandList: function getBandList() {
+    var _this = this;
+
+    var url = this.getApiUrl() + '?cacheBuster=' + Date.now().toString();
+
+    // get a list of bands and vote counts
+    return _superagent2.default.get(url).end(function (error, res) {
+      if (error != null) {
+        console.error(error);
+        return _this.emit('App', 'notification', {
+          msg: 'Error getting band list, please refresh page.',
+          type: 'error',
+          delay: 5
         });
-        return _this.getBandList();
-      };
-    })(this));
-  },
-  handleNewBandSubmit: function(formData) {
-    return request.post('/api/bands/').send(formData).set('X-CSRF-Token', help.getCsrfToken()).set('Accept', 'application/json').end((function(_this) {
-      return function(error, res) {
-        if ((error != null) || res.status !== 200) {
-          console.error(error);
-          return _this.emit('App', 'notification', {
-            msg: 'Sorry, your band was not saved, try again.',
-            type: 'error',
-            delay: 5
-          });
-        }
-        _this.emit('App', 'notification', {
-          msg: formData.name + " has been nominated!",
-          type: 'info',
-          delay: 3
+      }
+
+      // update state with bands
+      if (_this.isMounted()) {
+        return _this.setState({
+          data: res.body
         });
-        return _this.getBandList();
-      };
-    })(this));
+      }
+    });
   },
-  componentDidMount: function() {
+  getInitialState: function getInitialState() {
+    return { data: [] };
+  },
+  handleBandVote: function handleBandVote(band) {
+    var _this2 = this;
+
+    // post new vote to the server
+    return _superagent2.default.post('/api/bands/' + band.id + '/vote').set('X-CSRF-Token', (0, _helpers.getCsrfToken)()).set('Accept', 'application/json').end(function (error, res) {
+      if (error != null || res.status !== 200) {
+        console.error(error);
+        return _this2.emit('App', 'notification', {
+          msg: 'Sorry, your vote was not recorded, please try again.',
+          type: 'error',
+          delay: 5
+        });
+      }
+
+      _this2.emit('App', 'notification', {
+        msg: 'You voted for ' + band.name + '!',
+        type: 'info',
+        delay: 3
+      });
+
+      // update band list
+      return _this2.getBandList();
+    });
+  },
+  handleNewBandSubmit: function handleNewBandSubmit(formData) {
+    var _this3 = this;
+
+    // post new band to the server
+    return _superagent2.default.post('/api/bands/').send(formData).set('X-CSRF-Token', (0, _helpers.getCsrfToken)()).set('Accept', 'application/json').end(function (error, res) {
+      if (error != null || res.status !== 200) {
+        console.error(error);
+        return _this3.emit('App', 'notification', {
+          msg: 'Sorry, your band was not saved, try again.',
+          type: 'error',
+          delay: 5
+        });
+      }
+
+      _this3.emit('App', 'notification', {
+        msg: formData.name + ' has been nominated!',
+        type: 'info',
+        delay: 3
+      });
+
+      // update band list
+      return _this3.getBandList();
+    });
+  },
+  componentDidMount: function componentDidMount() {
+    // load band list
     this.getBandList();
+
+    // periodically update list with new entries
     setInterval(this.getBandList, this.refreshRate);
+
+    // listener for band votes
     return this.addListener('Voting', 'vote-for-band', this.handleBandVote);
   },
-  render: function() {
-    return React.createElement("div", {
-      "className": "voting-wrapper"
-    }, (this.props.loggedIn ? React.createElement(NewBandForm, {
-      "onNewBandSubmit": this.handleNewBandSubmit,
-      "else": true,
-      "null": true
-    }) : void 0), React.createElement(BandList, {
-      "data": this.state.data,
-      "loggedIn": this.props.loggedIn
-    }));
+  render: function render() {
+    return _react2.default.createElement(
+      'div',
+      { className: 'voting-wrapper' },
+      this.props.loggedIn ? _react2.default.createElement(_NewBandForm2.default, {
+        onNewBandSubmit: this.handleNewBandSubmit,
+        'else': true,
+        'null': true
+      }) : undefined,
+      _react2.default.createElement(_BandList2.default, { data: this.state.data, loggedIn: this.props.loggedIn })
+    );
   }
 });
 
-module.exports = Voting;
+exports.default = Voting;
 
+},{"../helpers":13,"../mixins/EventEmitterMixin.jsx":14,"./BandList.jsx":3,"./NewBandForm.jsx":8,"react":196,"superagent":197}],13:[function(require,module,exports){
+'use strict';
 
-},{"../helpers":13,"../mixins/EventEmitterMixin":14,"./BandList":3,"./NewBandForm":8,"react":196,"superagent":197}],13:[function(require,module,exports){
-exports.getCsrfToken = function() {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getCsrfToken = getCsrfToken;
+// various helper functions
+function getCsrfToken() {
   return document.getElementById('csrf-token').getAttribute('content');
-};
-
+}
 
 },{}],14:[function(require,module,exports){
-var EventEmitter, EventEmitterMixin, React, components, emitter;
+'use strict';
 
-React = require('react');
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-EventEmitter = require('wolfy87-eventemitter');
+var _react = require('react');
 
-emitter = new EventEmitter();
+var _react2 = _interopRequireDefault(_react);
 
-components = {};
+var _wolfy87Eventemitter = require('wolfy87-eventemitter');
 
-EventEmitterMixin = {
-  addListener: function(rootComponentName, eventName, listenerFunction) {
-    components[rootComponentName] = new EventEmitter();
+var _wolfy87Eventemitter2 = _interopRequireDefault(_wolfy87Eventemitter);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var emitter = new _wolfy87Eventemitter2.default();
+
+var components = {};
+
+var EventEmitterMixin = {
+  addListener: function addListener(rootComponentName, eventName, listenerFunction) {
+    components[rootComponentName] = new _wolfy87Eventemitter2.default();
     return components[rootComponentName].on(eventName, listenerFunction);
   },
-  removeListener: function(name) {
+  removeListener: function removeListener(name) {
     emitter = components[rootComponentName];
     return emitter.off(name);
   },
-  emit: function(rootComponentName, eventToFire, payload) {
+
+  // payload should be an array
+  emit: function emit(rootComponentName, eventToFire, payload) {
     emitter = components[rootComponentName];
     return emitter.emit(eventToFire, payload);
   }
 };
 
-module.exports = EventEmitterMixin;
-
+exports.default = EventEmitterMixin;
 
 },{"react":196,"wolfy87-eventemitter":204}],15:[function(require,module,exports){
-var React, ReactDOM, ReactLayeredComponentMixin;
+'use strict';
 
-React = require('react');
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-ReactDOM = require('react-dom');
+var _react = require('react');
 
-ReactLayeredComponentMixin = {
-  componentWillUnmount: function() {
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = require('react-dom');
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var ReactLayeredComponentMixin = {
+  componentWillUnmount: function componentWillUnmount() {
     this._unrenderLayer();
     return document.body.removeChild(this._target);
   },
-  componentDidUpdate: function() {
+  componentDidUpdate: function componentDidUpdate() {
     return this._renderLayer();
   },
-  componentDidMount: function() {
+  componentDidMount: function componentDidMount() {
+    // Appending to the body is easier than managing the z-index of everything on the page.
+    // It's also better for accessibility and makes stacking a snap (since components will stack
+    // in mount order).
     this._target = document.createElement('div');
     document.body.appendChild(this._target);
     return this._renderLayer();
   },
-  _renderLayer: function() {
-    return ReactDOM.render(this.renderLayer(), this._target);
+  _renderLayer: function _renderLayer() {
+    // By calling this method in componentDidMount() and componentDidUpdate(), you're effectively
+    // creating a "wormhole" that funnels React's hierarchical updates through to a DOM node on an
+    // entirely different part of the page.
+    return _reactDom2.default.render(this.renderLayer(), this._target);
   },
-  _unrenderLayer: function() {
-    return React.unmountComponentAtNode(this._target);
+  _unrenderLayer: function _unrenderLayer() {
+    return _react2.default.unmountComponentAtNode(this._target);
   },
-  _getLayerNode: function() {
-    return ReactDOM.findDOMNode(this._target);
+  _getLayerNode: function _getLayerNode() {
+    return _reactDom2.default.findDOMNode(this._target);
   }
 };
 
-module.exports = ReactLayeredComponentMixin;
-
+exports.default = ReactLayeredComponentMixin;
 
 },{"react":196,"react-dom":43}],16:[function(require,module,exports){
 
@@ -23408,11 +23653,17 @@ RequestBase.prototype.timeout = function timeout(options){
     return this;
   }
 
-  if ('undefined' !== typeof options.deadline) {
-    this._timeout = options.deadline;
-  }
-  if ('undefined' !== typeof options.response) {
-    this._responseTimeout = options.response;
+  for(var option in options) {
+    switch(option) {
+      case 'deadline':
+        this._timeout = options.deadline;
+        break;
+      case 'response':
+        this._responseTimeout = options.response;
+        break;
+      default:
+        console.warn("Unknown timeout option", option);
+    }
   }
   return this;
 };
@@ -23842,13 +24093,14 @@ RequestBase.prototype.sortQuery = function(sort) {
  * @api private
  */
 
-RequestBase.prototype._timeoutError = function(reason, timeout){
+RequestBase.prototype._timeoutError = function(reason, timeout, errno){
   if (this._aborted) {
     return;
   }
   var err = new Error(reason + timeout + 'ms exceeded');
   err.timeout = timeout;
   err.code = 'ECONNABORTED';
+  err.errno = errno;
   this.timedout = true;
   this.abort();
   this.callback(err);
@@ -23860,13 +24112,13 @@ RequestBase.prototype._setTimeouts = function() {
   // deadline
   if (this._timeout && !this._timer) {
     this._timer = setTimeout(function(){
-      self._timeoutError('Timeout of ', self._timeout);
+      self._timeoutError('Timeout of ', self._timeout, 'ETIME');
     }, this._timeout);
   }
   // response timeout
   if (this._responseTimeout && !this._responseTimeoutTimer) {
     this._responseTimeoutTimer = setTimeout(function(){
-      self._timeoutError('Response timeout of ', self._responseTimeout);
+      self._timeoutError('Response timeout of ', self._responseTimeout, 'ETIMEDOUT');
     }, this._responseTimeout);
   }
 }
