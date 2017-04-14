@@ -1,4 +1,4 @@
-// allow only .coffee and .js files to prevent
+// allow only .js files to prevent
 // accidental inclusion of other file types
 
 let path = require('path');
