@@ -5,7 +5,7 @@ let gulp = require('gulp');
 let nodemon = require('gulp-nodemon');
 let sync = require('browser-sync');
 
-let config = require('../config');
+let config = require('../../gulpconfig');
 
 gulp.task('start', () =>
   nodemon({

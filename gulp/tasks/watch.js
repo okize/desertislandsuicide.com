@@ -4,7 +4,7 @@ let path = require('path');
 let gulp = require('gulp');
 let watch = require('gulp-watch');
 
-let config = require('../config');
+let config = require('../../gulpconfig');
 let log = require('../helpers/log');
 
 // files to watch

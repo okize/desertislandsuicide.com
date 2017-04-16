@@ -6,7 +6,7 @@ require('dotenv').load();
 // ensure that env variables required for the application to run have been set
 require('dotenv-assert')();
 
-let config = require('./gulp/config');
+let config = require('./gulpconfig');
 let tasks = require('./gulp/helpers/getTaskList');
 
 // load all the gulp task modules

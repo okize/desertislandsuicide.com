@@ -2,7 +2,7 @@
 
 let gulp = require('gulp');
 let clean = require('del');
-let config = require('../config');
+let config = require('../../gulpconfig');
 let log = require('../helpers/log');
 
 gulp.task('clean', function() {

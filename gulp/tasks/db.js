@@ -10,7 +10,7 @@ let moment = require('moment');
 let mkdirp = require('mkdirp');
 let mongodbUri = require('mongodb-uri');
 
-let config = require('../config');
+let config = require('../../gulpconfig');
 let log = require('../helpers/log');
 
 let getDateStamp = () => moment().format('YYYYMMDD-hhmmss');

@@ -9,7 +9,7 @@ let source = require('vinyl-source-stream');
 let buff = require('vinyl-buffer');
 let sourcemaps = require('gulp-sourcemaps');
 
-let config = require('../config');
+let config = require('../../gulpconfig');
 let log = require('../helpers/log');
 let handleErrors = require('../helpers/handleErrors');
 

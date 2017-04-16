@@ -4,7 +4,7 @@ let path = require('path');
 let gulp = require('gulp');
 
 let log = require('../helpers/log');
-let config = require('../config');
+let config = require('../../gulpconfig');
 
 gulp.task('images', function() {
   log.info('Copying images to public folder');

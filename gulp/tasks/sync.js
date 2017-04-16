@@ -4,7 +4,7 @@
 let gulp = require('gulp');
 let sync = require('browser-sync');
 
-let config = require('../config');
+let config = require('../../gulpconfig');
 let log = require('../helpers/log');
 
 gulp.task('sync', function() {

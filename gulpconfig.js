@@ -1,7 +1,7 @@
 // configuration file for Gulp tasks
 
 let path = require('path');
-let rootPath = path.resolve(__dirname, '..');
+let rootPath = path.resolve(__dirname);
 let assetsPath = path.resolve(rootPath, 'public');
 
 module.exports = {
