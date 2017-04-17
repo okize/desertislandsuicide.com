@@ -7,7 +7,7 @@ require('dotenv').load();
 require('dotenv-assert')();
 
 let config = require('./gulpconfig');
-let tasks = require('./gulp/helpers/getTaskList');
+let tasks = require('./tasks/helpers/getTaskList');
 
 // load all the gulp task modules
 tasks().forEach(task => require(`${config.gulp.src}${task}`));
