@@ -8,9 +8,9 @@ let sourcemaps = require('gulp-sourcemaps');
 let autoprefixer = require('gulp-autoprefixer');
 let rename = require('gulp-rename');
 
-let config = require('../../gulpconfig');
-let log = require('../helpers/log');
-let handleErrors = require('../helpers/handleErrors');
+let config = require('../gulpconfig');
+let log = require('./helpers/log');
+let handleErrors = require('./helpers/handleErrors');
 
 let sassOptions = {
   outputStyle: 'nested', //compressed

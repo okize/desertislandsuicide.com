@@ -52,14 +52,14 @@ module.exports = {
   nodemon: {
     ignore: [
       'node_modules/',
-      'gulp/',
+      'tasks/',
       'assets/',
       'public/'
     ]
   },
 
   gulp: {
-    src: `${rootPath}/gulp/tasks/`,
+    src: `${rootPath}/tasks/`,
     publicAssets: assetsPath
   }
 };

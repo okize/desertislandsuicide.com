@@ -4,8 +4,8 @@ let path = require('path');
 let gulp = require('gulp');
 let bg = require('gulp-bg');
 
-let config = require('../../gulpconfig');
-let log = require('../helpers/log');
+let config = require('../gulpconfig');
+let log = require('./helpers/log');
 
 gulp.task('debug', function() {
   log.info('Starting debugging session');

@@ -4,8 +4,8 @@ let path = require('path');
 let gulp = require('gulp');
 let watch = require('gulp-watch');
 
-let config = require('../../gulpconfig');
-let log = require('../helpers/log');
+let config = require('../gulpconfig');
+let log = require('./helpers/log');
 
 // files to watch
 let js = path.join(config.js.src, '**/**/*.{js,jsx}');

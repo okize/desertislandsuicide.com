@@ -9,9 +9,9 @@ let source = require('vinyl-source-stream');
 let buff = require('vinyl-buffer');
 let sourcemaps = require('gulp-sourcemaps');
 
-let config = require('../../gulpconfig');
-let log = require('../helpers/log');
-let handleErrors = require('../helpers/handleErrors');
+let config = require('../gulpconfig');
+let log = require('./helpers/log');
+let handleErrors = require('./helpers/handleErrors');
 
 let browserifyOptions = {
   entries: [path.join(config.js.src, config.js.entry)],

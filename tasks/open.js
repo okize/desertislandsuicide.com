@@ -4,8 +4,8 @@ let path = require('path');
 let gulp = require('gulp');
 let open = require('gulp-open');
 
-let log = require('../helpers/log');
-let config = require('../../gulpconfig');
+let log = require('./helpers/log');
+let config = require('../gulpconfig');
 
 gulp.task('open', function() {
   let port;

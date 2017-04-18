@@ -2,8 +2,8 @@
 
 let gulp = require('gulp');
 let clean = require('del');
-let config = require('../../gulpconfig');
-let log = require('../helpers/log');
+let config = require('../gulpconfig');
+let log = require('./helpers/log');
 
 gulp.task('clean', function() {
   log.info('Deleting public assets');

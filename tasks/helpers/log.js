@@ -1,5 +1,4 @@
 // small wrapper for gulp logging
-
 let gutil = require('gulp-util');
 let _ = require('lodash');
 let prettyHrtime = require('pretty-hrtime');

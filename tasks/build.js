@@ -3,7 +3,7 @@
 let gulp = require('gulp');
 let run = require('run-sequence');
 
-let log = require('../helpers/log');
+let log = require('./helpers/log');
 
 gulp.task('build', function(done) {
   log.info('Building static assets');

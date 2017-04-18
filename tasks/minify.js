@@ -8,8 +8,8 @@ let uglify = require('gulp-uglify');
 let size = require('gulp-size');
 let sourcemaps = require('gulp-sourcemaps');
 
-let config = require('../../gulpconfig');
-let log = require('../helpers/log');
+let config = require('../gulpconfig');
+let log = require('./helpers/log');
 
 gulp.task('minify', [
   'minify:js',
