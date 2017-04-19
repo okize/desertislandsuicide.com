@@ -13,22 +13,22 @@ let log = require('./helpers/log');
 let handleErrors = require('./helpers/handleErrors');
 
 let sassOptions = {
-  outputStyle: 'nested', //compressed
+  outputStyle: 'nested', // compressed
   sourceComments: 'map',
   errLogToConsole: false,
   onError(err) { return log.error(err); },
-  onSuccess() { return log.info('Sass compiled without errors'); }
+  onSuccess() { return log.info('Sass compiled without errors'); },
 };
 
 let autoprefixerOptions = {
   browsers: ['last 2 versions', 'Firefox >= 26', 'Explorer > 8'],
-  cascade: false
+  cascade: false,
 };
 
 let sourcemapOptions =
-  {debug: true};
+  { debug: true };
 
-gulp.task('css', function() {
+gulp.task('css', () => {
   log.info('Compiling sass into css');
   return gulp
     .src(path.join(config.css.src, config.css.entry))

@@ -16,23 +16,23 @@ let handleErrors = require('./helpers/handleErrors');
 let browserifyOptions = {
   entries: [path.join(config.js.src, config.js.entry)],
   extensions: ['.js', '.jsx'],
-  debug: true
+  debug: true,
 };
 
 let sourcemapOptions = {
   loadMaps: true,
-  debug: true
+  debug: true,
 };
 
-gulp.task('js', function() {
+gulp.task('js', () => {
   log.info('Bundling ES6 and modules into javascript');
   return browserify(browserifyOptions)
   .on('error', handleErrors)
   .transform('babelify', { presets: [
     'es2015',
-    'react'
-  ]
-})
+    'react',
+  ],
+  })
   .bundle()
   .pipe(source(config.js.name))
   .pipe(buff())

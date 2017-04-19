@@ -5,7 +5,7 @@ let run = require('run-sequence');
 
 let log = require('./helpers/log');
 
-gulp.task('build', function(done) {
+gulp.task('build', (done) => {
   log.info('Building static assets');
   return run(
     'clean',
@@ -14,6 +14,6 @@ gulp.task('build', function(done) {
     'favicons',
     'images',
     'minify',
-    done
+    done,
   );
 });

@@ -14,9 +14,9 @@ gulp.task('start', () =>
     env: process.env,
     stdout: false,
     nodeArgs: [`--debug=${process.env.DEBUG_PORT || 5858}`],
-    ignore: config.nodemon.ignore
-  }).on('readable', function() {
+    ignore: config.nodemon.ignore,
+  }).on('readable', function () {
     this.stdout.pipe(process.stdout);
     return this.stderr.pipe(process.stderr);
-  }).on('restart', files => sync.reload({stream:false}))
+  }).on('restart', files => sync.reload({ stream: false })),
 );

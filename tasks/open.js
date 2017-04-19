@@ -7,7 +7,7 @@ let open = require('gulp-open');
 let log = require('./helpers/log');
 let config = require('../gulpconfig');
 
-gulp.task('open', function() {
+gulp.task('open', () => {
   let port;
   log.info('Opening application in browser');
   if (process.env.NODE_ENV === 'development') {
@@ -16,7 +16,7 @@ gulp.task('open', function() {
     port = process.env.PORT;
   }
   let options =
-    {url: `http://localhost:${port}`};
+    { url: `http://localhost:${port}` };
 
   return gulp
     .src(config.main)

@@ -7,10 +7,11 @@ let sync = require('browser-sync');
 let config = require('../gulpconfig');
 let log = require('./helpers/log');
 
-gulp.task('sync', function() {
+gulp.task('sync', () => {
   log.info('Starting browser-sync proxy');
   return sync({
     proxy: `localhost:${process.env.PORT}`,
     port: process.env.BROWSER_SYNC_PORT,
     open: false,
-    files: [`${config.gulp.publicAssets}/**/*.{js,css}`, './views/**/*.pug']});});
+    files: [`${config.gulp.publicAssets}/**/*.{js,css}`, './views/**/*.pug'] });
+});

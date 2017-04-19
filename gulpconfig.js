@@ -8,7 +8,7 @@ module.exports = {
 
   app: {
     root: rootPath,
-    main: `${rootPath}/app.js`
+    main: `${rootPath}/app.js`,
   },
 
   js: {
@@ -16,7 +16,7 @@ module.exports = {
     src: `${rootPath}/assets/src/`,
     dest: `${assetsPath}/javascripts/`,
     maps: './',
-    name: 'scripts.js'
+    name: 'scripts.js',
   },
 
   css: {
@@ -24,28 +24,28 @@ module.exports = {
     src: `${rootPath}/assets/sass/`,
     dest: `${assetsPath}/stylesheets/`,
     maps: './',
-    name: 'styles.css'
+    name: 'styles.css',
   },
 
   images: {
     src: `${rootPath}/assets/images/`,
-    dest: `${assetsPath}/images/`
+    dest: `${assetsPath}/images/`,
   },
 
   favicons: {
     src: `${rootPath}/assets/favicons/`,
-    dest: `${assetsPath}/favicons/`
+    dest: `${assetsPath}/favicons/`,
   },
 
   db: {
     dev: process.env.MONGODB_DEV,
     test: process.env.MONGODB_TEST,
-    prod: process.env.MONGODB_URI
+    prod: process.env.MONGODB_URI,
   },
 
   dbDirs: {
     dumps: path.resolve(rootPath, 'dumps'),
-    seeds: path.resolve(rootPath, 'seeds')
+    seeds: path.resolve(rootPath, 'seeds'),
   },
 
   // DO NOT restart node app when files change in these directories
@@ -54,12 +54,12 @@ module.exports = {
       'node_modules/',
       'tasks/',
       'assets/',
-      'public/'
-    ]
+      'public/',
+    ],
   },
 
   gulp: {
     src: `${rootPath}/tasks/`,
-    publicAssets: assetsPath
-  }
+    publicAssets: assetsPath,
+  },
 };

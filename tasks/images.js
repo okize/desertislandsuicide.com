@@ -6,7 +6,7 @@ let gulp = require('gulp');
 let log = require('./helpers/log');
 let config = require('../gulpconfig');
 
-gulp.task('images', function() {
+gulp.task('images', () => {
   log.info('Copying images to public folder');
 
   return gulp
@@ -14,7 +14,7 @@ gulp.task('images', function() {
     .pipe(gulp.dest(config.images.dest));
 });
 
-gulp.task('favicons', function() {
+gulp.task('favicons', () => {
   log.info('Copying favicons public folder');
 
   return gulp

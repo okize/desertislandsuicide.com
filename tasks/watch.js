@@ -12,7 +12,7 @@ let js = path.join(config.js.src, '**/**/*.{js,jsx}');
 let css = path.join(config.css.src, '**/**/*.{sass,scss}');
 let images = path.join(config.images.src, '**/**/*.svg');
 
-gulp.task('watch', ['sync'], function() {
+gulp.task('watch', ['sync'], () => {
   log.info('Watching assets for changes...');
 
   watch(js, (files, cb) => gulp.start('js', cb));
@@ -20,5 +20,4 @@ gulp.task('watch', ['sync'], function() {
   watch(css, (files, cb) => gulp.start('css', cb));
 
   watch(images, (files, cb) => gulp.start('images', cb));
-
 });

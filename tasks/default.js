@@ -4,5 +4,5 @@ let gulp = require('gulp');
 
 gulp.task('default', [
   'start',
-  'watch'
+  'watch',
 ]);

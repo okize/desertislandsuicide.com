@@ -17,7 +17,7 @@ let getDateStamp = () => moment().format('YYYYMMDD-hhmmss');
 
 let getArgValue = argv => _.findKey(argv, (v, k) => v === true);
 
-let getMongoStr = function(db, filepath, type, collectionName) {
+let getMongoStr = function (db, filepath, type, collectionName) {
   switch (type) {
     case 'reset':
       return `mongo ${db.database} --eval 'db.dropDatabase()'`;
@@ -48,23 +48,23 @@ mongodump --host ${db.hosts[0].host} --port ${db.hosts[0].port} \
 };
 
 // seed database
-gulp.task('db:seed', function() {
+gulp.task('db:seed', () => {
   let dir = config.dbDirs.seeds;
   let seeds = fs.readdirSync(dir);
   let envName = 'dev';
   let db = mongodbUri.parse(config.db[envName]);
   let filepath = '';
   let collectionName = '';
-  return _.each(seeds, function(seed) {
+  return _.each(seeds, (seed) => {
     filepath = `${dir}/${seed}`;
     collectionName = seed.replace('.json', '');
     return run(getMongoStr(db, filepath, 'import', collectionName))
-    .exec( () => log.info(`Seeded ${collectionName} model.`));
+    .exec(() => log.info(`Seeded ${collectionName} model.`));
   });
 });
 
 // pass collection name as flag arg
-gulp.task('db:seed:create', function() {
+gulp.task('db:seed:create', () => {
   // array of collection names based on model filenames
   let collections = _.map(fs.readdirSync('./models'), f => f.replace('.js', 's'));
   if (_.size(argv) !== 3) {
@@ -78,14 +78,14 @@ gulp.task('db:seed:create', function() {
   let filepath = `${dir}/${collectionName}.json`;
   let envName = 'dev';
   let db = mongodbUri.parse(config.db[envName]);
-  return mkdirp(dir, function(err) {
+  return mkdirp(dir, (err) => {
     if (err) { throw err; }
     return run(getMongoStr(db, filepath, 'export', collectionName)).exec();
   });
 });
 
 // pass db env as flag arg
-gulp.task('db:dump', function() {
+gulp.task('db:dump', () => {
   // array of environment names from config
   let envs = _.keys(config.db);
   if (_.size(argv) !== 3) {
@@ -98,45 +98,44 @@ gulp.task('db:dump', function() {
   let dir = path.join(config.dbDirs.dumps, envName);
   let filepath = `${dir}/${getDateStamp()}`;
   let db = mongodbUri.parse(config.db[envName]);
-  return mkdirp(dir, function(err) {
+  return mkdirp(dir, (err) => {
     if (err) { throw err; }
     if (db.username != null) {
       return run(getMongoStr(db, filepath)).exec();
-    } else {
-      return run(getMongoStr(db, filepath, 'short')).exec();
     }
+    return run(getMongoStr(db, filepath, 'short')).exec();
   });
 });
 
 // import production db into local db
-gulp.task('db:dump:import', function() {
+gulp.task('db:dump:import', () => {
   let envName = 'prod';
   let dir = path.join(config.dbDirs.dumps, envName);
   let filepath = `${dir}/${getDateStamp()}`;
   let db = mongodbUri.parse(config.db[envName]);
-  return mkdirp(dir, function(err) {
+  return mkdirp(dir, (err) => {
     if (err) { throw err; }
     return run(getMongoStr(db, filepath))
-    .exec( () =>
+    .exec(() =>
       run(getMongoStr(db, filepath, 'restore'))
-      .exec( () => log.info('Database downloaded from production and imported to dev'))
+      .exec(() => log.info('Database downloaded from production and imported to dev')),
     );
   });
 });
 
 // import local db into production db (folder as argument flag)
 // may have to delete collections manually on mongolab
-gulp.task('db:dump:import:prod', function() {
-  let db = mongodbUri.parse(config.db['prod']);
+gulp.task('db:dump:import:prod', () => {
+  let db = mongodbUri.parse(config.db.prod);
   let dumpFile = `./dumps/dev/${getArgValue(argv)}/${db.database}`;
   let mongoCommand = `mongorestore -h ${db.hosts[0].host}:${db.hosts[0].port} -d ${db.database} -u ${db.username} -p ${db.password} ${dumpFile}`;
-  return run(mongoCommand).exec( () => log.info('Production database updated'));
+  return run(mongoCommand).exec(() => log.info('Production database updated'));
 });
 
 // drops the local database
-gulp.task('db:reset', function() {
+gulp.task('db:reset', () => {
   let envName = 'dev';
   let db = mongodbUri.parse(config.db[envName]);
   return run(getMongoStr(db, null, 'reset'))
-  .exec( () => log.info(`Dropped database ${db.database}`));
+  .exec(() => log.info(`Dropped database ${db.database}`));
 });
