@@ -10,6 +10,7 @@
     // 'max-len': ['error', { 'code': 140 }],
     'object-shorthand': 'off',
     'react/jsx-boolean-value': ['error', 'always'],
+    'import/no-extraneous-dependencies': [2, { devDependencies: true }], // so /tasks doesn't complain about gulp deps being dev deps
 
     // temporary
     'consistent-return': 'off',

@@ -34,7 +34,8 @@ gulp.task('minify:js', () => {
       if (file.extname !== '.map') {
         file.basename += '.min';
       }
-    })).pipe(sourcemaps.write(config.js.maps))
+    }))
+    .pipe(sourcemaps.write(config.js.maps))
     .pipe(gulp.dest(config.js.dest))
     .on('error', e => log.error(e));
 });
@@ -52,7 +53,8 @@ gulp.task('minify:css', () => {
       if (file.extname !== '.map') {
         file.basename += '.min';
       }
-    })).pipe(sourcemaps.write(config.css.maps))
+    }))
+    .pipe(sourcemaps.write(config.css.maps))
     .pipe(gulp.dest(config.css.dest))
     .on('error', e => log.error(e));
 });
