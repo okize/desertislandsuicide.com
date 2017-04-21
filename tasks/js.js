@@ -29,7 +29,7 @@ gulp.task('js', () => {
   return browserify(browserifyOptions)
   .on('error', handleErrors)
   .transform('babelify', { presets: [
-    'es2015',
+    'latest',
     'react',
   ],
   })
