@@ -115,11 +115,11 @@ gulp.task('db:dump:import', () => {
   let db = mongodbUri.parse(config.db[envName]);
   return mkdirp(dir, (err) => {
     if (err) { throw err; }
-    return run(getMongoStr(db, filepath))
-    .exec(() =>
-      run(getMongoStr(db, filepath, 'restore'))
-      .exec(() => log.info('Database downloaded from production and imported to dev')),
-    );
+    return run(getMongoStr(db, filepath)).exec(() => {
+      run(getMongoStr(db, filepath, 'restore')).exec(() => {
+        log.info('Database downloaded from production and imported to dev');
+      });
+    });
   });
 });
 
