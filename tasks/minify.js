@@ -37,7 +37,7 @@ gulp.task('minify:js', () => {
     }))
     .pipe(sourcemaps.write(config.js.maps))
     .pipe(gulp.dest(config.js.dest))
-    .on('error', e => log.error(e));
+    .on('error', err => log.error(err));
 });
 
 gulp.task('minify:css', () => {
@@ -56,5 +56,5 @@ gulp.task('minify:css', () => {
     }))
     .pipe(sourcemaps.write(config.css.maps))
     .pipe(gulp.dest(config.css.dest))
-    .on('error', e => log.error(e));
+    .on('error', err => log.error(err));
 });

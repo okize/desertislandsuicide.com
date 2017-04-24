@@ -28,10 +28,9 @@ gulp.task('js', () => {
   log.info('Bundling ES6 and modules into javascript');
   return browserify(browserifyOptions)
   .on('error', handleErrors)
-  .transform('babelify', { presets: [
-    'latest',
-    'react',
-  ],
+  .transform('babelify', {
+    presets: ['latest', 'react'],
+    plugins: ['babel-plugin-transform-class-properties'],
   })
   .bundle()
   .pipe(source(config.js.name))
