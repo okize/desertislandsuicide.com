@@ -1,8 +1,7 @@
 import React from 'react';
 import BandItem from './BandItem.jsx';
 
-const BandList = React.createClass({
-  displayName: 'BandList',
+class BandList extends React.Component {
   render() {
     if (this.props.data.length <= 0) {
       return (
@@ -23,7 +22,7 @@ const BandList = React.createClass({
             ))}
       </ul>
     );
-  },
-});
+  }
+}
 
 export default BandList;

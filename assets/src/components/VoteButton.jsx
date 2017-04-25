@@ -5,8 +5,8 @@ import EventEmitterMixin from '../mixins/EventEmitterMixin';
 const VoteButton = React.createClass({
   displayName: 'VoteButton',
   mixins: [EventEmitterMixin],
-  voteForBand(e) {
-    e.preventDefault();
+  voteForBand(event) {
+    event.preventDefault();
 
     // pass bandId along with event
     return this.emit('Voting', 'vote-for-band', {
@@ -14,8 +14,8 @@ const VoteButton = React.createClass({
       name: this.props.bandName,
     });
   },
-  showLoginButtons(e) {
-    e.preventDefault();
+  showLoginButtons(event) {
+    event.preventDefault();
 
     // display login buttons when unauthenticated user votes
     return this.emit('LogInLink', 'show-modal');

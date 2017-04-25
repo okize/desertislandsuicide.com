@@ -7,11 +7,11 @@ import Header from './components/Header.jsx';
 import Voting from './components/Voting.jsx';
 import EventEmitterMixin from './mixins/EventEmitterMixin.jsx';
 
-// mount point for app
-const appEl = document.getElementById('app');
-
 // needed for React Developer Tools
 window.React = React;
+
+// mount point for app
+const appEl = document.getElementById('app');
 
 // init FastClick
 FastClick(appEl);
@@ -61,6 +61,4 @@ const App = React.createClass({
   },
 });
 
-if (appEl != null) {
-  ReactDOM.render(<App />, appEl);
-}
+ReactDOM.render(<App />, appEl);

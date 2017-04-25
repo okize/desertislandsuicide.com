@@ -1,27 +1,25 @@
 import React from 'react';
 
-const Notification = React.createClass({
-  displayName: 'Notification',
-  getInitialState() {
-    return { visible: true };
-  },
-  show() {
-    return this.setState({ visible: true });
-  },
-  dismiss() {
-    return this.setState({ visible: false });
-  },
+class Notification extends React.Component {
+  state = { visible: true };
+
+  show = () => this.setState({ visible: true });
+
+  dismiss = () => this.setState({ visible: false });
+
   componentWillReceiveProps(nextProps) {
     // reset the timer if children are changed
     if (nextProps.children !== this.props.children) {
       this.setTimer();
       return this.show();
     }
-  },
+  }
+
   componentDidMount() {
     return this.setTimer();
-  },
-  setTimer() {
+  }
+
+  setTimer = () => {
     // clear any existing timer
     if (this._timer !== null) {
       clearTimeout(this._timer);
@@ -37,7 +35,8 @@ const Notification = React.createClass({
       },
       this.props.delay * 1000,
     );
-  },
+  };
+
   render() {
     if (this.state.visible) {
       const className = `notification notification--${this.props.type}`;
@@ -52,7 +51,7 @@ const Notification = React.createClass({
       );
     }
     return <span />;
-  },
-});
+  }
+}
 
 export default Notification;

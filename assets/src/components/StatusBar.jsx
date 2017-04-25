@@ -1,8 +1,7 @@
 import React from 'react';
 import LogInLink from './LogInLink.jsx';
 
-const LoggedIn = React.createClass({
-  displayName: 'LoggedIn',
+class LoggedIn extends React.Component {
   render() {
     return (
       <div className="logged-in">
@@ -19,22 +18,20 @@ const LoggedIn = React.createClass({
         </a>
       </div>
     );
-  },
-});
+  }
+}
 
-const LoggedOut = React.createClass({
-  displayName: 'LoggedOut',
+class LoggedOut extends React.Component {
   render() {
     return (
       <div className="logged-out">
         <LogInLink />
       </div>
     );
-  },
-});
+  }
+}
 
-const StatusBar = React.createClass({
-  displayName: 'StatusBar',
+class StatusBar extends React.Component {
   render() {
     return (
       <div>
@@ -43,7 +40,7 @@ const StatusBar = React.createClass({
           : <LoggedOut />}
       </div>
     );
-  },
-});
+  }
+}
 
 export default StatusBar;

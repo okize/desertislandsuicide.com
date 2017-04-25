@@ -1,7 +1,6 @@
 import React from 'react';
 
-const LogInButtons = React.createClass({
-  displayName: 'LogInButtons',
+class LogInButtons extends React.Component {
   render() {
     return (
       <nav className="login-nav">
@@ -34,7 +33,7 @@ const LogInButtons = React.createClass({
         </a>
       </nav>
     );
-  },
-});
+  }
+}
 
 export default LogInButtons;
