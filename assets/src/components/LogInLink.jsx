@@ -1,22 +1,63 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import Modal from './Modal.jsx';
 import LogInButtons from './LogInButtons.jsx';
-import ReactLayeredComponentMixin from '../mixins/ReactLayeredComponentMixin.jsx';
 import EventEmitterMixin from '../mixins/EventEmitterMixin.jsx';
 
 const LogInLink = React.createClass({
   displayName: 'LogInLink',
-  mixins: [ReactLayeredComponentMixin, EventEmitterMixin],
-  componentDidMount() {
-    // listener for displaying modal
-    return this.addListener('LogInLink', 'show-modal', this.handleClick);
+
+  mixins: [EventEmitterMixin],
+
+  componentWillUnmount() {
+    this._unrenderLayer();
+    return document.body.removeChild(this._target);
   },
+
+  componentDidUpdate() {
+    return this._renderLayer();
+  },
+
+  componentDidMount() {
+    // Appending to the body is easier than managing the z-index of everything on the page.
+    // It's also better for accessibility and makes stacking a snap (since components will stack
+    // in mount order).
+    this._target = document.createElement('div');
+    document.body.appendChild(this._target);
+    this._renderLayer();
+
+    // listener for displaying modal
+    this.addListener('LogInLink', 'show-modal', this.handleClick);
+  },
+
+  _renderLayer() {
+    // By calling this method in componentDidMount() and componentDidUpdate(), you're effectively
+    // creating a "wormhole" that funnels React's hierarchical updates through to a DOM node on an
+    // entirely different part of the page.
+    return ReactDOM.render(this.renderLayer(), this._target);
+  },
+
+  _unrenderLayer() {
+    return React.unmountComponentAtNode(this._target);
+  },
+
+  _getLayerNode() {
+    return ReactDOM.findDOMNode(this._target);
+  },
+
+  // componentDidMount() {
+  //   // listener for displaying modal
+  //   return this.addListener('LogInLink', 'show-modal', this.handleClick);
+  // },
+
   handleClick() {
     return this.setState({ modalShown: !this.state.modalShown });
   },
+
   getInitialState() {
     return { modalShown: false };
   },
+
   renderLayer() {
     if (!this.state.modalShown) {
       return <span className="login-buttons-target" />;
@@ -27,6 +68,7 @@ const LogInLink = React.createClass({
       </Modal>
     );
   },
+
   render() {
     return (
       <button className="button-link" onClick={this.handleClick}>
