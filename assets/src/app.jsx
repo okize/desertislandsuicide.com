@@ -2,7 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import FastClick from 'fastclick';
 import Notification from './components/Notification.jsx';
-import StatusBar from './components/StatusBar.jsx';
+import LogIn from './components/LogIn.jsx';
+import LogOut from './components/LogOut.jsx';
+// import StatusBar from './components/StatusBar.jsx';
 import Header from './components/Header.jsx';
 import Voting from './components/Voting.jsx';
 import EventEmitterMixin from './mixins/EventEmitterMixin.jsx';
@@ -50,10 +52,7 @@ const App = React.createClass({
     return (
       <div className="main-wrapper" role="main">
         {notifications}
-        <StatusBar
-          loggedIn={this.props.loggedIn}
-          userName={this.props.userName}
-        />
+        {this.props.loggedIn ? <LogOut userName={this.props.userName} /> : <LogIn />}
         <Header />
         <Voting loggedIn={this.props.loggedIn} />
       </div>

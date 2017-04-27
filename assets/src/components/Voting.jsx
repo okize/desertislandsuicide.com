@@ -106,13 +106,7 @@ const Voting = React.createClass({
   render() {
     return (
       <div className="voting-wrapper">
-        {this.props.loggedIn
-          ? <NewBandForm
-            onNewBandSubmit={this.handleNewBandSubmit}
-            else={true}
-            null={true}
-          />
-          : undefined}
+        {this.props.loggedIn && <NewBandForm onNewBandSubmit={this.handleNewBandSubmit} else={true} null={true} />}
         <BandList data={this.state.data} loggedIn={this.props.loggedIn} />
       </div>
     );

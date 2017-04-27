@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Modal from './Modal.jsx';
-import LogInButtons from './LogInButtons.jsx';
+import OauthButtons from './OauthButtons.jsx';
 import EventEmitterMixin from '../mixins/EventEmitterMixin.jsx';
 
 const LogInLink = React.createClass({
@@ -45,11 +45,6 @@ const LogInLink = React.createClass({
     return ReactDOM.findDOMNode(this._target);
   },
 
-  // componentDidMount() {
-  //   // listener for displaying modal
-  //   return this.addListener('LogInLink', 'show-modal', this.handleClick);
-  // },
-
   handleClick() {
     return this.setState({ modalShown: !this.state.modalShown });
   },
@@ -64,16 +59,16 @@ const LogInLink = React.createClass({
     }
     return (
       <Modal onRequestClose={this.handleClick}>
-        <LogInButtons />
+        <OauthButtons />
       </Modal>
     );
   },
 
   render() {
     return (
-      <button className="button-link" onClick={this.handleClick}>
-        Sign in to vote!
-      </button>
+      <div className="logged-out">
+        <button className="button-link" onClick={this.handleClick}>Sign in to vote!</button>
+      </div>
     );
   },
 });

@@ -1,5 +1,4 @@
 import React from 'react';
-import LogInLink from './LogInLink.jsx';
 import EventEmitterMixin from '../mixins/EventEmitterMixin';
 
 const VoteButton = React.createClass({
@@ -14,7 +13,7 @@ const VoteButton = React.createClass({
       name: this.props.bandName,
     });
   },
-  showLoginButtons(event) {
+  showOauthButtons(event) {
     event.preventDefault();
 
     // display login buttons when unauthenticated user votes
@@ -35,7 +34,7 @@ const VoteButton = React.createClass({
     }
     return (
       <div className="sign-in-to-vote float-right">
-        <button onClick={this.showLoginButtons}>
+        <button onClick={this.showOauthButtons}>
             Vote!
           </button>
       </div>

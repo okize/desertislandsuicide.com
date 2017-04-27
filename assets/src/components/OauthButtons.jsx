@@ -1,6 +1,6 @@
 import React from 'react';
 
-class LogInButtons extends React.Component {
+class OauthButtons extends React.Component {
   render() {
     return (
       <nav className="login-nav">
@@ -36,4 +36,4 @@ class LogInButtons extends React.Component {
   }
 }
 
-export default LogInButtons;
+export default OauthButtons;
