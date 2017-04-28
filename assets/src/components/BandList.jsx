@@ -1,7 +1,27 @@
 import React from 'react';
 import BandItem from './BandItem.jsx';
+import VoteButton from './VoteButton.jsx';
 
 class BandList extends React.Component {
+  renderBandItem(band) {
+    return (
+      <li className="band-item" key={band._id}>
+        <div className="band-vote-count">
+          {band.vote_count}
+        </div>
+        <div className="band-name">
+          {band.name}
+        </div>
+        <VoteButton
+          bandId={band._id}
+          bandName={band.name}
+          userHasVotedFor={band.userHasVotedFor}
+          loggedIn={this.props.loggedIn}
+        />
+      </li>
+    );
+  }
+
   render() {
     if (this.props.data.length <= 0) {
       return <h1>No bands have been nominated yet!</h1>;
@@ -9,7 +29,7 @@ class BandList extends React.Component {
 
     return (
       <ul className="band-list">
-        {this.props.data.map(band => <BandItem key={band._id} data={band} votes={band.vote_count} loggedIn={this.props.loggedIn} />)}
+        {this.props.data.map(band => this.renderBandItem(band))}
       </ul>
     );
   }
