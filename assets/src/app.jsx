@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import FastClick from 'fastclick';
+
+import eventBus from './components/eventBus.js';
 import Notification from './components/Notification.jsx';
 import LogIn from './components/LogIn.jsx';
 import LogOut from './components/LogOut.jsx';
-// import StatusBar from './components/StatusBar.jsx';
 import Header from './components/Header.jsx';
 import Voting from './components/Voting.jsx';
-import EventEmitterMixin from './mixins/EventEmitterMixin.jsx';
 
 // needed for React Developer Tools
 window.React = React;
@@ -20,7 +20,6 @@ FastClick(appEl);
 
 const App = React.createClass({
   displayName: 'App',
-  mixins: [EventEmitterMixin],
   getDefaultProps() {
     return {
       loggedIn: window.loggedIn,
@@ -30,12 +29,11 @@ const App = React.createClass({
   getInitialState() {
     return { notifications: [] };
   },
-  displayNotification(obj) {
-    return this.setState({ notifications: [obj] });
+  handleDisplayNotification(notification) {
+    return this.setState({ notifications: [notification] });
   },
   componentDidMount() {
-    // listener for notifications
-    return this.addListener('App', 'notification', this.displayNotification);
+    eventBus.addListener('display-notification', this.handleDisplayNotification);
   },
   render() {
     let notifications;

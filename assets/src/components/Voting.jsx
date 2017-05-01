@@ -1,14 +1,14 @@
 import React from 'react';
 import request from 'superagent';
+
 import { getCsrfToken } from '../helpers';
 import BandList from './BandList.jsx';
 import NewBandForm from './NewBandForm.jsx';
-import EventEmitterMixin from '../mixins/EventEmitterMixin.jsx';
+import eventBus from './eventBus.js';
 
 const Voting = React.createClass({
   displayName: 'Voting',
   refreshRate: 500000,
-  mixins: [EventEmitterMixin],
   getApiUrl() {
     if (this.props.loggedIn) {
       return '/api/bands';
@@ -22,7 +22,7 @@ const Voting = React.createClass({
     return request.get(url).end((error, res) => {
       if (error != null) {
         console.error(error);
-        return this.emit('App', 'notification', {
+        return eventBus.emit('display-notification', {
           msg: 'Error getting band list, please refresh page.',
           type: 'error',
           delay: 5,
@@ -40,7 +40,7 @@ const Voting = React.createClass({
   getInitialState() {
     return { data: [] };
   },
-  handleBandVote(band) {
+  handleVoteForBand(band) {
     // post new vote to the server
     return request
       .post(`/api/bands/${band.id}/vote`)
@@ -49,14 +49,14 @@ const Voting = React.createClass({
       .end((error, res) => {
         if (error != null || res.status !== 200) {
           console.error(error);
-          return this.emit('App', 'notification', {
+          return eventBus.emit('display-notification', {
             msg: 'Sorry, your vote was not recorded, please try again.',
             type: 'error',
             delay: 5,
           });
         }
 
-        this.emit('App', 'notification', {
+        eventBus.emit('display-notification', {
           msg: `You voted for ${band.name}!`,
           type: 'info',
           delay: 3,
@@ -76,14 +76,14 @@ const Voting = React.createClass({
       .end((error, res) => {
         if (error != null || res.status !== 200) {
           console.error(error);
-          return this.emit('App', 'notification', {
+          return eventBus.emit('display-notification', {
             msg: 'Sorry, your band was not saved, try again.',
             type: 'error',
             delay: 5,
           });
         }
 
-        this.emit('App', 'notification', {
+        eventBus.emit('display-notification', {
           msg: `${formData.name} has been nominated!`,
           type: 'info',
           delay: 3,
@@ -101,7 +101,7 @@ const Voting = React.createClass({
     setInterval(this.getBandList, this.refreshRate);
 
     // listener for band votes
-    return this.addListener('Voting', 'vote-for-band', this.handleBandVote);
+    eventBus.addListener('vote-for-band', this.handleVoteForBand);
   },
   render() {
     return (

@@ -1,5 +1,4 @@
 import React from 'react';
-import BandItem from './BandItem.jsx';
 import VoteButton from './VoteButton.jsx';
 
 class BandList extends React.Component {

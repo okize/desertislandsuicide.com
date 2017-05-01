@@ -2,12 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Modal from './Modal.jsx';
 import OauthButtons from './OauthButtons.jsx';
-import EventEmitterMixin from '../mixins/EventEmitterMixin.jsx';
+import eventBus from './eventBus.js';
 
 const LogInLink = React.createClass({
   displayName: 'LogInLink',
-
-  mixins: [EventEmitterMixin],
 
   componentWillUnmount() {
     this._unrenderLayer();
@@ -27,7 +25,7 @@ const LogInLink = React.createClass({
     this._renderLayer();
 
     // listener for displaying modal
-    this.addListener('LogInLink', 'show-modal', this.handleClick);
+    eventBus.addListener('show-modal', this.handleClick);
   },
 
   _renderLayer() {
