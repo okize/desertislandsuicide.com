@@ -18,23 +18,24 @@ const appEl = document.getElementById('app');
 // init FastClick
 FastClick(appEl);
 
-const App = React.createClass({
-  displayName: 'App',
-  getDefaultProps() {
-    return {
-      loggedIn: window.loggedIn,
-      userName: window.userName || null,
-    };
-  },
-  getInitialState() {
-    return { notifications: [] };
-  },
-  handleDisplayNotification(notification) {
+class App extends React.Component {
+  static displayName = 'App';
+
+  static defaultProps = {
+    loggedIn: window.loggedIn,
+    userName: window.userName || null,
+  };
+
+  state = { notifications: [] };
+
+  handleDisplayNotification = (notification) => {
     return this.setState({ notifications: [notification] });
-  },
+  };
+
   componentDidMount() {
     eventBus.addListener('display-notification', this.handleDisplayNotification);
-  },
+  }
+
   render() {
     let notifications;
     if (this.state.notifications.length) {
@@ -55,7 +56,7 @@ const App = React.createClass({
         <Voting loggedIn={this.props.loggedIn} />
       </div>
     );
-  },
-});
+  }
+}
 
 ReactDOM.render(<App />, appEl);

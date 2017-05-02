@@ -2,9 +2,10 @@ import React from 'react';
 
 import eventBus from './eventBus.js';
 
-const VoteButton = React.createClass({
-  displayName: 'VoteButton',
-  voteForBand(event) {
+class VoteButton extends React.Component {
+  static displayName = 'VoteButton';
+
+  voteForBand = (event) => {
     event.preventDefault();
 
     // pass bandId along with event
@@ -12,13 +13,15 @@ const VoteButton = React.createClass({
       id: this.props.bandId,
       name: this.props.bandName,
     });
-  },
-  showOauthButtons(event) {
+  };
+
+  showOauthButtons = (event) => {
     event.preventDefault();
 
     // display login buttons when unauthenticated user votes
     return eventBus.emit('show-modal');
-  },
+  };
+
   render() {
     if (this.props.loggedIn) {
       if (!this.props.userHasVotedFor) {
@@ -39,7 +42,7 @@ const VoteButton = React.createClass({
           </button>
       </div>
     );
-  },
-});
+  }
+}
 
 export default VoteButton;

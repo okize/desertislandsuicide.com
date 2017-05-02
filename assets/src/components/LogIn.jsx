@@ -4,17 +4,18 @@ import Modal from './Modal.jsx';
 import OauthButtons from './OauthButtons.jsx';
 import eventBus from './eventBus.js';
 
-const LogInLink = React.createClass({
-  displayName: 'LogInLink',
+class LogInLink extends React.Component {
+  static displayName = 'LogInLink';
+  state = { modalShown: false };
 
   componentWillUnmount() {
     this._unrenderLayer();
     return document.body.removeChild(this._target);
-  },
+  }
 
   componentDidUpdate() {
     return this._renderLayer();
-  },
+  }
 
   componentDidMount() {
     // Appending to the body is easier than managing the z-index of everything on the page.
@@ -26,32 +27,28 @@ const LogInLink = React.createClass({
 
     // listener for displaying modal
     eventBus.addListener('show-modal', this.handleClick);
-  },
+  }
 
-  _renderLayer() {
+  _renderLayer = () => {
     // By calling this method in componentDidMount() and componentDidUpdate(), you're effectively
     // creating a "wormhole" that funnels React's hierarchical updates through to a DOM node on an
     // entirely different part of the page.
     return ReactDOM.render(this.renderLayer(), this._target);
-  },
+  };
 
-  _unrenderLayer() {
+  _unrenderLayer = () => {
     return React.unmountComponentAtNode(this._target);
-  },
+  };
 
-  _getLayerNode() {
+  _getLayerNode = () => {
     return ReactDOM.findDOMNode(this._target);
-  },
+  };
 
-  handleClick() {
+  handleClick = () => {
     return this.setState({ modalShown: !this.state.modalShown });
-  },
+  };
 
-  getInitialState() {
-    return { modalShown: false };
-  },
-
-  renderLayer() {
+  renderLayer = () => {
     if (!this.state.modalShown) {
       return <span className="login-buttons-target" />;
     }
@@ -60,7 +57,7 @@ const LogInLink = React.createClass({
         <OauthButtons />
       </Modal>
     );
-  },
+  };
 
   render() {
     return (
@@ -68,7 +65,7 @@ const LogInLink = React.createClass({
         <button className="button-link" onClick={this.handleClick}>Sign in to vote!</button>
       </div>
     );
-  },
-});
+  }
+}
 
 export default LogInLink;
