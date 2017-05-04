@@ -5,7 +5,7 @@
   "version": "1.1.1",
   "scripts": {
     "build": "gulp build",
-    "lint": "eslint --ext .js,.jsx --config ./config/.eslintrc --ignore-path ./config/.eslintignore --cache --cache-location ./config/.eslintcache . && echo \"eslint: no lint errors found\" || true",
+    "lint": "eslint --ext .js,.jsx . && echo \"eslint: no lint errors found\" || true",
     "lint:watch": "onchange \"**/*.js*\" -- npm run lint",
     "start": "gulp start",
     "test": "echo \"Error: no test specified\" && exit 1"
