@@ -1,8 +1,8 @@
 // builds front-end assets
-let gulp = require('gulp');
-let run = require('run-sequence');
+const gulp = require('gulp');
+const run = require('run-sequence');
 
-let log = require('./helpers/log');
+const log = require('./helpers/log');
 
 gulp.task('build', (done) => {
   log.info('Building static assets');

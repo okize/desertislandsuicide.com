@@ -29,24 +29,17 @@ class LogInLink extends React.Component {
     eventBus.addListener('show-modal', this.handleClick);
   }
 
-  _renderLayer = () => {
+  _renderLayer = () =>
     // By calling this method in componentDidMount() and componentDidUpdate(), you're effectively
     // creating a "wormhole" that funnels React's hierarchical updates through to a DOM node on an
     // entirely different part of the page.
-    return ReactDOM.render(this.renderLayer(), this._target);
-  };
+     ReactDOM.render(this.renderLayer(), this._target);
 
-  _unrenderLayer = () => {
-    return React.unmountComponentAtNode(this._target);
-  };
+  _unrenderLayer = () => React.unmountComponentAtNode(this._target);
 
-  _getLayerNode = () => {
-    return ReactDOM.findDOMNode(this._target);
-  };
+  _getLayerNode = () => ReactDOM.findDOMNode(this._target);
 
-  handleClick = () => {
-    return this.setState({ modalShown: !this.state.modalShown });
-  };
+  handleClick = () => this.setState({ modalShown: !this.state.modalShown });
 
   renderLayer = () => {
     if (!this.state.modalShown) {

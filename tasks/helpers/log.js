@@ -1,7 +1,7 @@
 // small wrapper for gulp logging
-let gutil = require('gulp-util');
-let _ = require('lodash');
-let prettyHrtime = require('pretty-hrtime');
+const gutil = require('gulp-util');
+const _ = require('lodash');
+const prettyHrtime = require('pretty-hrtime');
 let startTime;
 
 module.exports = {
@@ -29,7 +29,7 @@ module.exports = {
 
   // displays task time since timer started
   end(task) {
-    let taskTime = prettyHrtime(process.hrtime(startTime));
+    const taskTime = prettyHrtime(process.hrtime(startTime));
     return gutil.log('Finished', gutil.colors.cyan(task),
               'after', gutil.colors.magenta(taskTime));
   },

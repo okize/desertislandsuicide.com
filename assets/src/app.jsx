@@ -28,9 +28,7 @@ class App extends React.Component {
 
   state = { notifications: [] };
 
-  handleDisplayNotification = (notification) => {
-    return this.setState({ notifications: [notification] });
-  };
+  handleDisplayNotification = notification => this.setState({ notifications: [notification] });
 
   componentDidMount() {
     eventBus.addListener('display-notification', this.handleDisplayNotification);

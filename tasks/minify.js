@@ -1,22 +1,22 @@
 // minifies static assets
 
-let path = require('path');
-let gulp = require('gulp');
-let rename = require('gulp-rename');
-let minifycss = require('gulp-clean-css');
-let uglify = require('gulp-uglify');
-let size = require('gulp-size');
-let sourcemaps = require('gulp-sourcemaps');
+const path = require('path');
+const gulp = require('gulp');
+const rename = require('gulp-rename');
+const minifycss = require('gulp-clean-css');
+const uglify = require('gulp-uglify');
+const size = require('gulp-size');
+const sourcemaps = require('gulp-sourcemaps');
 
-let config = require('../gulpconfig');
-let log = require('./helpers/log');
+const config = require('../gulpconfig');
+const log = require('./helpers/log');
 
 gulp.task('minify', [
   'minify:js',
   'minify:css',
 ], () => log.info('Minification complete'));
 
-let sourcemapOptions = {
+const sourcemapOptions = {
   loadMaps: true,
   debug: true,
 };

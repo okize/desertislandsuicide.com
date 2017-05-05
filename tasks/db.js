@@ -1,23 +1,23 @@
 // db tasks
 
-let path = require('path');
-let fs = require('fs');
-let gulp = require('gulp');
-let run = require('gulp-run');
-let _ = require('lodash');
-let { argv } = require('yargs');
-let moment = require('moment');
-let mkdirp = require('mkdirp');
-let mongodbUri = require('mongodb-uri');
+const path = require('path');
+const fs = require('fs');
+const gulp = require('gulp');
+const run = require('gulp-run');
+const _ = require('lodash');
+const { argv } = require('yargs');
+const moment = require('moment');
+const mkdirp = require('mkdirp');
+const mongodbUri = require('mongodb-uri');
 
-let config = require('../gulpconfig');
-let log = require('./helpers/log');
+const config = require('../gulpconfig');
+const log = require('./helpers/log');
 
-let getDateStamp = () => moment().format('YYYYMMDD-hhmmss');
+const getDateStamp = () => moment().format('YYYYMMDD-hhmmss');
 
-let getArgValue = argv => _.findKey(argv, (v, k) => v === true);
+const getArgValue = argv => _.findKey(argv, (v, k) => v === true);
 
-let getMongoStr = function (db, filepath, type, collectionName) {
+const getMongoStr = function (db, filepath, type, collectionName) {
   switch (type) {
     case 'reset':
       return `mongo ${db.database} --eval 'db.dropDatabase()'`;
@@ -49,10 +49,10 @@ mongodump --host ${db.hosts[0].host} --port ${db.hosts[0].port} \
 
 // seed database
 gulp.task('db:seed', () => {
-  let dir = config.dbDirs.seeds;
-  let seeds = fs.readdirSync(dir);
-  let envName = 'dev';
-  let db = mongodbUri.parse(config.db[envName]);
+  const dir = config.dbDirs.seeds;
+  const seeds = fs.readdirSync(dir);
+  const envName = 'dev';
+  const db = mongodbUri.parse(config.db[envName]);
   let filepath = '';
   let collectionName = '';
   return _.each(seeds, (seed) => {
@@ -66,18 +66,18 @@ gulp.task('db:seed', () => {
 // pass collection name as flag arg
 gulp.task('db:seed:create', () => {
   // array of collection names based on model filenames
-  let collections = _.map(fs.readdirSync('./models'), f => f.replace('.js', 's'));
+  const collections = _.map(fs.readdirSync('./models'), f => f.replace('.js', 's'));
   if (_.size(argv) !== 3) {
     return log.error('Pass name of collection to export as a flag.');
   }
-  let collectionName = getArgValue(argv);
+  const collectionName = getArgValue(argv);
   if (!_.include(collections, collectionName)) {
     return log.error(`Not a valid collection name; must be one of: ${collections.join(', ')}`);
   }
-  let dir = config.dbDirs.seeds;
-  let filepath = `${dir}/${collectionName}.json`;
-  let envName = 'dev';
-  let db = mongodbUri.parse(config.db[envName]);
+  const dir = config.dbDirs.seeds;
+  const filepath = `${dir}/${collectionName}.json`;
+  const envName = 'dev';
+  const db = mongodbUri.parse(config.db[envName]);
   return mkdirp(dir, (err) => {
     if (err) { throw err; }
     return run(getMongoStr(db, filepath, 'export', collectionName)).exec();
@@ -87,17 +87,17 @@ gulp.task('db:seed:create', () => {
 // pass db env as flag arg
 gulp.task('db:dump', () => {
   // array of environment names from config
-  let envs = _.keys(config.db);
+  const envs = _.keys(config.db);
   if (_.size(argv) !== 3) {
     return log.error('Pass name of database environment to dump.');
   }
-  let envName = getArgValue(argv);
+  const envName = getArgValue(argv);
   if (!_.include(envs, envName)) {
     return log.error(`Not a valid environment name; must be one of: ${envs.join(', ')}`);
   }
-  let dir = path.join(config.dbDirs.dumps, envName);
-  let filepath = `${dir}/${getDateStamp()}`;
-  let db = mongodbUri.parse(config.db[envName]);
+  const dir = path.join(config.dbDirs.dumps, envName);
+  const filepath = `${dir}/${getDateStamp()}`;
+  const db = mongodbUri.parse(config.db[envName]);
   return mkdirp(dir, (err) => {
     if (err) { throw err; }
     if (db.username != null) {
@@ -109,10 +109,10 @@ gulp.task('db:dump', () => {
 
 // import production db into local db
 gulp.task('db:dump:import', () => {
-  let envName = 'prod';
-  let dir = path.join(config.dbDirs.dumps, envName);
-  let filepath = `${dir}/${getDateStamp()}`;
-  let db = mongodbUri.parse(config.db[envName]);
+  const envName = 'prod';
+  const dir = path.join(config.dbDirs.dumps, envName);
+  const filepath = `${dir}/${getDateStamp()}`;
+  const db = mongodbUri.parse(config.db[envName]);
   return mkdirp(dir, (err) => {
     if (err) { throw err; }
     return run(getMongoStr(db, filepath)).exec(() => {
@@ -126,16 +126,16 @@ gulp.task('db:dump:import', () => {
 // import local db into production db (folder as argument flag)
 // may have to delete collections manually on mongolab
 gulp.task('db:dump:import:prod', () => {
-  let db = mongodbUri.parse(config.db.prod);
-  let dumpFile = `./dumps/dev/${getArgValue(argv)}/${db.database}`;
-  let mongoCommand = `mongorestore -h ${db.hosts[0].host}:${db.hosts[0].port} -d ${db.database} -u ${db.username} -p ${db.password} ${dumpFile}`;
+  const db = mongodbUri.parse(config.db.prod);
+  const dumpFile = `./dumps/dev/${getArgValue(argv)}/${db.database}`;
+  const mongoCommand = `mongorestore -h ${db.hosts[0].host}:${db.hosts[0].port} -d ${db.database} -u ${db.username} -p ${db.password} ${dumpFile}`;
   return run(mongoCommand).exec(() => log.info('Production database updated'));
 });
 
 // drops the local database
 gulp.task('db:reset', () => {
-  let envName = 'dev';
-  let db = mongodbUri.parse(config.db[envName]);
+  const envName = 'dev';
+  const db = mongodbUri.parse(config.db[envName]);
   return run(getMongoStr(db, null, 'reset'))
   .exec(() => log.info(`Dropped database ${db.database}`));
 });

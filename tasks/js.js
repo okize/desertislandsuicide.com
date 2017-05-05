@@ -1,25 +1,25 @@
 // compile es6 into js
 
-let path = require('path');
-let gulp = require('gulp');
-let gutil = require('gulp-util');
-let browserify = require('browserify');
-let babelify = require('babelify');
-let source = require('vinyl-source-stream');
-let buff = require('vinyl-buffer');
-let sourcemaps = require('gulp-sourcemaps');
+const path = require('path');
+const gulp = require('gulp');
+const gutil = require('gulp-util');
+const browserify = require('browserify');
+const babelify = require('babelify');
+const source = require('vinyl-source-stream');
+const buff = require('vinyl-buffer');
+const sourcemaps = require('gulp-sourcemaps');
 
-let config = require('../gulpconfig');
-let log = require('./helpers/log');
-let handleErrors = require('./helpers/handleErrors');
+const config = require('../gulpconfig');
+const log = require('./helpers/log');
+const handleErrors = require('./helpers/handleErrors');
 
-let browserifyOptions = {
+const browserifyOptions = {
   entries: [path.join(config.js.src, config.js.entry)],
   extensions: ['.js', '.jsx'],
   debug: true,
 };
 
-let sourcemapOptions = {
+const sourcemapOptions = {
   loadMaps: true,
   debug: true,
 };
