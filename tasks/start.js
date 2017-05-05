@@ -1,11 +1,11 @@
 // start up app with nodemon
 
-let path = require('path');
-let gulp = require('gulp');
-let nodemon = require('gulp-nodemon');
-let sync = require('browser-sync');
+const path = require('path');
+const gulp = require('gulp');
+const nodemon = require('gulp-nodemon');
+const sync = require('browser-sync');
 
-let config = require('../gulpconfig');
+const config = require('../gulpconfig');
 
 gulp.task('start', () => {
   nodemon({

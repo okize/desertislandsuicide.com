@@ -1,4 +1,4 @@
-let log = require('./log');
+const log = require('./log');
 
 module.exports = function (error) {
   log.error(error);

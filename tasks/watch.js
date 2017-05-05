@@ -1,23 +1,20 @@
 // watches asset files and triggers an asset recompile when changes are made
 
-let path = require('path');
-let gulp = require('gulp');
-let watch = require('gulp-watch');
+const path = require('path');
+const gulp = require('gulp');
+const watch = require('gulp-watch');
 
-let config = require('../gulpconfig');
-let log = require('./helpers/log');
+const config = require('../gulpconfig');
+const log = require('./helpers/log');
 
 // files to watch
-let js = path.join(config.js.src, '**/**/*.{js,jsx}');
-let css = path.join(config.css.src, '**/**/*.{sass,scss}');
-let images = path.join(config.images.src, '**/**/*.svg');
+const js = path.join(config.js.src, '**/**/*.{js,jsx}');
+const css = path.join(config.css.src, '**/**/*.{sass,scss}');
+const images = path.join(config.images.src, '**/**/*.svg');
 
 gulp.task('watch', ['sync'], () => {
   log.info('Watching assets for changes...');
-
   watch(js, (files, cb) => gulp.start('js', cb));
-
   watch(css, (files, cb) => gulp.start('css', cb));
-
   watch(images, (files, cb) => gulp.start('images', cb));
 });

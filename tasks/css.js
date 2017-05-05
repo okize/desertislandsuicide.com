@@ -1,18 +1,18 @@
 // compile sass into css
 
-let path = require('path');
-let gulp = require('gulp');
-let sass = require('gulp-sass');
-let cssBase64 = require('gulp-css-base64');
-let sourcemaps = require('gulp-sourcemaps');
-let autoprefixer = require('gulp-autoprefixer');
-let rename = require('gulp-rename');
+const path = require('path');
+const gulp = require('gulp');
+const sass = require('gulp-sass');
+const cssBase64 = require('gulp-css-base64');
+const sourcemaps = require('gulp-sourcemaps');
+const autoprefixer = require('gulp-autoprefixer');
+const rename = require('gulp-rename');
 
-let config = require('../gulpconfig');
-let log = require('./helpers/log');
-let handleErrors = require('./helpers/handleErrors');
+const config = require('../gulpconfig');
+const log = require('./helpers/log');
+const handleErrors = require('./helpers/handleErrors');
 
-let sassOptions = {
+const sassOptions = {
   outputStyle: 'nested', // compressed
   sourceComments: 'map',
   errLogToConsole: false,
@@ -20,12 +20,12 @@ let sassOptions = {
   onSuccess() { return log.info('Sass compiled without errors'); },
 };
 
-let autoprefixerOptions = {
+const autoprefixerOptions = {
   browsers: ['last 2 versions', 'Firefox >= 26', 'Explorer > 8'],
   cascade: false,
 };
 
-let sourcemapOptions =
+const sourcemapOptions =
   { debug: true };
 
 gulp.task('css', () => {

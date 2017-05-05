@@ -1,10 +1,10 @@
 // list out registered tasks
 
-let path = require('path');
-let gulp = require('gulp');
-let taskListing = require('gulp-task-listing');
+const path = require('path');
+const gulp = require('gulp');
+const taskListing = require('gulp-task-listing');
 
-let log = require('./helpers/log');
-let config = require('../gulpconfig');
+const log = require('./helpers/log');
+const config = require('../gulpconfig');
 
 gulp.task('help', taskListing);

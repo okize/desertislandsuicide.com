@@ -1,6 +1,6 @@
 // starts application server and monitors files for changes
 
-let gulp = require('gulp');
+const gulp = require('gulp');
 
 gulp.task('default', [
   'start',

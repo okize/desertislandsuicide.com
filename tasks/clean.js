@@ -1,9 +1,9 @@
 // deletes public asset directories
 
-let gulp = require('gulp');
-let clean = require('del');
-let config = require('../gulpconfig');
-let log = require('./helpers/log');
+const gulp = require('gulp');
+const clean = require('del');
+const config = require('../gulpconfig');
+const log = require('./helpers/log');
 
 gulp.task('clean', () => {
   log.info('Deleting public assets');

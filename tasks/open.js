@@ -1,11 +1,11 @@
 // open application in default browser
 
-let path = require('path');
-let gulp = require('gulp');
-let open = require('gulp-open');
+const path = require('path');
+const gulp = require('gulp');
+const open = require('gulp-open');
 
-let log = require('./helpers/log');
-let config = require('../gulpconfig');
+const log = require('./helpers/log');
+const config = require('../gulpconfig');
 
 gulp.task('open', () => {
   let port;
@@ -15,7 +15,7 @@ gulp.task('open', () => {
   } else {
     port = process.env.PORT;
   }
-  let options =
+  const options =
     { url: `http://localhost:${port}` };
 
   return gulp

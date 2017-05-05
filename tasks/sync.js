@@ -1,11 +1,11 @@
 // run application through a browser-sync proxy so that
 // the browser refreshes when front-end asset files change
 
-let gulp = require('gulp');
-let sync = require('browser-sync');
+const gulp = require('gulp');
+const sync = require('browser-sync');
 
-let config = require('../gulpconfig');
-let log = require('./helpers/log');
+const config = require('../gulpconfig');
+const log = require('./helpers/log');
 
 gulp.task('sync', () => {
   log.info('Starting browser-sync proxy');
