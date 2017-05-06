@@ -38,9 +38,7 @@
     'react/no-render-return-value': 'off',
     'react/no-string-refs': 'off',
     'react/no-unescaped-entities': 'off',
-    'react/prefer-es6-class': 'off',
     'react/prefer-stateless-function': 'off',
     'react/prop-types': 'off',
-    'react/sort-comp': 'off',
   }
 }

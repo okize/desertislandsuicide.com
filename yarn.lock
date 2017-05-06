@@ -4271,9 +4271,9 @@ mongoose-unique-validator@^1.0.3:
     lodash.foreach "^4.1.0"
     lodash.get "^4.0.2"
 
-mongoose@^4.8.4:
-  version "4.8.4"
-  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-4.8.4.tgz#091ca76f404355120a0b497bad6cc2b7d21c83ae"
+mongoose@^4.8.5:
+  version "4.8.5"
+  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-4.8.5.tgz#09e3e590d5584729a415f326210cb4adb2379d30"
   dependencies:
     async "2.1.4"
     bson "~1.0.4"

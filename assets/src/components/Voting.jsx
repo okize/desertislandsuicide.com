@@ -6,16 +6,30 @@ import BandList from './BandList.jsx';
 import NewBandForm from './NewBandForm.jsx';
 import eventBus from './eventBus.js';
 
-const Voting = React.createClass({
-  displayName: 'Voting',
-  refreshRate: 500000,
-  getApiUrl() {
+const REFRESH_RATE = 500000;
+
+class Voting extends React.Component {
+  state = { data: [] };
+
+  componentDidMount() {
+    // load band list
+    this.getBandList();
+
+    // periodically update list with new entries
+    setInterval(this.getBandList, REFRESH_RATE);
+
+    // listener for band votes
+    eventBus.addListener('vote-for-band', this.handleVoteForBand);
+  }
+
+  getApiUrl = () => {
     if (this.props.loggedIn) {
       return '/api/bands';
     }
     return /bandsNoAuth/;
-  },
-  getBandList() {
+  };
+
+  getBandList = () => {
     const url = `${this.getApiUrl()}?cacheBuster=${Date.now().toString()}`;
 
     // get a list of bands and vote counts
@@ -30,19 +44,15 @@ const Voting = React.createClass({
       }
 
       // update state with bands
-      if (this.isMounted()) {
-        return this.setState({
-          data: res.body,
-        });
-      }
+      return this.setState({
+        data: res.body,
+      });
     });
-  },
-  getInitialState() {
-    return { data: [] };
-  },
-  handleVoteForBand(band) {
+  };
+
+  handleVoteForBand = band =>
     // post new vote to the server
-    return request
+     request
       .post(`/api/bands/${band.id}/vote`)
       .set('X-CSRF-Token', getCsrfToken())
       .set('Accept', 'application/json')
@@ -65,10 +75,10 @@ const Voting = React.createClass({
         // update band list
         return this.getBandList();
       });
-  },
-  handleNewBandSubmit(formData) {
+
+  handleNewBandSubmit = formData =>
     // post new band to the server
-    return request
+     request
       .post('/api/bands/')
       .send(formData)
       .set('X-CSRF-Token', getCsrfToken())
@@ -92,17 +102,7 @@ const Voting = React.createClass({
         // update band list
         return this.getBandList();
       });
-  },
-  componentDidMount() {
-    // load band list
-    this.getBandList();
 
-    // periodically update list with new entries
-    setInterval(this.getBandList, this.refreshRate);
-
-    // listener for band votes
-    eventBus.addListener('vote-for-band', this.handleVoteForBand);
-  },
   render() {
     return (
       <div className="voting-wrapper">
@@ -110,7 +110,7 @@ const Voting = React.createClass({
         <BandList data={this.state.data} loggedIn={this.props.loggedIn} />
       </div>
     );
-  },
-});
+  }
+}
 
 export default Voting;

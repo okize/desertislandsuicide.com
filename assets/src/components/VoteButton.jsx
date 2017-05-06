@@ -3,8 +3,6 @@ import React from 'react';
 import eventBus from './eventBus.js';
 
 class VoteButton extends React.Component {
-  static displayName = 'VoteButton';
-
   voteForBand = (event) => {
     event.preventDefault();
 
