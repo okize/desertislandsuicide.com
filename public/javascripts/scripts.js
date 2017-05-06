@@ -81,23 +81,25 @@ var App = function (_React$Component) {
       _eventBus2.default.addListener('display-notification', this.handleDisplayNotification);
     }
   }, {
-    key: 'render',
-    value: function render() {
-      var notifications = void 0;
+    key: 'renderNotifications',
+    value: function renderNotifications() {
       if (this.state.notifications.length) {
         var note = this.state.notifications.pop();
-        notifications = _react2.default.createElement(
+        return _react2.default.createElement(
           _Notification2.default,
           { delay: note.delay, type: note.type },
           note.msg
         );
-      } else {
-        notifications = _react2.default.createElement('span', null);
       }
+      return null;
+    }
+  }, {
+    key: 'render',
+    value: function render() {
       return _react2.default.createElement(
         'div',
         { className: 'main-wrapper', role: 'main' },
-        notifications,
+        this.renderNotifications(),
         this.props.loggedIn ? _react2.default.createElement(_LogOut2.default, { userName: this.props.userName }) : _react2.default.createElement(_LogIn2.default, null),
         _react2.default.createElement(_Header2.default, null),
         _react2.default.createElement(_Voting2.default, { loggedIn: this.props.loggedIn })
@@ -108,7 +110,6 @@ var App = function (_React$Component) {
   return App;
 }(_react2.default.Component);
 
-App.displayName = 'App';
 App.defaultProps = {
   loggedIn: window.loggedIn,
   userName: window.userName || null
@@ -317,15 +318,10 @@ var LogInLink = function (_React$Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = LogInLink.__proto__ || Object.getPrototypeOf(LogInLink)).call.apply(_ref, [this].concat(args))), _this), _this.state = { modalShown: false }, _this._renderLayer = function () {
-      // By calling this method in componentDidMount() and componentDidUpdate(), you're effectively
-      // creating a "wormhole" that funnels React's hierarchical updates through to a DOM node on an
-      // entirely different part of the page.
-      return _reactDom2.default.render(_this.renderLayer(), _this._target);
-    }, _this._unrenderLayer = function () {
-      return _react2.default.unmountComponentAtNode(_this._target);
-    }, _this._getLayerNode = function () {
-      return _reactDom2.default.findDOMNode(_this._target);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = LogInLink.__proto__ || Object.getPrototypeOf(LogInLink)).call.apply(_ref, [this].concat(args))), _this), _this.state = { modalShown: false }, _this.getLayerNode = function () {
+      return _reactDom2.default.findDOMNode(_this.modalTarget);
+    }, _this.unrenderLayer = function () {
+      return _react2.default.unmountComponentAtNode(_this.modalTarget);
     }, _this.handleClick = function () {
       return _this.setState({ modalShown: !_this.state.modalShown });
     }, _this.renderLayer = function () {
@@ -341,29 +337,36 @@ var LogInLink = function (_React$Component) {
   }
 
   _createClass(LogInLink, [{
-    key: 'componentWillUnmount',
-    value: function componentWillUnmount() {
-      this._unrenderLayer();
-      return document.body.removeChild(this._target);
-    }
-  }, {
-    key: 'componentDidUpdate',
-    value: function componentDidUpdate() {
-      return this._renderLayer();
-    }
-  }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
       // Appending to the body is easier than managing the z-index of everything on the page.
       // It's also better for accessibility and makes stacking a snap (since components will stack
       // in mount order).
-      this._target = document.createElement('div');
-      document.body.appendChild(this._target);
-      this._renderLayer();
+      this.modalTarget = document.createElement('div');
+      document.body.appendChild(this.modalTarget);
+      this.renderLayer();
 
       // listener for displaying modal
       _eventBus2.default.addListener('show-modal', this.handleClick);
     }
+  }, {
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate() {
+      return this.renderLayer();
+    }
+  }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      this.unrenderLayer();
+      return document.body.removeChild(this.modalTarget);
+    }
+
+    // By calling this method in componentDidMount() and componentDidUpdate(), you're effectively
+    // creating a "wormhole" that funnels React's hierarchical updates through to a DOM node on an
+    // entirely different part of the page.
+
+    // renderLayer = () => ReactDOM.render(this.renderLayer(), this.modalTarget);
+
   }, {
     key: 'render',
     value: function render() {
@@ -382,7 +385,6 @@ var LogInLink = function (_React$Component) {
   return LogInLink;
 }(_react2.default.Component);
 
-LogInLink.displayName = 'LogInLink';
 exports.default = LogInLink;
 
 },{"./Modal.jsx":6,"./OauthButtons.jsx":9,"./eventBus.js":12,"react":194,"react-dom":41}],5:[function(require,module,exports){
@@ -632,11 +634,7 @@ var Notification = function (_React$Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Notification.__proto__ || Object.getPrototypeOf(Notification)).call.apply(_ref, [this].concat(args))), _this), _this.state = { visible: true }, _this.show = function () {
-      return _this.setState({ visible: true });
-    }, _this.dismiss = function () {
-      return _this.setState({ visible: false });
-    }, _this.setTimer = function () {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Notification.__proto__ || Object.getPrototypeOf(Notification)).call.apply(_ref, [this].concat(args))), _this), _this.state = { visible: true }, _this.setTimer = function () {
       // clear any existing timer
       if (_this._timer !== null) {
         clearTimeout(_this._timer);
@@ -649,10 +647,19 @@ var Notification = function (_React$Component) {
         _this.dismiss();
         return _this._timer = null;
       }, _this.props.delay * 1000);
+    }, _this.show = function () {
+      return _this.setState({ visible: true });
+    }, _this.dismiss = function () {
+      return _this.setState({ visible: false });
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Notification, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      return this.setTimer();
+    }
+  }, {
     key: 'componentWillReceiveProps',
     value: function componentWillReceiveProps(nextProps) {
       // reset the timer if children are changed
@@ -660,11 +667,6 @@ var Notification = function (_React$Component) {
         this.setTimer();
         return this.show();
       }
-    }
-  }, {
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      return this.setTimer();
     }
   }, {
     key: 'render',
@@ -681,7 +683,7 @@ var Notification = function (_React$Component) {
           this.props.children
         );
       }
-      return _react2.default.createElement('span', null);
+      return null;
     }
   }]);
 
@@ -867,7 +869,6 @@ var VoteButton = function (_React$Component) {
   return VoteButton;
 }(_react2.default.Component);
 
-VoteButton.displayName = 'VoteButton';
 exports.default = VoteButton;
 
 },{"./eventBus.js":12,"react":194}],11:[function(require,module,exports){
@@ -876,6 +877,8 @@ exports.default = VoteButton;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
 
@@ -901,110 +904,128 @@ var _eventBus2 = _interopRequireDefault(_eventBus);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Voting = _react2.default.createClass({
-  displayName: 'Voting',
-  refreshRate: 500000,
-  getApiUrl: function getApiUrl() {
-    if (this.props.loggedIn) {
-      return '/api/bands';
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var REFRESH_RATE = 500000;
+
+var Voting = function (_React$Component) {
+  _inherits(Voting, _React$Component);
+
+  function Voting() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    _classCallCheck(this, Voting);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
     }
-    return (/bandsNoAuth/
-    );
-  },
-  getBandList: function getBandList() {
-    var _this = this;
 
-    var url = this.getApiUrl() + '?cacheBuster=' + Date.now().toString();
-
-    // get a list of bands and vote counts
-    return _superagent2.default.get(url).end(function (error, res) {
-      if (error != null) {
-        console.error(error);
-        return _eventBus2.default.emit('display-notification', {
-          msg: 'Error getting band list, please refresh page.',
-          type: 'error',
-          delay: 5
-        });
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Voting.__proto__ || Object.getPrototypeOf(Voting)).call.apply(_ref, [this].concat(args))), _this), _this.state = { data: [] }, _this.getApiUrl = function () {
+      if (_this.props.loggedIn) {
+        return '/api/bands';
       }
+      return (/bandsNoAuth/
+      );
+    }, _this.getBandList = function () {
+      var url = _this.getApiUrl() + '?cacheBuster=' + Date.now().toString();
 
-      // update state with bands
-      if (_this.isMounted()) {
+      // get a list of bands and vote counts
+      return _superagent2.default.get(url).end(function (error, res) {
+        if (error != null) {
+          console.error(error);
+          return _eventBus2.default.emit('display-notification', {
+            msg: 'Error getting band list, please refresh page.',
+            type: 'error',
+            delay: 5
+          });
+        }
+
+        // update state with bands
         return _this.setState({
           data: res.body
         });
-      }
-    });
-  },
-  getInitialState: function getInitialState() {
-    return { data: [] };
-  },
-  handleVoteForBand: function handleVoteForBand(band) {
-    var _this2 = this;
-
-    // post new vote to the server
-    return _superagent2.default.post('/api/bands/' + band.id + '/vote').set('X-CSRF-Token', (0, _helpers.getCsrfToken)()).set('Accept', 'application/json').end(function (error, res) {
-      if (error != null || res.status !== 200) {
-        console.error(error);
-        return _eventBus2.default.emit('display-notification', {
-          msg: 'Sorry, your vote was not recorded, please try again.',
-          type: 'error',
-          delay: 5
-        });
-      }
-
-      _eventBus2.default.emit('display-notification', {
-        msg: 'You voted for ' + band.name + '!',
-        type: 'info',
-        delay: 3
       });
+    }, _this.handleVoteForBand = function (band) {
+      return (
+        // post new vote to the server
+        _superagent2.default.post('/api/bands/' + band.id + '/vote').set('X-CSRF-Token', (0, _helpers.getCsrfToken)()).set('Accept', 'application/json').end(function (error, res) {
+          if (error != null || res.status !== 200) {
+            console.error(error);
+            return _eventBus2.default.emit('display-notification', {
+              msg: 'Sorry, your vote was not recorded, please try again.',
+              type: 'error',
+              delay: 5
+            });
+          }
 
-      // update band list
-      return _this2.getBandList();
-    });
-  },
-  handleNewBandSubmit: function handleNewBandSubmit(formData) {
-    var _this3 = this;
+          _eventBus2.default.emit('display-notification', {
+            msg: 'You voted for ' + band.name + '!',
+            type: 'info',
+            delay: 3
+          });
 
-    // post new band to the server
-    return _superagent2.default.post('/api/bands/').send(formData).set('X-CSRF-Token', (0, _helpers.getCsrfToken)()).set('Accept', 'application/json').end(function (error, res) {
-      if (error != null || res.status !== 200) {
-        console.error(error);
-        return _eventBus2.default.emit('display-notification', {
-          msg: 'Sorry, your band was not saved, try again.',
-          type: 'error',
-          delay: 5
-        });
-      }
+          // update band list
+          return _this.getBandList();
+        })
+      );
+    }, _this.handleNewBandSubmit = function (formData) {
+      return (
+        // post new band to the server
+        _superagent2.default.post('/api/bands/').send(formData).set('X-CSRF-Token', (0, _helpers.getCsrfToken)()).set('Accept', 'application/json').end(function (error, res) {
+          if (error != null || res.status !== 200) {
+            console.error(error);
+            return _eventBus2.default.emit('display-notification', {
+              msg: 'Sorry, your band was not saved, try again.',
+              type: 'error',
+              delay: 5
+            });
+          }
 
-      _eventBus2.default.emit('display-notification', {
-        msg: formData.name + ' has been nominated!',
-        type: 'info',
-        delay: 3
-      });
+          _eventBus2.default.emit('display-notification', {
+            msg: formData.name + ' has been nominated!',
+            type: 'info',
+            delay: 3
+          });
 
-      // update band list
-      return _this3.getBandList();
-    });
-  },
-  componentDidMount: function componentDidMount() {
-    // load band list
-    this.getBandList();
-
-    // periodically update list with new entries
-    setInterval(this.getBandList, this.refreshRate);
-
-    // listener for band votes
-    _eventBus2.default.addListener('vote-for-band', this.handleVoteForBand);
-  },
-  render: function render() {
-    return _react2.default.createElement(
-      'div',
-      { className: 'voting-wrapper' },
-      this.props.loggedIn && _react2.default.createElement(_NewBandForm2.default, { onNewBandSubmit: this.handleNewBandSubmit, 'else': true, 'null': true }),
-      _react2.default.createElement(_BandList2.default, { data: this.state.data, loggedIn: this.props.loggedIn })
-    );
+          // update band list
+          return _this.getBandList();
+        })
+      );
+    }, _temp), _possibleConstructorReturn(_this, _ret);
   }
-});
+
+  _createClass(Voting, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      // load band list
+      this.getBandList();
+
+      // periodically update list with new entries
+      setInterval(this.getBandList, REFRESH_RATE);
+
+      // listener for band votes
+      _eventBus2.default.addListener('vote-for-band', this.handleVoteForBand);
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { className: 'voting-wrapper' },
+        this.props.loggedIn && _react2.default.createElement(_NewBandForm2.default, { onNewBandSubmit: this.handleNewBandSubmit, 'else': true, 'null': true }),
+        _react2.default.createElement(_BandList2.default, { data: this.state.data, loggedIn: this.props.loggedIn })
+      );
+    }
+  }]);
+
+  return Voting;
+}(_react2.default.Component);
 
 exports.default = Voting;
 

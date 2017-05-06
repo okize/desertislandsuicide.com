@@ -3,9 +3,9 @@ import React from 'react';
 class Notification extends React.Component {
   state = { visible: true };
 
-  show = () => this.setState({ visible: true });
-
-  dismiss = () => this.setState({ visible: false });
+  componentDidMount() {
+    return this.setTimer();
+  }
 
   componentWillReceiveProps(nextProps) {
     // reset the timer if children are changed
@@ -13,10 +13,6 @@ class Notification extends React.Component {
       this.setTimer();
       return this.show();
     }
-  }
-
-  componentDidMount() {
-    return this.setTimer();
   }
 
   setTimer = () => {
@@ -37,6 +33,10 @@ class Notification extends React.Component {
     );
   };
 
+  show = () => this.setState({ visible: true });
+
+  dismiss = () => this.setState({ visible: false });
+
   render() {
     if (this.state.visible) {
       const className = `notification notification--${this.props.type}`;
@@ -50,7 +50,7 @@ class Notification extends React.Component {
         </div>
       );
     }
-    return <span />;
+    return null;
   }
 }
 

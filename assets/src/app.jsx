@@ -19,8 +19,6 @@ const appEl = document.getElementById('app');
 FastClick(appEl);
 
 class App extends React.Component {
-  static displayName = 'App';
-
   static defaultProps = {
     loggedIn: window.loggedIn,
     userName: window.userName || null,
@@ -28,27 +26,28 @@ class App extends React.Component {
 
   state = { notifications: [] };
 
-  handleDisplayNotification = notification => this.setState({ notifications: [notification] });
-
   componentDidMount() {
     eventBus.addListener('display-notification', this.handleDisplayNotification);
   }
 
-  render() {
-    let notifications;
+  handleDisplayNotification = notification => this.setState({ notifications: [notification] });
+
+  renderNotifications() {
     if (this.state.notifications.length) {
       const note = this.state.notifications.pop();
-      notifications = (
+      return (
         <Notification delay={note.delay} type={note.type}>
           {note.msg}
         </Notification>
       );
-    } else {
-      notifications = <span />;
     }
+    return null;
+  }
+
+  render() {
     return (
       <div className="main-wrapper" role="main">
-        {notifications}
+        {this.renderNotifications()}
         {this.props.loggedIn ? <LogOut userName={this.props.userName} /> : <LogIn />}
         <Header />
         <Voting loggedIn={this.props.loggedIn} />
