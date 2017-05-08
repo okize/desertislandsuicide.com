@@ -5,7 +5,6 @@ const rootPath = path.resolve(__dirname);
 const assetsPath = path.resolve(rootPath, 'public');
 
 module.exports = {
-
   app: {
     root: rootPath,
     main: `${rootPath}/app.js`,
@@ -48,6 +47,11 @@ module.exports = {
     seeds: path.resolve(rootPath, 'seeds'),
   },
 
+  gulp: {
+    src: `${rootPath}/tasks/`,
+    publicAssets: assetsPath,
+  },
+
   // DO NOT restart node app when files change in these directories
   nodemon: {
     ignore: [
@@ -56,10 +60,5 @@ module.exports = {
       'assets/',
       'public/',
     ],
-  },
-
-  gulp: {
-    src: `${rootPath}/tasks/`,
-    publicAssets: assetsPath,
   },
 };

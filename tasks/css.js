@@ -21,7 +21,7 @@ const sassOptions = {
 };
 
 const autoprefixerOptions = {
-  browsers: ['last 2 versions', 'Firefox >= 26', 'Explorer > 8'],
+  browsers: ['last 2 versions'],
   cascade: false,
 };
 
