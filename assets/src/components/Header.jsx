@@ -12,11 +12,8 @@ class Header extends React.Component {
           <img className="logo" src="../images/dis-logo.svg" />
         </header>
         <div className="mission-statement">
-          {
-            '\
-    If you were marooned on a desert island and you were limited to the music of only ONE band, what band would immediately cause you to choose suicide over survival?\
-    '
-          }
+          If you were marooned on a desert island and you were limited to the music of only
+          ONE band, what band would immediately cause you to choose suicide over survival?
         </div>
       </div>
     );

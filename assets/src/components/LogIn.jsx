@@ -4,13 +4,11 @@ import Modal from './Modal.jsx';
 import OauthButtons from './OauthButtons.jsx';
 import eventBus from './eventBus.js';
 
-class LogInLink extends React.Component {
-  state = { modalShown: false };
+class LogIn extends React.Component {
+  state = { showModal: false };
 
   componentDidMount() {
-    // Appending to the body is easier than managing the z-index of everything on the page.
-    // It's also better for accessibility and makes stacking a snap (since components will stack
-    // in mount order).
+    // appending to the body is easier than managing the z-index of everything on the page
     this.modalTarget = document.createElement('div');
     document.body.appendChild(this.modalTarget);
     this.renderLayer();
@@ -24,22 +22,23 @@ class LogInLink extends React.Component {
   }
 
   componentWillUnmount() {
-    this.unrenderLayer();
+    this.unRenderLayer();
     return document.body.removeChild(this.modalTarget);
   }
 
-  // By calling this method in componentDidMount() and componentDidUpdate(), you're effectively
-  // creating a "wormhole" that funnels React's hierarchical updates through to a DOM node on an
-  // entirely different part of the page.
-  getLayerNode = () => ReactDOM.findDOMNode(this.modalTarget);
+  handleClick = () => {
+    // eslint-disable-next-line arrow-body-style
+    this.setState((prevState) => {
+      return { showModal: !prevState.showModal };
+    });
+  }
 
-  unrenderLayer = () => React.unmountComponentAtNode(this.modalTarget);
+  unRenderLayer = () => ReactDOM.unmountComponentAtNode(this.modalTarget);
 
-  handleClick = () => this.setState({ modalShown: !this.state.modalShown });
-  // renderLayer = () => ReactDOM.render(this.renderLayer(), this.modalTarget);
+  renderLayer = () => ReactDOM.render(this.renderModal(), this.modalTarget);
 
-  renderLayer = () => {
-    if (!this.state.modalShown) {
+  renderModal = () => {
+    if (!this.state.showModal) {
       return <span className="login-buttons-target" />;
     }
     return (
@@ -58,4 +57,4 @@ class LogInLink extends React.Component {
   }
 }
 
-export default LogInLink;
+export default LogIn;

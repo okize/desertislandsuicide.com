@@ -35,9 +35,7 @@ class VoteButton extends React.Component {
     }
     return (
       <div className="sign-in-to-vote float-right">
-        <button onClick={this.showOauthButtons}>
-            Vote!
-          </button>
+        <button onClick={this.showOauthButtons}>Vote!</button>
       </div>
     );
   }
