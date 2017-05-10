@@ -106,7 +106,7 @@ class Voting extends React.Component {
   render() {
     return (
       <div className="voting-wrapper">
-        {this.props.loggedIn && <NewBandForm onNewBandSubmit={this.handleNewBandSubmit} else={true} null={true} />}
+        {this.props.loggedIn && <NewBandForm onNewBandSubmit={this.handleNewBandSubmit} />}
         <BandList data={this.state.data} loggedIn={this.props.loggedIn} />
       </div>
     );

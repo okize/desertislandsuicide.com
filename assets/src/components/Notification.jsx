@@ -17,17 +17,15 @@ class Notification extends React.Component {
 
   setTimer = () => {
     // clear any existing timer
-    if (this._timer !== null) {
-      clearTimeout(this._timer);
-    } else {
-      null;
+    if (this.timer !== null) {
+      clearTimeout(this.timer);
     }
 
     // dismiss after delay
-    return this._timer = setTimeout(
+    return this.timer = setTimeout(
       () => {
         this.dismiss();
-        return this._timer = null;
+        return this.timer = null;
       },
       this.props.delay * 1000,
     );

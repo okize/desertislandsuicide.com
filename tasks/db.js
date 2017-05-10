@@ -18,32 +18,21 @@ const getDateStamp = () => moment().format('YYYYMMDD-hhmmss');
 const getArgValue = argv => _.findKey(argv, (v, k) => v === true);
 
 const getMongoStr = function (db, filepath, type, collectionName) {
+  const { database, username, password } = db;
+  const { host, port } = db.hosts[0];
   switch (type) {
     case 'reset':
-      return `mongo ${db.database} --eval 'db.dropDatabase()'`;
+      return `mongo ${database} --eval 'db.dropDatabase()'`;
     case 'import':
-      return `\
-mongoimport --db ${db.database} --collection ${collectionName} \
---jsonArray --file ${filepath}\
-`;
+      return `mongoimport --db ${database} --collection ${collectionName} --jsonArray --file ${filepath}`;
     case 'export':
-      return `\
-mongoexport --db ${db.database} --collection ${collectionName} \
---jsonArray --out ${filepath}\
-`;
+      return `mongoexport --db ${database} --collection ${collectionName} --jsonArray --out ${filepath}`;
     case 'restore':
-      return `mongorestore --drop --db ${db.database} ${filepath}/${db.database}`;
+      return `mongorestore --drop --db ${database} ${filepath}/${database}`;
     case 'short':
-      return `\
-mongodump --host ${db.hosts[0].host} \
---db ${db.database} --out ${filepath}\
-`;
+      return `mongodump --host ${host} --db ${database} --out ${filepath}`;
     default:
-      return `\
-mongodump --host ${db.hosts[0].host} --port ${db.hosts[0].port} \
---db ${db.database} --username ${db.username} \
---password${db.password} --out ${filepath}\
-`;
+      return `mongodump --host ${host} --port ${port} --db ${database} --username ${username} --password${password} --out ${filepath}`;
   }
 };
 
@@ -127,8 +116,9 @@ gulp.task('db:dump:import', () => {
 // may have to delete collections manually on mongolab
 gulp.task('db:dump:import:prod', () => {
   const db = mongodbUri.parse(config.db.prod);
+  const { host, port } = db.hosts[0];
   const dumpFile = `./dumps/dev/${getArgValue(argv)}/${db.database}`;
-  const mongoCommand = `mongorestore -h ${db.hosts[0].host}:${db.hosts[0].port} -d ${db.database} -u ${db.username} -p ${db.password} ${dumpFile}`;
+  const mongoCommand = `mongorestore -h ${host}:${port} -d ${db.database} -u ${db.username} -p ${db.password} ${dumpFile}`;
   return run(mongoCommand).exec(() => log.info('Production database updated'));
 });
 
