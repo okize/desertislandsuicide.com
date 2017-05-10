@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 class NewBandForm extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault();
-    const input = ReactDOM.findDOMNode(this.refs.bandName);
+    const input = this.bandName;
     const name = input.value.trim();
     if (!name || name.length <= 2) {
       return;
@@ -17,7 +17,7 @@ class NewBandForm extends React.Component {
   render() {
     return (
       <form className="add-new-band" onSubmit={this.handleSubmit}>
-        <input placeholder="Enter band name" ref="bandName" />
+        <input placeholder="Enter band name" ref={(component) => { this.bandName = component; }} />
       </form>
     );
   }
