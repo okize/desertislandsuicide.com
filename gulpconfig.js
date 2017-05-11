@@ -1,6 +1,5 @@
-// configuration file for Gulp tasks
-
 const path = require('path');
+
 const rootPath = path.resolve(__dirname);
 const assetsPath = path.resolve(rootPath, 'public');
 

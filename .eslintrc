@@ -16,7 +16,6 @@
     'consistent-return': 'off',
     'func-names': 'off',
     'import/extensions': 'off',
-    'import/newline-after-import': 'off',
     'import/no-unresolved': 'off',
     'import/prefer-default-export': 'off',
     'jsx-a11y/img-has-alt': 'off',

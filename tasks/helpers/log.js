@@ -1,7 +1,7 @@
-// small wrapper for gulp logging
 const gutil = require('gulp-util');
 const _ = require('lodash');
 const prettyHrtime = require('pretty-hrtime');
+
 let startTime;
 
 module.exports = {

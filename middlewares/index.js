@@ -17,6 +17,7 @@ const getIp = require('ipware')().get_ip;
 const help = require('../lib/helpers');
 const routes = require('../routes');
 const logger = require('../lib/logger');
+
 const log = logger.logger;
 
 // public assets directory

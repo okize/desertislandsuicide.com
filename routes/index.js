@@ -1,11 +1,13 @@
 const express = require('express');
-const router = express.Router();
-const api = express.Router();
 const passport = require('passport');
+
 const auth = require('../lib/authentication');
 const homeController = require('../controllers/home');
 const userController = require('../controllers/users');
 const bandsController = require('../controllers/bands');
+
+const router = express.Router();
+const api = express.Router();
 
 // "account" page (temp)
 api.get('/account', userController.account);

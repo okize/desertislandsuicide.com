@@ -14,6 +14,7 @@ const images = path.join(config.images.src, '**/*.svg');
 // run application through a browser-sync proxy so that
 // the browser refreshes when front-end asset files change
 gulp.task('watch', ['css', 'js', 'images'], () => {
+  log.info('Watching assets for changes...');
   browserSync.init({
     proxy: `localhost:${process.env.PORT}`,
     port: process.env.BROWSER_SYNC_PORT,
