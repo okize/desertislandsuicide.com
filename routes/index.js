@@ -1,7 +1,7 @@
 const express = require('express');
 const passport = require('passport');
 
-const auth = require('../lib/authentication');
+require('../lib/authentication');
 const homeController = require('../controllers/home');
 const userController = require('../controllers/users');
 const bandsController = require('../controllers/bands');

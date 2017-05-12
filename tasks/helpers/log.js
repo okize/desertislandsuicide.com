@@ -1,5 +1,4 @@
 const gutil = require('gulp-util');
-const _ = require('lodash');
 const prettyHrtime = require('pretty-hrtime');
 
 let startTime;
@@ -14,9 +13,7 @@ module.exports = {
   // error logging
   error(err) {
     if (err.name && err.stack) {
-      err = `${gutil.colors.red(`${err.plugin}: ${err.name}: `) +
-            gutil.colors.bold.red(`${err.message}`)
-            }\n${err.stack}`;
+      err = `${gutil.colors.red(`${err.plugin}: ${err.name}: `) + gutil.colors.bold.red(`${err.message}`)}\n${err.stack}`;
     }
     return gutil.log(err);
   },
@@ -30,7 +27,6 @@ module.exports = {
   // displays task time since timer started
   end(task) {
     const taskTime = prettyHrtime(process.hrtime(startTime));
-    return gutil.log('Finished', gutil.colors.cyan(task),
-              'after', gutil.colors.magenta(taskTime));
+    return gutil.log('Finished', gutil.colors.cyan(task), 'after', gutil.colors.magenta(taskTime));
   },
 };

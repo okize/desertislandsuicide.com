@@ -1,10 +1,7 @@
-// compile es6 into js
-
 const path = require('path');
 const gulp = require('gulp');
-const gutil = require('gulp-util');
 const browserify = require('browserify');
-const babelify = require('babelify');
+// const babelify = require('babelify');
 const source = require('vinyl-source-stream');
 const buff = require('vinyl-buffer');
 const sourcemaps = require('gulp-sourcemaps');
@@ -24,6 +21,7 @@ const sourcemapOptions = {
   debug: true,
 };
 
+// compile es6 into js
 gulp.task('js', () => {
   log.info('Bundling ES6 and modules into javascript');
   return browserify(browserifyOptions)

@@ -10,7 +10,13 @@
     'max-len': ['error', { 'code': 140 }],
     'object-shorthand': 'off',
     'react/jsx-boolean-value': ['error', 'always'],
-    'import/no-extraneous-dependencies': [2, { devDependencies: true }], // so /tasks doesn't complain about gulp deps being dev deps
+    // so /tasks doesn't complain about gulp deps being dev deps
+    'import/no-extraneous-dependencies': ['error', {
+      'devDependencies': true,
+      'optionalDependencies': false,
+    }],
+    'no-underscore-dangle': 'off', // stuck with this as long as we use mongo
+    'react/no-unescaped-entities': 'off', // this rule is very annoying for large blocks of react content
 
     // temporary
     'consistent-return': 'off',
@@ -26,9 +32,6 @@
     'no-return-assign': 'off',
     'no-shadow': 'off',
     'no-undef': 'off',
-    'no-underscore-dangle': 'off',
-    'no-unused-vars': 'off',
-    'react/no-unescaped-entities': 'off',
     'react/prefer-stateless-function': 'off',
     'react/prop-types': 'off',
   }

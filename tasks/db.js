@@ -15,7 +15,7 @@ const log = require('./helpers/log');
 
 const getDateStamp = () => moment().format('YYYYMMDD-hhmmss');
 
-const getArgValue = argv => _.findKey(argv, (v, k) => v === true);
+const getArgValue = argv => _.findKey(argv, val => val === true);
 
 const getMongoStr = function (db, filepath, type, collectionName) {
   const { database, username, password } = db;

@@ -7,7 +7,7 @@ const middlewares = require('./middlewares');
 const log = require('./lib/logger').logger;
 
 const app = express(); // init app
-const db = require('./lib/mongodb'); // connect to db
+require('./lib/mongodb'); // connect to db
 
 // config
 app.set('app name', process.env.APP_NAME || 'DesertIslandSuicide');

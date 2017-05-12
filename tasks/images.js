@@ -1,11 +1,9 @@
-// copies favicon from assets to public
-
-const path = require('path');
 const gulp = require('gulp');
 
 const log = require('./helpers/log');
 const config = require('../gulpconfig');
 
+// copies images from assets to public
 gulp.task('images', () => {
   log.info('Copying images to public folder');
 
@@ -14,6 +12,7 @@ gulp.task('images', () => {
     .pipe(gulp.dest(config.images.dest));
 });
 
+// copies favicon from assets to public
 gulp.task('favicons', () => {
   log.info('Copying favicons public folder');
 

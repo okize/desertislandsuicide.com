@@ -1,12 +1,10 @@
-// start up app with nodemon
-
-const path = require('path');
 const gulp = require('gulp');
 const nodemon = require('gulp-nodemon');
 const sync = require('browser-sync');
 
 const config = require('../gulpconfig');
 
+// start up app with nodemon
 gulp.task('start', () => {
   nodemon({
     script: config.app.main,
@@ -20,7 +18,7 @@ gulp.task('start', () => {
     this.stdout.pipe(process.stdout);
     return this.stderr.pipe(process.stderr);
   })
-  .on('restart', (files) => {
+  .on('restart', () => {
     sync.reload({ stream: false });
   });
 });

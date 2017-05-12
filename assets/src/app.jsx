@@ -2,12 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import FastClick from 'fastclick';
 
-import eventBus from './components/eventBus.js';
-import Notification from './components/Notification.jsx';
-import LogIn from './components/LogIn.jsx';
-import LogOut from './components/LogOut.jsx';
-import Header from './components/Header.jsx';
-import Voting from './components/Voting.jsx';
+import eventBus from './components/eventBus';
+import Notification from './components/Notification';
+import LogIn from './components/LogIn';
+import LogOut from './components/LogOut';
+import Header from './components/Header';
+import Voting from './components/Voting';
 
 // needed for React Developer Tools
 window.React = React;

@@ -1,12 +1,10 @@
-// open application in default browser
-
-const path = require('path');
 const gulp = require('gulp');
 const open = require('gulp-open');
 
 const log = require('./helpers/log');
 const config = require('../gulpconfig');
 
+// open application in default browser
 gulp.task('open', () => {
   let port;
   log.info('Opening application in browser');

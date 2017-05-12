@@ -1,5 +1,4 @@
 const path = require('path');
-const _ = require('lodash');
 const express = require('express');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
@@ -136,10 +135,11 @@ module.exports = (app) => {
   app.use((err, req, res, next) => {
     if (err) { log.error(err); }
     res.status(err.status || 500);
-    return res.render('error', {
+    res.render('error', {
       message: err.message,
       error: getErrorStack(err, app.get('env')),
     });
+    return next(err);
   });
 
   // error logger
