@@ -14,7 +14,7 @@ gulp.task('start', () => {
     nodeArgs: [`--debug=${process.env.DEBUG_PORT || 5858}`],
     ignore: config.nodemon.ignore,
   })
-  .on('readable', function () {
+  .on('readable', function onReadable() {
     this.stdout.pipe(process.stdout);
     return this.stderr.pipe(process.stderr);
   })

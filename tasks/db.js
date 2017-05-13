@@ -17,7 +17,7 @@ const getDateStamp = () => moment().format('YYYYMMDD-hhmmss');
 
 const getArgValue = argv => _.findKey(argv, val => val === true);
 
-const getMongoStr = function (db, filepath, type, collectionName) {
+const getMongoStr = (db, filepath, type, collectionName) => {
   const { database, username, password } = db;
   const { host, port } = db.hosts[0];
   switch (type) {

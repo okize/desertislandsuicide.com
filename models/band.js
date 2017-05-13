@@ -38,7 +38,7 @@ const bandSchema = new mongoose.Schema({
 }, { strict: true });
 
 // hook to keep vote_count up to date
-bandSchema.pre('save', function (next) {
+bandSchema.pre('save', function bandSchemaPreSave(next) {
   this.vote_count = this.children.length;
   return next();
 });

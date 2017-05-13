@@ -30,7 +30,7 @@ const voteSchema = new mongoose.Schema({
   },
 }, { strict: true });
 
-voteSchema.pre('save', function (next) {
+voteSchema.pre('save', function voteSchemaPreSave(next) {
   return Band.findById(this.parent, (err, result) => {
     let error;
     if (err) {

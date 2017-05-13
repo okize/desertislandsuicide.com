@@ -1,4 +1,3 @@
-let voteForBand;
 const _ = require('lodash');
 const mask = require('json-mask');
 const Band = require('../models/band');
@@ -61,20 +60,8 @@ exports.show = (req, res) =>
   })
 ;
 
-// POST /api/bands
-exports.create = (req, res) => {
-  const userId = req.user._id;
-  req.body.submitted_by = userId;
-  return new Band(req.body).save((err, result) => {
-    if (err != null) { return res.status(500).json({ error: err }); }
-    req.params.id = result._id;
-    // when creating a new band record simultaneously add a vote
-    return voteForBand(req, res);
-  });
-};
-
 // POST /api/bands/:id/vote
-exports.vote = voteForBand = (req, res) => {
+exports.vote = (req, res) => {
   const data = {
     parent: req.params.id,
     user_id: req.user._id,
@@ -83,6 +70,18 @@ exports.vote = voteForBand = (req, res) => {
   return new Vote(data).save((err, result) => {
     if (err != null) { return res.status(500).json({ error: err }); }
     return res.status(200).json(partialResponse(result));
+  });
+};
+
+// POST /api/bands
+exports.create = (req, res) => {
+  const userId = req.user._id;
+  req.body.submitted_by = userId;
+  return new Band(req.body).save((err, result) => {
+    if (err != null) { return res.status(500).json({ error: err }); }
+    req.params.id = result._id;
+    // when creating a new band record simultaneously add a vote
+    return exports.vote(req, res);
   });
 };
 
