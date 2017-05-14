@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import request from 'superagent';
 
 import { getCsrfToken } from '../helpers';
-import BandList from './BandList.jsx';
-import NewBandForm from './NewBandForm.jsx';
-import eventBus from './eventBus.js';
+import BandList from './BandList';
+import NewBandForm from './NewBandForm';
+import eventBus from './eventBus';
 
 const REFRESH_RATE = 500000;
 
 class Voting extends React.Component {
+  static propTypes = {
+    loggedIn: PropTypes.bool.isRequired,
+  };
+
   state = { data: [] };
 
   componentDidMount() {
@@ -29,13 +33,12 @@ class Voting extends React.Component {
     return /bandsNoAuth/;
   };
 
+  // get a list of bands and vote counts
   getBandList = () => {
     const url = `${this.getApiUrl()}?cacheBuster=${Date.now().toString()}`;
 
-    // get a list of bands and vote counts
     return request.get(url).end((error, res) => {
       if (error != null) {
-        console.error(error);
         return eventBus.emit('display-notification', {
           msg: 'Error getting band list, please refresh page.',
           type: 'error',
@@ -50,15 +53,14 @@ class Voting extends React.Component {
     });
   };
 
+  // post new vote
   handleVoteForBand = band =>
-    // post new vote to the server
      request
       .post(`/api/bands/${band.id}/vote`)
       .set('X-CSRF-Token', getCsrfToken())
       .set('Accept', 'application/json')
       .end((error, res) => {
         if (error != null || res.status !== 200) {
-          console.error(error);
           return eventBus.emit('display-notification', {
             msg: 'Sorry, your vote was not recorded, please try again.',
             type: 'error',
@@ -76,8 +78,8 @@ class Voting extends React.Component {
         return this.getBandList();
       });
 
+  // post new band
   handleNewBandSubmit = formData =>
-    // post new band to the server
      request
       .post('/api/bands/')
       .send(formData)
@@ -85,7 +87,6 @@ class Voting extends React.Component {
       .set('Accept', 'application/json')
       .end((error, res) => {
         if (error != null || res.status !== 200) {
-          console.error(error);
           return eventBus.emit('display-notification', {
             msg: 'Sorry, your band was not saved, try again.',
             type: 'error',

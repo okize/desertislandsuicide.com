@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
-class LogOut extends React.Component {
-  render() {
-    return (
-      <div className="logged-in">
-        Signed in as {this.props.userName}
-        <span className="separator"> | </span>
-        <a href="/logout">Sign out </a>
-      </div>
-    );
-  }
-}
+const LogOut = ({ userName }) => (
+  <div className="logged-in">
+    Signed in as {userName}
+    <span className="separator"> | </span>
+    <a href="/logout">Sign out </a>
+  </div>
+);
+
+LogOut.propTypes = {
+  userName: PropTypes.string.isRequired,
+};
 
 export default LogOut;

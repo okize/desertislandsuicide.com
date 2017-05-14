@@ -1,7 +1,15 @@
-import React from 'react';
-import VoteButton from './VoteButton.jsx';
+import React, { PropTypes } from 'react';
+import VoteButton from './VoteButton';
 
 class BandList extends React.Component {
+  static propTypes = {
+    loggedIn: PropTypes.bool.isRequired,
+    data: PropTypes.shape({
+      length: PropTypes.number,
+      map: PropTypes.array,
+    }).isRequired,
+  };
+
   renderBandItem(band) {
     return (
       <li className="band-item" key={band._id}>

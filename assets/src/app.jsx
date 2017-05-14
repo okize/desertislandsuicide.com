@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import FastClick from 'fastclick';
 
@@ -19,6 +19,11 @@ const appEl = document.getElementById('app');
 FastClick(appEl);
 
 class App extends React.Component {
+  static propTypes = {
+    loggedIn: PropTypes.boolDatePickersPage,
+    userName: PropTypes.string,
+  };
+
   static defaultProps = {
     loggedIn: window.loggedIn,
     userName: window.userName || null,

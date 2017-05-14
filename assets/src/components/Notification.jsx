@@ -1,6 +1,13 @@
-import React from 'react';
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+import React, { PropTypes } from 'react';
 
 class Notification extends React.Component {
+  static propTypes = {
+    children: PropTypes.node.isRequired,
+    delay: PropTypes.number.isRequired,
+    type: PropTypes.string.isRequired,
+  };
+
   state = { visible: true };
 
   componentDidMount() {

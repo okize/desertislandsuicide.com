@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 class NewBandForm extends React.Component {
+  static propTypes = {
+    onNewBandSubmit: PropTypes.func.isRequired,
+  };
+
   handleSubmit = (event) => {
     event.preventDefault();
     const input = this.bandName;

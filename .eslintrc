@@ -20,13 +20,9 @@
 
     // temporary
     'consistent-return': 'off',
-    'jsx-a11y/img-has-alt': 'off',
-    'jsx-a11y/no-static-element-interactions': 'off',
     'no-console': 'off',
     'no-param-reassign': 'off',
     'no-return-assign': 'off',
     'no-shadow': 'off',
-    'react/prefer-stateless-function': 'off',
-    'react/prop-types': 'off',
   }
 }

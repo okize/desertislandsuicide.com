@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
-import eventBus from './eventBus.js';
+import eventBus from './eventBus';
 
 class VoteButton extends React.Component {
+  static propTypes = {
+    loggedIn: PropTypes.bool.isRequired,
+    bandId: PropTypes.string.isRequired,
+    bandName: PropTypes.string.isRequired,
+    userHasVotedFor: PropTypes.bool.isRequired,
+  };
+
   voteForBand = (event) => {
     event.preventDefault();
 

@@ -1,7 +1,13 @@
-import React from 'react';
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+import React, { PropTypes } from 'react';
 import key from 'keymaster';
 
 class Modal extends React.Component {
+  static propTypes = {
+    onRequestClose: PropTypes.func.isRequired,
+    children: PropTypes.node.isRequired,
+  };
+
   componentDidMount() {
     // add keybinding to 'esc' to close modal when shown
     return key('esc', () => this.props.onRequestClose());
