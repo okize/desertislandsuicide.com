@@ -20,7 +20,7 @@ FastClick(appEl);
 
 class App extends React.Component {
   static propTypes = {
-    loggedIn: PropTypes.boolDatePickersPage,
+    loggedIn: PropTypes.bool,
     userName: PropTypes.string,
   };
 

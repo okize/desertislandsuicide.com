@@ -11,14 +11,14 @@ class Notification extends React.Component {
   state = { visible: true };
 
   componentDidMount() {
-    return this.setTimer();
+    this.setTimer();
   }
 
   componentWillReceiveProps(nextProps) {
     // reset the timer if children are changed
     if (nextProps.children !== this.props.children) {
       this.setTimer();
-      return this.show();
+      this.show();
     }
   }
 
@@ -29,13 +29,10 @@ class Notification extends React.Component {
     }
 
     // dismiss after delay
-    return this.timer = setTimeout(
-      () => {
-        this.dismiss();
-        return this.timer = null;
-      },
-      this.props.delay * 1000,
-    );
+    this.timer = setTimeout(() => {
+      this.dismiss();
+      this.timer = null;
+    }, this.props.delay * 1000);
   };
 
   show = () => this.setState({ visible: true });

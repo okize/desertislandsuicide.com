@@ -4,10 +4,7 @@ import VoteButton from './VoteButton';
 class BandList extends React.Component {
   static propTypes = {
     loggedIn: PropTypes.bool.isRequired,
-    data: PropTypes.shape({
-      length: PropTypes.number,
-      map: PropTypes.array,
-    }).isRequired,
+    data: PropTypes.arrayOf(PropTypes.object).isRequired,
   };
 
   renderBandItem(band) {

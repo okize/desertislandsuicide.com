@@ -1,5 +1,3 @@
-// db tasks
-
 const path = require('path');
 const fs = require('fs');
 const gulp = require('gulp');
@@ -15,7 +13,7 @@ const log = require('./helpers/log');
 
 const getDateStamp = () => moment().format('YYYYMMDD-hhmmss');
 
-const getArgValue = argv => _.findKey(argv, val => val === true);
+const getArgValue = argumentValues => _.findKey(argumentValues, value => value === true);
 
 const getMongoStr = (db, filepath, type, collectionName) => {
   const { database, username, password } = db;
@@ -55,8 +53,8 @@ gulp.task('db:seed', () => {
 // pass collection name as flag arg
 gulp.task('db:seed:create', () => {
   // array of collection names based on model filenames
-  const collections = _.map(fs.readdirSync('./models'), f => f.replace('.js', 's'));
-  if (_.size(argv) !== 3) {
+  const collections = _.map(fs.readdirSync('./models'), file => file.replace('.js', 's'));
+  if (argv.length !== 3) {
     return log.error('Pass name of collection to export as a flag.');
   }
   const collectionName = getArgValue(argv);
@@ -76,8 +74,8 @@ gulp.task('db:seed:create', () => {
 // pass db env as flag arg
 gulp.task('db:dump', () => {
   // array of environment names from config
-  const envs = _.keys(config.db);
-  if (_.size(argv) !== 3) {
+  const envs = Object.keys(config.db);
+  if (argv.length !== 3) {
     return log.error('Pass name of database environment to dump.');
   }
   const envName = getArgValue(argv);

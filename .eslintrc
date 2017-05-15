@@ -17,12 +17,6 @@
     }],
     'no-underscore-dangle': 'off', // stuck with this as long as we use mongo
     'react/no-unescaped-entities': 'off', // this rule is very annoying for large blocks of react content
-
-    // temporary
-    'consistent-return': 'off',
-    'no-console': 'off',
-    'no-param-reassign': 'off',
-    'no-return-assign': 'off',
-    'no-shadow': 'off',
+    'no-param-reassign': 'off', // naming stuff is hard
   }
 }
